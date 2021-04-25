@@ -98,6 +98,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   FOVAngle: 270
   smoothDamp: 1
+  materialChase: {fileID: 2100000, guid: 0ed5962511c424e418b6b83055cbf6e4, type: 2}
 --- !u!135 &1358113148482361591
 SphereCollider:
   m_ObjectHideFlags: 0

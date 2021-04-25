@@ -18,11 +18,14 @@ public class BoidsUnit : MonoBehaviour
 
     private Transform myTransform;
     private bool detectPlayer;
+    private Renderer render;
+    public Material materialChase;
 
     private void Awake()
     {
         myTransform = transform;
         player = GameObject.FindWithTag("Player");
+        render = GetComponent<Renderer>();
     }
 
     public void AssignFlock(Boids flock)
@@ -195,6 +198,7 @@ public class BoidsUnit : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             detectPlayer = true;
+            render.material = materialChase;
         }
     }
 }
