@@ -15,6 +15,7 @@ public class BoidsUnit : MonoBehaviour
     private float speed;
 
     private Transform myTransform;
+    private bool detectPlayer;
 
     private void Awake()
     {
@@ -174,5 +175,19 @@ public class BoidsUnit : MonoBehaviour
     private bool IsInFOV(Vector3 position)
     {
         return Vector3.Angle(myTransform.forward, position - myTransform.position) <= FOVAngle;
+    }
+
+    private bool DetectingPlayer()
+    {
+        return detectPlayer;
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag("Player"))
+        {
+            detectPlayer = true;
+            print("hola");
+        }
     }
 }

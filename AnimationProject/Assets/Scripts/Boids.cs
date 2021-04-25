@@ -84,13 +84,4 @@ public class Boids : MonoBehaviour
             allUnits[i].InitializeSpeed(Random.Range(minSpeed, maxSpeed));
         }
     }
-
-    private void OnTriggerEnter(Collider other)
-    {
-        if (other.gameObject.tag == "Player")
-        {
-            print("hola");
-            Destroy(other);
-        }
-    }
 }
