@@ -14,12 +14,15 @@ public class BoidsUnit : MonoBehaviour
     private Vector3 currentVelocity;
     private float speed;
 
+    private GameObject player;
+
     private Transform myTransform;
     private bool detectPlayer;
 
     private void Awake()
     {
         myTransform = transform;
+        player = GameObject.FindWithTag("Player");
     }
 
     public void AssignFlock(Boids flock)
@@ -177,9 +180,14 @@ public class BoidsUnit : MonoBehaviour
         return Vector3.Angle(myTransform.forward, position - myTransform.position) <= FOVAngle;
     }
 
-    private bool DetectingPlayer()
+    public bool DetectingPlayer()
     {
         return detectPlayer;
+    }
+
+    public void ChasePlayer()
+    {
+        transform.position = Vector3.MoveTowards(transform.position, player.transform.position, 0.05f);
     }
 
     private void OnTriggerEnter(Collider other)
@@ -187,7 +195,6 @@ public class BoidsUnit : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             detectPlayer = true;
-            print("hola");
         }
     }
 }

@@ -53,11 +53,9 @@ public class Boids : MonoBehaviour
     public float boundsWeight { get { return _boundsWeight; } }
     public BoidsUnit[] allUnits { get; set; }
 
-    private GameObject player;
     // Start is called before the first frame update
     void Start()
     {
-        player = GameObject.FindWithTag("Player");
         GenerateUnits();
     }
 
@@ -66,7 +64,15 @@ public class Boids : MonoBehaviour
     {
         for (int i = 0; i < allUnits.Length; i++)
         {
-            allUnits[i].MoveUnit();
+            if(allUnits[i].DetectingPlayer())
+            {
+                allUnits[i].ChasePlayer();
+            }
+            else
+            {
+                allUnits[i].MoveUnit();
+            }
+            
         }
     }
 
