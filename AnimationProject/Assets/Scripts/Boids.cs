@@ -52,9 +52,12 @@ public class Boids : MonoBehaviour
     [SerializeField] private float _boundsWeight;
     public float boundsWeight { get { return _boundsWeight; } }
     public BoidsUnit[] allUnits { get; set; }
+
+    private GameObject player;
     // Start is called before the first frame update
     void Start()
     {
+        player = GameObject.FindWithTag("Player");
         GenerateUnits();
     }
 
@@ -79,6 +82,15 @@ public class Boids : MonoBehaviour
             allUnits[i] = Instantiate(flockUnitPrefab, spawnPosition, rotation);
             allUnits[i].AssignFlock(this);
             allUnits[i].InitializeSpeed(Random.Range(minSpeed, maxSpeed));
+        }
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.tag == "Player")
+        {
+            print("hola");
+            Destroy(other);
         }
     }
 }
