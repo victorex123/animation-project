@@ -21,10 +21,11 @@ public class InteractuableController : MonoBehaviour
     private float dropForwardForce = 10;
     [SerializeField]
     private float dropUpwardForce = 10;
+    private HingeJoint joint;
     // Start is called before the first frame update
     void Start()
     {
-        manager();
+
     }
 
     // Update is called once per frame
@@ -37,7 +38,6 @@ public class InteractuableController : MonoBehaviour
         if (Physics.Raycast(gameObject.transform.position, gameObject.transform.forward,out hit, interactRange, layerMask))
         {
             equipedObject = hit.collider.gameObject;
-            Debug.Log("uwu");
             return true;
         }
         return false;
@@ -47,13 +47,13 @@ public class InteractuableController : MonoBehaviour
         //Debug.DrawRay(transform.position, gameObject.transform.forward * interactRange, Color.yellow);
         if (Input.GetKeyDown(KeyCode.E) && !equipped && !buttonCheck && checkInteract())
         {
-            equip();
+            equipJoint();
             buttonCheck = true;
         }
 
         if (Input.GetKeyDown(KeyCode.E) && equipped && !buttonCheck)
         {
-            unequip();
+            unequipJoint();
             buttonCheck = true;
         }
 
@@ -88,15 +88,43 @@ public class InteractuableController : MonoBehaviour
 
     public void throwing()
     {
-        equipedObject.transform.SetParent(null);
+        Destroy(equipedObject.GetComponent<HingeJoint>());
         equipedObject.GetComponent<Rigidbody>().useGravity = true;
         equipedObject.GetComponent<Rigidbody>().AddForce(transform.forward * dropForwardForce, ForceMode.Impulse);
         equipedObject.GetComponent<Rigidbody>().AddForce(transform.up * dropUpwardForce, ForceMode.Impulse);
-        //Add random rotation
         float random = Random.Range(-1f, 1f);
         equipedObject.GetComponent<Rigidbody>().AddTorque(new Vector3(random, random, random) * 10);
         equipedObject = null;
         equipped = false;
+    }
+
+    public void equipJoint()
+    {
+        equipedObject.transform.position = equipPosition.transform.position;
+        equipped = true;
+        joint = equipedObject.AddComponent<HingeJoint>();
+        configureJoint();
+    }
+
+    public void unequipJoint()
+    {
+        Destroy(equipedObject.GetComponent<HingeJoint>());
+        equipedObject = null;
+        equipped = false;
+    }
+
+    public void configureJoint()
+    {
+        JointSpring aux = new JointSpring();
+        aux.spring = 100;
+        aux.damper = 10;
+        joint.autoConfigureConnectedAnchor = false;
+        joint.anchor = Vector3.right;
+        joint.axis = new Vector3(1, 1, 1);
+        joint.connectedAnchor = Vector3.zero;
+        joint.useSpring = true;
+        joint.spring = aux;
+        joint.connectedBody = equipPosition.GetComponent<Rigidbody>();
     }
 
 }
