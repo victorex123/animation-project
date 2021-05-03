@@ -12,7 +12,6 @@ public class PlayerController : MonoBehaviour
 
     public Transform targetCamera, targetCameraY, forwardPost;
 
-    public float zoomSpeed = 150;
     public float rotationSpeed = 1.0f;
     public float aimSpeed = 50;
 
@@ -22,9 +21,10 @@ public class PlayerController : MonoBehaviour
 
     private float dt;
 
+    private Rigidbody myRigidbody;
+
     private Camera activeCamera;
 
-    private Vector3 vectorDir = new Vector3();
     private Vector3 vectorDirLook = new Vector3();
 
     private float mouseX, mouseY;
@@ -33,6 +33,7 @@ public class PlayerController : MonoBehaviour
     private void Awake()
     {
         activeCamera = playerAimCamera;
+        myRigidbody = GetComponent<Rigidbody>();
     }
 
     // Start is called before the first frame update
@@ -40,9 +41,6 @@ public class PlayerController : MonoBehaviour
     {
         mouseX = 0;
         mouseY = 0;
-        vectorDir = (targetCamera.transform.position - activeCamera.transform.position).normalized;
-        vectorDirLook = (forwardPost.transform.position - transform.position).normalized;
-        vectorDirLook.y = 0;
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
     }
@@ -52,22 +50,38 @@ public class PlayerController : MonoBehaviour
     {
         dt = Time.deltaTime;
 
-        vectorDir = (targetCamera.transform.position - activeCamera.transform.position).normalized;
-
-        vectorDirLook = (forwardPost.transform.position - transform.position).normalized;
-        vectorDirLook.y = 0;
-
         CameraMove();
         Look();
         Movement();
+    }
+
+    private void FixedUpdate()
+    {
+        //Movement();
     }
 
     private void Movement()
     {
         if (Input.GetKey(KeyCode.W))
         {
+            //transform.Translate(Vector3.forward * movementSpeed * dt);
             LookingForward();
-            transform.position += vectorDirLook * 1 * dt;
+            myRigidbody.AddForce(transform.forward * movementSpeed);
+        }
+        if (Input.GetKey(KeyCode.S))
+        {
+            transform.Translate(Vector3.back * movementSpeed * dt);
+            LookingForward();
+        }
+        if (Input.GetKey(KeyCode.A))
+        {
+            transform.Translate(Vector3.left * movementSpeed * dt);
+            LookingForward();
+        }
+        if (Input.GetKey(KeyCode.D))
+        {
+            transform.Translate(Vector3.right * movementSpeed * dt);
+            LookingForward();
         }
     }
     private void CameraMove()
@@ -94,10 +108,11 @@ public class PlayerController : MonoBehaviour
 
     private void LookingForward()
     {
-        vectorDirLook = (forwardPost.transform.position - transform.position);
+        vectorDirLook = (forwardPost.transform.position - transform.position).normalized;
         vectorDirLook.y = 0;
         var rotation = Quaternion.LookRotation(vectorDirLook);
-        transform.rotation = Quaternion.Slerp(transform.rotation, rotation, dt * aimSpeed);
+        transform.rotation = Quaternion.Slerp(transform.rotation, rotation, 0.2f);
+        //Investigar acerca de torque
     }
 
     private void CameraChange(bool cam1, bool cam2)
