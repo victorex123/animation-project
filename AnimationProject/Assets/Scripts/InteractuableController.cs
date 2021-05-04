@@ -12,7 +12,7 @@ public class InteractuableController : MonoBehaviour
     private bool buttonCheck = false;
     private GameObject equipedObject;
     private RaycastHit hit;
-    private int layerMask = 1 << 3;
+    private int layerobject = 1 << 3;
     [SerializeField]
     private GameObject equipPosition;
     [SerializeField]
@@ -35,9 +35,17 @@ public class InteractuableController : MonoBehaviour
     }
      public bool checkInteract()
     {
-        if (Physics.Raycast(gameObject.transform.position, gameObject.transform.forward,out hit, interactRange, layerMask))
+        if (Physics.Raycast(gameObject.transform.position, gameObject.transform.forward,out hit, interactRange, layerobject))
         {
             equipedObject = hit.collider.gameObject;
+            if (equipedObject.CompareTag("Gun"))
+            {
+                equipGun();
+            }
+            else
+            {
+                equipJoint();
+            }
             return true;
         }
         return false;
@@ -47,21 +55,21 @@ public class InteractuableController : MonoBehaviour
         //Debug.DrawRay(transform.position, gameObject.transform.forward * interactRange, Color.yellow);
         if (Input.GetKeyDown(KeyCode.E) && !equipped && !buttonCheck && checkInteract())
         {
-            equipJoint();
             buttonCheck = true;
         }
 
-        if (Input.GetKeyDown(KeyCode.E) && equipped && !buttonCheck)
+        if (equipped)
         {
-            unequipJoint();
-            buttonCheck = true;
+            if (equipedObject.CompareTag("Gun"))
+            {
+                withGun();
+            }
+            else
+            {
+                withObject();
+            }
         }
 
-        if (Input.GetKeyDown(KeyCode.Mouse0) && equipped && !buttonCheck)
-        {
-            throwing();
-            buttonCheck = true;
-        }
 
         if (!Input.GetKeyDown(KeyCode.E))
         {
@@ -69,7 +77,7 @@ public class InteractuableController : MonoBehaviour
         }
     }
 
-    public void equip()
+    /*public void equip()
     {
         equipedObject.transform.position = equipPosition.transform.position;
         equipedObject.transform.SetParent(player.transform);
@@ -84,7 +92,7 @@ public class InteractuableController : MonoBehaviour
         equipedObject = null;
         equipped = false;
     }
-
+    */
 
     public void throwing()
     {
@@ -125,6 +133,61 @@ public class InteractuableController : MonoBehaviour
         joint.useSpring = true;
         joint.spring = aux;
         joint.connectedBody = equipPosition.GetComponent<Rigidbody>();
+    }
+
+    public void withObject()
+    {
+        if (!buttonCheck)
+        {
+            if (Input.GetKeyDown(KeyCode.E))
+            {
+                unequipJoint();
+                buttonCheck = true;
+            }
+
+            if (Input.GetKeyDown(KeyCode.Mouse0))
+            {
+                throwing();
+            }
+        }
+
+    }
+
+    public void withGun()
+    {
+        if (!buttonCheck)
+        {
+            if (Input.GetKeyDown(KeyCode.E))
+            {
+                unequipGun();
+                buttonCheck = true;
+            }
+
+            if (Input.GetKeyDown(KeyCode.Mouse0))
+            {
+                //xdshoot();
+            }
+        }
+        equipedObject.transform.forward = playerCamera.transform.forward;
+    }
+
+    public void equipGun()
+    {
+        equipedObject.GetComponent<Rigidbody>().isKinematic = true;
+        equipedObject.GetComponent<Collider>().enabled = false;
+        equipedObject.transform.position = equipPosition.transform.position;
+        equipedObject.transform.forward = player.transform.forward;
+        equipedObject.transform.SetParent(player.transform);
+        equipped = true;
+    }
+
+    public void unequipGun()
+    {
+        equipedObject.GetComponent<Rigidbody>().isKinematic = false;
+        equipedObject.GetComponent<Collider>().enabled = true;
+        equipedObject.transform.SetParent(null);
+        equipedObject = null;
+        equipped = false;
     }
 
 }
