@@ -68,20 +68,42 @@ public class PlayerController : MonoBehaviour
             LookingForward();
             myRigidbody.AddForce(transform.forward * movementSpeed);
         }
+        else if (Input.GetKeyUp(KeyCode.W))
+        {
+            myRigidbody.velocity = Vector3.zero;
+        }
+        
         if (Input.GetKey(KeyCode.S))
         {
-            transform.Translate(Vector3.back * movementSpeed * dt);
+            //transform.Translate(Vector3.back * movementSpeed * dt);
+            myRigidbody.AddForce(-transform.forward * movementSpeed);
             LookingForward();
         }
+        else if (Input.GetKeyUp(KeyCode.S))
+        {
+            myRigidbody.velocity = Vector3.zero;
+        }
+
         if (Input.GetKey(KeyCode.A))
         {
-            transform.Translate(Vector3.left * movementSpeed * dt);
+            //transform.Translate(Vector3.left * movementSpeed * dt);
+            myRigidbody.AddForce(-transform.right * movementSpeed);
             LookingForward();
         }
+        else if (Input.GetKeyUp(KeyCode.A))
+        {
+            myRigidbody.velocity = Vector3.zero;
+        }
+
         if (Input.GetKey(KeyCode.D))
         {
-            transform.Translate(Vector3.right * movementSpeed * dt);
+            //transform.Translate(Vector3.right * movementSpeed * dt);
+            myRigidbody.AddForce(transform.right * movementSpeed);
             LookingForward();
+        }
+        else if (Input.GetKeyUp(KeyCode.D))
+        {
+            myRigidbody.velocity = Vector3.zero;
         }
     }
     private void CameraMove()
