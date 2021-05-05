@@ -20,8 +20,9 @@ public class InteractuableController : MonoBehaviour
     [SerializeField]
     private float dropForwardForce = 10;
     [SerializeField]
-    private float dropUpwardForce = 10;
     private HingeJoint joint;
+    private float gunCooldown;
+    private float gunTimer = 0;
     // Start is called before the first frame update
     void Start()
     {
@@ -32,6 +33,8 @@ public class InteractuableController : MonoBehaviour
     void Update()
     {
         manager();
+
+        gunTimer += Time.deltaTime;
     }
      public bool checkInteract()
     {
@@ -62,6 +65,7 @@ public class InteractuableController : MonoBehaviour
         {
             if (equipedObject.CompareTag("Gun"))
             {
+                equippedUpdate();
                 withGun();
             }
             else
@@ -99,7 +103,6 @@ public class InteractuableController : MonoBehaviour
         Destroy(equipedObject.GetComponent<HingeJoint>());
         equipedObject.GetComponent<Rigidbody>().useGravity = true;
         equipedObject.GetComponent<Rigidbody>().AddForce(transform.forward * dropForwardForce, ForceMode.Impulse);
-        equipedObject.GetComponent<Rigidbody>().AddForce(transform.up * dropUpwardForce, ForceMode.Impulse);
         float random = Random.Range(-1f, 1f);
         equipedObject.GetComponent<Rigidbody>().AddTorque(new Vector3(random, random, random) * 10);
         equipedObject = null;
@@ -163,12 +166,13 @@ public class InteractuableController : MonoBehaviour
                 buttonCheck = true;
             }
 
-            if (Input.GetKeyDown(KeyCode.Mouse0))
+            if (Input.GetKey(KeyCode.Mouse0) && gunTimer >= gunCooldown)
             {
-                //xdshoot();
+                Debug.Log("PIUM");
+                equipedObject.GetComponent<GunScript>().Shoot();
+                gunTimer = 0;
             }
         }
-        equipedObject.transform.forward = playerCamera.transform.forward;
     }
 
     public void equipGun()
@@ -177,7 +181,7 @@ public class InteractuableController : MonoBehaviour
         equipedObject.GetComponent<Collider>().enabled = false;
         equipedObject.transform.position = equipPosition.transform.position;
         equipedObject.transform.forward = player.transform.forward;
-        equipedObject.transform.SetParent(player.transform);
+        gunCooldown = equipedObject.GetComponent<GunScript>().GetShootCooldown();
         equipped = true;
     }
 
@@ -185,9 +189,13 @@ public class InteractuableController : MonoBehaviour
     {
         equipedObject.GetComponent<Rigidbody>().isKinematic = false;
         equipedObject.GetComponent<Collider>().enabled = true;
-        equipedObject.transform.SetParent(null);
         equipedObject = null;
         equipped = false;
     }
 
+    public void equippedUpdate()
+    {
+        equipedObject.transform.position = equipPosition.transform.position;
+        equipedObject.transform.forward = playerCamera.transform.forward;
+    }
 }
