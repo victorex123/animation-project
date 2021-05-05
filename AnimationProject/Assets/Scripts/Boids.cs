@@ -53,6 +53,8 @@ public class Boids : MonoBehaviour
     public float boundsWeight { get { return _boundsWeight; } }
     public BoidsUnit[] allUnits { get; set; }
 
+    public GameObject spawnBoids;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -66,7 +68,8 @@ public class Boids : MonoBehaviour
         {
             if(allUnits[i].DetectingPlayer())
             {
-                allUnits[i].ChasePlayer();
+                spawnBoids.transform.position = allUnits[i].PlayerPosition().position - new Vector3(20.0f,0.0f,0.0f) + new Vector3(0.0f,10.0f,0.0f);
+                allUnits[i].MoveUnit();
             }
             else
             {

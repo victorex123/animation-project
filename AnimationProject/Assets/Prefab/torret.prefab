@@ -134,6 +134,7 @@ MonoBehaviour:
   maxTimeToDown: 0
   upTorret: 0
   downTorret: 0
+  forceToApply: 5
 --- !u!54 &3605647702649544314
 Rigidbody:
   m_ObjectHideFlags: 0

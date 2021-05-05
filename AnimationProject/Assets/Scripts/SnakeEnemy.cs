@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class SnakeEnemy : MonoBehaviour
 {
-    public List<Transform> BodyParts = new List<Transform>();
+    public List<GameObject> BodyParts = new List<GameObject>();
 
     public float distanceBody = 0.25f;
 
@@ -47,22 +47,23 @@ public class SnakeEnemy : MonoBehaviour
             currentSpeed *= 2;
         }
 
-        BodyParts[0].Translate(BodyParts[0].forward * currentSpeed * Time.smoothDeltaTime, Space.World);
+        //BodyParts[0].transform.Translate(BodyParts[0].transform.forward * currentSpeed * Time.smoothDeltaTime, Space.World);
+        BodyParts[0].GetComponent<Rigidbody>().AddForce(BodyParts[0].transform.forward * currentSpeed * Time.smoothDeltaTime);
 
         if (Input.GetAxis("Horizontal") != 0)
         {
-            BodyParts[0].Rotate(Vector3.up * rotationSpeed * Time.deltaTime * Input.GetAxis("Horizontal"));
+            BodyParts[0].transform.Rotate(Vector3.up * rotationSpeed * Time.deltaTime * Input.GetAxis("Horizontal"));
         }
 
         for (int i = 1; i < BodyParts.Count; i++)
         {
-            currentBodyPart = BodyParts[i];
-            prevBodyPart = BodyParts[i - 1];
+            currentBodyPart = BodyParts[i].transform;
+            prevBodyPart = BodyParts[i - 1].transform;
 
             dis = Vector3.Distance(prevBodyPart.position, currentBodyPart.position);
 
             Vector3 newpos = prevBodyPart.position;
-            newpos.y = BodyParts[0].position.y;
+            newpos.y = BodyParts[0].transform.position.y;
 
             float T = Time.deltaTime * dis / distanceBody * currentSpeed;
             if (T > 0.5f)
@@ -75,8 +76,8 @@ public class SnakeEnemy : MonoBehaviour
 
     public void AddBodyPart()
     {
-        Transform newpart = Instantiate(bodyPrefab, BodyParts[BodyParts.Count - 1].position, BodyParts[BodyParts.Count - 1].rotation).transform;
-        newpart.SetParent(transform);
+        GameObject newpart = Instantiate(bodyPrefab, BodyParts[BodyParts.Count - 1].transform.position, BodyParts[BodyParts.Count - 1].transform.rotation);
+        newpart.transform.SetParent(transform);
         BodyParts.Add(newpart);
     }
 }

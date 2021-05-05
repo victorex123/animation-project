@@ -20,6 +20,7 @@ public class BoidsUnit : MonoBehaviour
     private bool detectPlayer;
     private Renderer render;
     public Material materialChase;
+    private Transform playerPos;
 
     private void Awake()
     {
@@ -188,9 +189,9 @@ public class BoidsUnit : MonoBehaviour
         return detectPlayer;
     }
 
-    public void ChasePlayer()
+    public Transform PlayerPosition()
     {
-        transform.position = Vector3.MoveTowards(transform.position, player.transform.position, 0.05f);
+        return playerPos;
     }
 
     private void OnTriggerEnter(Collider other)
@@ -199,6 +200,7 @@ public class BoidsUnit : MonoBehaviour
         {
             detectPlayer = true;
             render.material = materialChase;
+            playerPos = other.transform;
         }
     }
 }

@@ -10,6 +10,8 @@ public class TorretEnemy : MonoBehaviour
     public float maxTimeToDown = 0.0f;
     public bool upTorret = false;
     public bool downTorret = false;
+    public float forceToApply = 5.0f;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -72,11 +74,11 @@ public class TorretEnemy : MonoBehaviour
 
     private void UpTorret()
     {
-        rigibody.AddForce(Vector3.up, ForceMode.Acceleration);
+        rigibody.AddForce((forceToApply * Vector3.up) * Time.deltaTime, ForceMode.Acceleration);
     }
 
     private void DownTorret()
     {
-        rigibody.AddForce(Vector3.down, ForceMode.Acceleration);
+        rigibody.AddForce((forceToApply * Vector3.down) * Time.deltaTime, ForceMode.Acceleration);
     }
 }
