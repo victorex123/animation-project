@@ -79,6 +79,10 @@ public class Boids : MonoBehaviour
                 centralBoidsObject.transform.position = allUnits[i].PlayerPosition().position - new Vector3(20.0f,0.0f,0.0f) + new Vector3(0.0f,10.0f,0.0f);
 
                 allUnits[i].MoveUnit();
+                if(allUnits[i].canShoot)
+                {
+                    allUnits[i].Shoot();
+                }
             }
             else
             {

@@ -12,6 +12,7 @@ public class TorretEnemy : MonoBehaviour
     public bool downTorret = false;
     public float forceToApply = 5.0f;
     private GameObject player;
+    public float accelerationAngular = 100.0f;
 
     // Start is called before the first frame update
     void Start()
@@ -23,7 +24,7 @@ public class TorretEnemy : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        transform.LookAt(player.transform.position);
+        RotateTorret();
 
         if (upTorret)
         {
@@ -86,4 +87,34 @@ public class TorretEnemy : MonoBehaviour
     {
         rigibody.AddForce((forceToApply * Vector3.down) * Time.deltaTime, ForceMode.Acceleration);
     }
+
+    public void RotateTorret()
+    {
+        Vector3 direction = transform.forward;
+
+        // direction to look at (not normalized)
+        Vector3 lookDirection = (player.transform.position - transform.position);
+        direction.y = 0.0f;
+
+        float angleToRotate = Vector3.SignedAngle(direction, lookDirection, Vector3.up);
+
+        Vector3 velocityVariation = angleToRotate * Vector3.up - rigibody.angularVelocity;
+
+        // Clamp velocity using unit angular acceleration
+       /// velocityVariation.y = accelerationAngular * Time.deltaTime;
+
+        // Rotate in local coordinates
+        rigibody.AddRelativeTorque(velocityVariation, ForceMode.VelocityChange);
+    }
+
+    public static void ClampModule(Vector3 origin, float moduleLimit)
+    {
+        float sqrModule = origin.sqrMagnitude;
+
+        if (sqrModule > moduleLimit * moduleLimit)
+        {
+            origin *= moduleLimit / Mathf.Sqrt(sqrModule);
+        }
+    }
+
 }

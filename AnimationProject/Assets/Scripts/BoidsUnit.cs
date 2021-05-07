@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class BoidsUnit : MonoBehaviour
 {
@@ -25,13 +26,37 @@ public class BoidsUnit : MonoBehaviour
 
     public GameObject bullet;
     public Transform bulletPoint;
-    private float bulletForwardForce = 75.0f ;
+    public float maxTimeShoot = 15.0f;
+    private float timeToShoot = 0.0f;
+    public bool canShoot = false;
+    public float time = 0.0f;
 
     private void Awake()
     {
         myTransform = transform;
         player = GameObject.FindWithTag("Player");
         render = GetComponent<Renderer>();
+    }
+
+    void Start()
+    {
+        timeToShoot = Random.Range(0.0f, 10.0f);
+        time = timeToShoot;
+    }
+
+    void Update()
+    {
+        if(detectPlayer)
+        {
+            if (time >= maxTimeShoot)
+            {
+                canShoot = true;
+            }
+            else
+            {
+                time += Time.deltaTime;
+            }
+        }
     }
 
     public void AssignFlock(Boids flock)
@@ -196,7 +221,7 @@ public class BoidsUnit : MonoBehaviour
 
     public Transform PlayerPosition()
     {
-        return playerPos;
+        return player.transform;
     }
 
     public void ChangeTexture()
@@ -210,7 +235,6 @@ public class BoidsUnit : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             detectPlayer = true;
-            playerPos = other.transform;
         }
     }
 
@@ -218,7 +242,9 @@ public class BoidsUnit : MonoBehaviour
     {
         GameObject aux;
         aux = Instantiate(bullet, bulletPoint.transform.position, Quaternion.identity);
-        aux.transform.up = transform.forward;
-        aux.GetComponent<Rigidbody>().AddForce(transform.forward * bulletForwardForce, ForceMode.Impulse);
+        aux.transform.LookAt(player.transform.position);
+        aux.GetComponent<Rigidbody>().AddForce(Vector3.right * 25.0f, ForceMode.Impulse);
+        canShoot = false;
+        time = timeToShoot;
     }
 }
