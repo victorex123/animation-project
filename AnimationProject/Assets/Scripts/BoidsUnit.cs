@@ -21,6 +21,11 @@ public class BoidsUnit : MonoBehaviour
     private Renderer render;
     public Material materialChase;
     private Transform playerPos;
+    public bool alreadyPaint = false;
+
+    public GameObject bullet;
+    public Transform bulletPoint;
+    private float bulletForwardForce = 75.0f ;
 
     private void Awake()
     {
@@ -194,13 +199,26 @@ public class BoidsUnit : MonoBehaviour
         return playerPos;
     }
 
+    public void ChangeTexture()
+    {
+        render.material = materialChase;
+        alreadyPaint = false;
+    }
+
     private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Player"))
         {
             detectPlayer = true;
-            render.material = materialChase;
             playerPos = other.transform;
         }
+    }
+
+    public void Shoot()
+    {
+        GameObject aux;
+        aux = Instantiate(bullet, bulletPoint.transform.position, Quaternion.identity);
+        aux.transform.up = transform.forward;
+        aux.GetComponent<Rigidbody>().AddForce(transform.forward * bulletForwardForce, ForceMode.Impulse);
     }
 }

@@ -11,22 +11,27 @@ public class TorretEnemy : MonoBehaviour
     public bool upTorret = false;
     public bool downTorret = false;
     public float forceToApply = 5.0f;
+    private GameObject player;
 
     // Start is called before the first frame update
     void Start()
     {
         rigibody = GetComponent<Rigidbody>();
+        player = GameObject.FindWithTag("Player");
     }
 
     // Update is called once per frame
     void Update()
     {
-        if(upTorret)
+        transform.LookAt(player.transform.position);
+
+        if (upTorret)
         {
             if (time >= maxTimeToUp)
             {
                 upTorret = false;
                 rigibody.velocity = Vector3.zero;
+                
             }
             else 
             {
