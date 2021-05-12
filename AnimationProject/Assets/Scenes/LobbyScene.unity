@@ -1851,7 +1851,7 @@ GameObject:
   - component: {fileID: 941992641}
   - component: {fileID: 941992640}
   m_Layer: 0
-  m_Name: Right (1)
+  m_Name: Left
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1920,7 +1920,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 941992641}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1247451792}
+        m_TargetAssemblyTypeName: LorePagesManager, Assembly-CSharp
+        m_MethodName: GoToLeftPage
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &941992641
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2696,7 +2708,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1247451785}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -1.73, y: 1.51, z: 1.05}
+  m_LocalPosition: {x: -1.73, y: 1.44, z: 1.05}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1691721614}
@@ -2716,8 +2728,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   lorePages:
-    enemySentenceList: []
-    enemyImages: []
+    enemyCharacteristicList:
+    - pokemon
+    - p-p
+    enemyImagesList:
+    - {fileID: 21300000, guid: 5d71c214162add241915c0fd8efbffc3, type: 3}
+    - {fileID: 21300000, guid: e4a3c5e96bcf61b49bc9bff56340757b, type: 3}
+    enemyNamesList: []
   controlPanel: {fileID: 637260861}
   enemiesPanel: {fileID: 695744631}
   objectivePanel: {fileID: 1645908352}
@@ -3494,7 +3511,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1691351016}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1247451792}
+        m_TargetAssemblyTypeName: LorePagesManager, Assembly-CSharp
+        m_MethodName: CloseLorePages
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1691351016
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4017,7 +4046,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1776334298}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1247451792}
+        m_TargetAssemblyTypeName: LorePagesManager, Assembly-CSharp
+        m_MethodName: GoToRightPage
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1776334298
 MonoBehaviour:
   m_ObjectHideFlags: 0
