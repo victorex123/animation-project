@@ -111,7 +111,7 @@ public class LorePagesManager : MonoBehaviour
         if ((other.CompareTag("Player")) && Input.GetKeyDown(KeyCode.Q))
         {
             principalLoreCanvas.SetActive(true);
-}
+        }
     }
     private void OnTriggerExit(Collider other)
     {
