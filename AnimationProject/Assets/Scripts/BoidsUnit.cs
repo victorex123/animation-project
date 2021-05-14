@@ -242,8 +242,10 @@ public class BoidsUnit : MonoBehaviour
     {
         GameObject aux;
         aux = Instantiate(bullet, bulletPoint.transform.position, Quaternion.identity);
+
         aux.transform.LookAt(player.transform.position);
-        aux.GetComponent<Rigidbody>().AddForce(Vector3.right * 25.0f, ForceMode.Impulse);
+        aux.GetComponent<Rigidbody>().AddForce(aux.transform.forward *10.0f, ForceMode.Impulse);
+
         canShoot = false;
         time = timeToShoot;
     }

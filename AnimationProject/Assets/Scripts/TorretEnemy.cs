@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -90,21 +91,52 @@ public class TorretEnemy : MonoBehaviour
 
     public void RotateTorret()
     {
-        Vector3 direction = transform.forward;
+        Quaternion originalRotation = transform.rotation;
+        Vector3 lookDirection = player.transform.position - transform.position;
+        lookDirection.y = 0;
 
-        // direction to look at (not normalized)
-        Vector3 lookDirection = (player.transform.position - transform.position);
-        direction.y = 0.0f;
+        Quaternion destinationRotation = Quaternion.LookRotation(lookDirection, Vector3.up);
 
-        float angleToRotate = Vector3.SignedAngle(direction, lookDirection, Vector3.up);
+        Quaternion rotationToDestination = destinationRotation * Quaternion.Inverse(originalRotation);
 
-        Vector3 velocityVariation = angleToRotate * Vector3.up - rigibody.angularVelocity;
+        Vector3 velocity = rotationToDestination.eulerAngles;
+        velocity.x = NormalizedAngle(velocity.x);
+        velocity.y = NormalizedAngle(velocity.y);
+        velocity.z = NormalizedAngle(velocity.z);
 
-        // Clamp velocity using unit angular acceleration
-       /// velocityVariation.y = accelerationAngular * Time.deltaTime;
+        velocity = 0.1f * Mathf.Deg2Rad * velocity - rigibody.angularVelocity * 0.1f;
+        //transform.rotation = rotationToDestination * originalRotation;
 
-        // Rotate in local coordinates
-        rigibody.AddRelativeTorque(velocityVariation, ForceMode.VelocityChange);
+        rigibody.AddTorque(velocity, ForceMode.VelocityChange);
+
+        //Vector3 direction = transform.forward;
+
+        //// direction to look at (not normalized)
+        //Vector3 lookDirection = (player.transform.position - transform.position);
+        ////direction.y = 0.0f;
+
+        ////float angleToRotate = Mathf.Deg2Rad * Vector3.SignedAngle(direction, lookDirection, transform.up);
+
+        //// Vector3 velocityVariation  = 0.01f * angleToRotate * transform.up - rigibody.angularVelocity;
+
+        //Vector3 velocityVariation = (Quaternion.FromToRotation(direction, lookDirection).eulerAngles * Mathf.Deg2Rad); // - rigibody.angularVelocity
+        //transform.rotation = Quaternion.FromToRotation(direction, lookDirection) * transform.rotation;
+
+        //// Clamp velocity using unit angular acceleration
+        ///// velocityVariation.y = accelerationAngular * Time.deltaTime;
+
+        //// Rotate in local coordinates
+        //// rigibody.AddTorque(velocityVariation, ForceMode.VelocityChange);
+    }
+
+    public float NormalizedAngle(float angle)
+    {
+        while(angle > 180)
+        {
+            angle -= 360; 
+        }
+
+        return angle;
     }
 
     public static void ClampModule(Vector3 origin, float moduleLimit)

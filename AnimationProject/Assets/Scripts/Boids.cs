@@ -65,6 +65,9 @@ public class Boids : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        Vector3 directionToPlayer = allUnits[0].PlayerPosition().position - centralBoidsObject.transform.position;
+        directionToPlayer.Normalize();
+
         for (int i = 0; i < allUnits.Length; i++)
         {
             if(allUnits[i].DetectingPlayer())
@@ -76,7 +79,7 @@ public class Boids : MonoBehaviour
                         allUnits[j].ChangeTexture();
                     } 
                 }
-                centralBoidsObject.transform.position = allUnits[i].PlayerPosition().position - new Vector3(20.0f,0.0f,0.0f) + new Vector3(0.0f,10.0f,0.0f);
+                centralBoidsObject.transform.position = allUnits[i].PlayerPosition().position - 20.0f * directionToPlayer;
 
                 allUnits[i].MoveUnit();
                 if(allUnits[i].canShoot)

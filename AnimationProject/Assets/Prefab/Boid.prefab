@@ -61,7 +61,7 @@ Transform:
   m_GameObject: {fileID: 1180633137211643416}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 6.69, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1.5, y: 1.5, z: 1.5}
   m_Children:
   - {fileID: 7651837577833142638}
   m_Father: {fileID: 0}
@@ -132,7 +132,7 @@ MonoBehaviour:
   smoothDamp: 1
   materialChase: {fileID: 2100000, guid: 0ed5962511c424e418b6b83055cbf6e4, type: 2}
   alreadyPaint: 0
-  bullet: {fileID: 5318029473854102110, guid: fcca14aeaf6219548995290bc1e07c0b, type: 3}
+  bullet: {fileID: 7909942522510467150, guid: 63ce26a58e7ebfb41a09d4eda7284dc8, type: 3}
   bulletPoint: {fileID: 7651837577833142638}
   maxTimeShoot: 15
   canShoot: 0
