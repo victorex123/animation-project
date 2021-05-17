@@ -52,7 +52,10 @@ public class PlayerController : MonoBehaviour
 
         CameraMove();
         Look();
-        Movement();
+        if (myRigidbody.velocity.y > -1)
+        {
+            Movement();
+        }
     }
 
     private void FixedUpdate()
