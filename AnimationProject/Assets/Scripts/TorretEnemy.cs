@@ -7,19 +7,28 @@ public class TorretEnemy : MonoBehaviour
 {
     private Rigidbody rigibody;
     public float maxTimeToUp = 5.0f;
-    public float time = 0;
+    public float timeToWaitToMove = 0;
     public float maxTimeToDown = 0.0f;
     public bool upTorret = false;
     public bool downTorret = false;
-    public float forceToApply = 5.0f;
+    public float forceToApplyToUpp = 5.0f;
     private GameObject player;
     public float accelerationAngular = 100.0f;
+
+    private bool detectPlayer = false;
+    private float timeToShoot;
+    public float maxTimeShoot = 10.0f;
+    private float timeWasteToShoot;
+    public GameObject bullet;
+    public GameObject bulletPos;
 
     // Start is called before the first frame update
     void Start()
     {
         rigibody = GetComponent<Rigidbody>();
         player = GameObject.FindWithTag("Player");
+        timeToShoot = UnityEngine.Random.Range(2.0f, maxTimeShoot - 2.0f);
+        timeWasteToShoot = timeToShoot;
     }
 
     // Update is called once per frame
@@ -29,7 +38,7 @@ public class TorretEnemy : MonoBehaviour
 
         if (upTorret)
         {
-            if (time >= maxTimeToUp)
+            if (timeToWaitToMove >= maxTimeToUp)
             {
                 upTorret = false;
                 rigibody.velocity = Vector3.zero;
@@ -37,22 +46,34 @@ public class TorretEnemy : MonoBehaviour
             }
             else 
             {
-                time += Time.deltaTime;
+                timeToWaitToMove += Time.deltaTime;
                 UpTorret();
             }
         }
 
         if(downTorret)
         {
-            if (time <= maxTimeToDown)
+            if (timeToWaitToMove <= maxTimeToDown)
             {
                 downTorret = false;
                 rigibody.velocity = Vector3.zero;
             }
             else
             {
-                time -= Time.deltaTime;
+                timeToWaitToMove -= Time.deltaTime;
                 DownTorret();
+            }
+        }
+
+        if (detectPlayer)
+        {
+            if (timeWasteToShoot >= maxTimeShoot)
+            {
+                Shoot();
+            }
+            else
+            {
+                timeWasteToShoot += Time.deltaTime;
             }
         }
     }
@@ -65,7 +86,8 @@ public class TorretEnemy : MonoBehaviour
         {
             rigibody.velocity = Vector3.zero;
             upTorret = true;
-            downTorret = false; 
+            downTorret = false;
+            detectPlayer = true;
         }
     }
 
@@ -81,12 +103,12 @@ public class TorretEnemy : MonoBehaviour
 
     private void UpTorret()
     {
-        rigibody.AddForce((forceToApply * Vector3.up) * Time.deltaTime, ForceMode.Acceleration);
+        rigibody.AddForce((forceToApplyToUpp * Vector3.up) * Time.deltaTime, ForceMode.Acceleration);
     }
 
     private void DownTorret()
     {
-        rigibody.AddForce((forceToApply * Vector3.down) * Time.deltaTime, ForceMode.Acceleration);
+        rigibody.AddForce((forceToApplyToUpp * Vector3.down) * Time.deltaTime, ForceMode.Acceleration);
     }
 
     public void RotateTorret()
@@ -147,6 +169,17 @@ public class TorretEnemy : MonoBehaviour
         {
             origin *= moduleLimit / Mathf.Sqrt(sqrModule);
         }
+    }
+
+    public void Shoot()
+    {
+        GameObject aux;
+        aux = Instantiate(bullet, bulletPos.transform.position, Quaternion.identity);
+
+        aux.transform.LookAt(player.transform.position);
+        aux.GetComponent<Rigidbody>().AddForce(aux.transform.forward * 10.0f, ForceMode.Impulse);
+
+        timeWasteToShoot = timeToShoot;
     }
 
 }

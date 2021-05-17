@@ -19,7 +19,7 @@ public class BoidsUnit : MonoBehaviour
 
     private Transform myTransform;
     private bool detectPlayer;
-    private Renderer render;
+    private Renderer renderEyeBoid;
     public Material materialChase;
     private Transform playerPos;
     public bool alreadyPaint = false;
@@ -30,12 +30,13 @@ public class BoidsUnit : MonoBehaviour
     private float timeToShoot = 0.0f;
     public bool canShoot = false;
     public float time = 0.0f;
+    public GameObject eyeBoid;
 
     private void Awake()
     {
         myTransform = transform;
         player = GameObject.FindWithTag("Player");
-        render = GetComponent<Renderer>();
+        renderEyeBoid = eyeBoid.GetComponent<Renderer>();
     }
 
     void Start()
@@ -226,7 +227,7 @@ public class BoidsUnit : MonoBehaviour
 
     public void ChangeTexture()
     {
-        render.material = materialChase;
+        renderEyeBoid.material = materialChase;
         alreadyPaint = false;
     }
 

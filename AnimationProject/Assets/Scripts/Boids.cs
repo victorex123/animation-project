@@ -79,7 +79,7 @@ public class Boids : MonoBehaviour
                         allUnits[j].ChangeTexture();
                     } 
                 }
-                centralBoidsObject.transform.position = allUnits[i].PlayerPosition().position - 20.0f * directionToPlayer;
+                centralBoidsObject.transform.position = allUnits[i].PlayerPosition().position - 30.0f * directionToPlayer;
 
                 allUnits[i].MoveUnit();
                 if(allUnits[i].canShoot)
