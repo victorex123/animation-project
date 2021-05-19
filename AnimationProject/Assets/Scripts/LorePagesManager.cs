@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,12 +14,16 @@ public class LorePagesManager : MonoBehaviour
     public GameObject objectivePanel;
     public GameObject buttonPanel;
     public GameObject principalLoreCanvas;
-    public Text displayText;
-    public Image displayImage;
-    private int i=0;
 
+    public Text displayEnemyText;
+    public Image displayEnemyImage;
+    public Text displayEnemyTitle;
 
-    
+    public Text displayControlText;
+    public Image displayControlImage;
+    public Text displayControlTitle;
+
+    private int i=0;    
 
     private GameObject actualCanvas;
     private string[] actualCharacteristicsList;
@@ -48,13 +53,20 @@ public class LorePagesManager : MonoBehaviour
         if (i>=actualCharacteristicsList.Length)
         {
             i = actualCharacteristicsList.Length-1;
-            print(i);
             return;
         }
         else
         {
-            displayText.text = actualCharacteristicsList[i];
-            displayImage.sprite = actualSpriteList[i];
+            if (actualCanvas == enemiesPanel)
+            {
+                displayEnemyText.text = actualCharacteristicsList[i];
+                displayEnemyImage.sprite = actualSpriteList[i];
+            }
+            else if (actualCanvas == controlPanel)
+            {
+                displayControlText.text = lorePages.controlCharacteristicsList[i];
+                displayControlImage.sprite = lorePages.controlImagesList[i];
+            }
         }
         
 
@@ -70,8 +82,17 @@ public class LorePagesManager : MonoBehaviour
         }
         else
         {
-            displayText.text = actualCharacteristicsList[i];
-            displayImage.sprite = actualSpriteList[i];
+            if(actualCanvas == enemiesPanel)
+            {
+                displayEnemyText.text = actualCharacteristicsList[i];
+                displayEnemyImage.sprite = actualSpriteList[i];
+            }
+            else if (actualCanvas == controlPanel)
+            {
+                displayControlText.text = lorePages.controlCharacteristicsList[i];
+                displayControlImage.sprite = lorePages.controlImagesList[i];
+            }
+            
         }
         
     }
@@ -82,13 +103,14 @@ public class LorePagesManager : MonoBehaviour
         enemiesPanel.SetActive(true);
         actualCanvas = enemiesPanel;
 
-        //CleanArrays();
+        i = 0;
+        CleanArrays();
         actualCharacteristicsList = lorePages.enemyCharacteristicList;
         actualSpriteList = lorePages.enemyImagesList;
         actualTitleList = lorePages.enemyNamesList;
 
-        displayText.text = lorePages.enemyCharacteristicList[i];
-        displayImage.sprite = lorePages.enemyImagesList[i];
+        displayEnemyText.text = lorePages.enemyCharacteristicList[i];
+        displayEnemyImage.sprite = lorePages.enemyImagesList[i];
 
     }
 
@@ -97,6 +119,15 @@ public class LorePagesManager : MonoBehaviour
         buttonPanel.SetActive(false);
         controlPanel.SetActive(true);
         actualCanvas = controlPanel;
+
+        i = 0;
+        CleanArrays();
+        actualCharacteristicsList = lorePages.controlCharacteristicsList;
+        actualSpriteList = lorePages.controlImagesList;
+        actualTitleList = lorePages.controlNamesList;
+
+        displayControlText.text = lorePages.controlCharacteristicsList[i];
+        displayControlImage.sprite = lorePages.controlImagesList[i];
     }
 
     public void ObjetivePage()
@@ -123,20 +154,12 @@ public class LorePagesManager : MonoBehaviour
 
     public void CleanArrays()
     {
-        for(int j=0;j<actualCharacteristicsList.Length;j++)
-        {
-            actualCharacteristicsList[j] = "";
-        }
+        Array.Clear(actualCharacteristicsList, 0, actualCharacteristicsList.Length);
+        Array.Clear(actualSpriteList, 0, actualSpriteList.Length);
+        //Array.Clear(actualTitleList, 0, actualTitleList.Length);
 
-        for(int j = 0; j < actualSpriteList.Length; j++)
-        {
-            actualSpriteList[j] = null;
-        }
 
-        for (int j = 0; j < actualTitleList.Length; j++)
-        {
-            actualTitleList[j] = "";
-        }
+
     }
 
 }

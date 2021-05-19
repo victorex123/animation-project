@@ -10,4 +10,9 @@ public class LorePage
     public string[] enemyCharacteristicList;
     public Sprite[] enemyImagesList;
     public string[] enemyNamesList;
+
+    [TextArea(1, 10)]
+    public string[] controlCharacteristicsList;
+    public Sprite[] controlImagesList;
+    public string[] controlNamesList;
 }

@@ -14,6 +14,7 @@ public class DialogueManager : MonoBehaviour
     public Text displayText;
 
     string activeSentence;
+    bool talking = false;
 
     // Start is called before the first frame update
     void Start()
@@ -41,11 +42,11 @@ public class DialogueManager : MonoBehaviour
 
     public void DisplayNextSentence()
     {
-        if(sentences.Count<=0)
-        {
-            displayText.text = activeSentence;
-            return;
-        }
+        //if(sentences.Count<=0)
+        //{
+        //    displayText.text = activeSentence;
+        //    return;
+        //}
 
         activeSentence = sentences.Dequeue();
         displayText.text = activeSentence;
@@ -53,18 +54,23 @@ public class DialogueManager : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if(other.CompareTag("Player"))
-        {
-            dialoguePanel.SetActive(true);
-            StartDialogue();
-        }
+        talking = true;
     }
 
     private void OnTriggerStay(Collider other)
     {
-        if ((other.CompareTag("Player")) && Input.GetKeyDown(KeyCode.E))
+
+        if ((other.CompareTag("Player")) && Input.GetKeyDown(KeyCode.E) && !talking)
         {
             DisplayNextSentence();
+        }
+
+
+        if (other.CompareTag("Player") && Input.GetKeyDown(KeyCode.E) && talking)
+        {
+            dialoguePanel.SetActive(true);
+            StartDialogue();
+            talking = false;
         }
     }
 
