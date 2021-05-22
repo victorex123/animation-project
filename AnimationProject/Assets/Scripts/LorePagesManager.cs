@@ -35,6 +35,13 @@ public class LorePagesManager : MonoBehaviour
         actualCharacteristicsList = new string[0];
         actualSpriteList = new Sprite[0];
     }
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Q))
+        {
+            print("he pulsado la Q");
+        }
+    }
 
     public void BackButtonsPanel()
     {
@@ -139,9 +146,11 @@ public class LorePagesManager : MonoBehaviour
 
     private void OnTriggerStay(Collider other)
     {
-        if ((other.CompareTag("Player")) && Input.GetKeyDown(KeyCode.Q))
+        //print("he entrado al trigger");
+        if (Input.GetKey(KeyCode.Q) && (other.CompareTag("Player")))
         {
             principalLoreCanvas.SetActive(true);
+            print("he activado el canvas");
         }
     }
     private void OnTriggerExit(Collider other)
