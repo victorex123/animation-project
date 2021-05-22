@@ -35,13 +35,6 @@ public class LorePagesManager : MonoBehaviour
         actualCharacteristicsList = new string[0];
         actualSpriteList = new Sprite[0];
     }
-    private void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.Q))
-        {
-            print("he pulsado la Q");
-        }
-    }
 
     public void BackButtonsPanel()
     {
@@ -52,6 +45,8 @@ public class LorePagesManager : MonoBehaviour
     public void CloseLorePages()
     {
         principalLoreCanvas.SetActive(false);
+        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
     }
 
     public void GoToRightPage()
@@ -118,6 +113,7 @@ public class LorePagesManager : MonoBehaviour
 
         displayEnemyText.text = lorePages.enemyCharacteristicList[i];
         displayEnemyImage.sprite = lorePages.enemyImagesList[i];
+        print(lorePages.enemyCharacteristicList[i]);
 
     }
 
@@ -149,14 +145,17 @@ public class LorePagesManager : MonoBehaviour
         //print("he entrado al trigger");
         if (Input.GetKey(KeyCode.Q) && (other.CompareTag("Player")))
         {
+            Cursor.lockState = CursorLockMode.Confined;
+            Cursor.visible = true;
             principalLoreCanvas.SetActive(true);
-            print("he activado el canvas");
         }
     }
     private void OnTriggerExit(Collider other)
     {
         if (other.CompareTag("Player"))
         {
+            Cursor.lockState = CursorLockMode.Locked;
+            Cursor.visible = false;
             principalLoreCanvas.SetActive(false);
         }
     }
