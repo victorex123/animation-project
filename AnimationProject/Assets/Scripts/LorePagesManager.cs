@@ -106,7 +106,7 @@ public class LorePagesManager : MonoBehaviour
         actualCanvas = enemiesPanel;
 
         i = 0;
-        CleanArrays();
+
         actualCharacteristicsList = lorePages.enemyCharacteristicList;
         actualSpriteList = lorePages.enemyImagesList;
         actualTitleList = lorePages.enemyNamesList;
@@ -124,7 +124,7 @@ public class LorePagesManager : MonoBehaviour
         actualCanvas = controlPanel;
 
         i = 0;
-        CleanArrays();
+   
         actualCharacteristicsList = lorePages.controlCharacteristicsList;
         actualSpriteList = lorePages.controlImagesList;
         actualTitleList = lorePages.controlNamesList;
@@ -160,14 +160,6 @@ public class LorePagesManager : MonoBehaviour
         }
     }
 
-    public void CleanArrays()
-    {
-        Array.Clear(actualCharacteristicsList, 0, actualCharacteristicsList.Length);
-        Array.Clear(actualSpriteList, 0, actualSpriteList.Length);
-        //Array.Clear(actualTitleList, 0, actualTitleList.Length);
 
-
-
-    }
 
 }
