@@ -15,7 +15,8 @@ public class PlayerController : MonoBehaviour
     public float rotationSpeed = 1.0f;
     public float aimSpeed = 50;
 
-    public float movementSpeed = 5;
+    public float movementSpeed = 500;
+    public float maxMovementSpeed = 500;
 
     //Private
 
@@ -52,7 +53,7 @@ public class PlayerController : MonoBehaviour
 
         CameraMove();
         Look();
-        if (myRigidbody.velocity.y > -1)
+        if (myRigidbody.velocity.y > -0.5f && myRigidbody.velocity.y < 0.5f)
         {
             Movement();
         }
@@ -65,46 +66,26 @@ public class PlayerController : MonoBehaviour
 
     private void Movement()
     {
-        if (Input.GetKey(KeyCode.W))
+        if (Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.D))
         {
-            //transform.Translate(Vector3.forward * movementSpeed * dt);
-            LookingForward();
-            myRigidbody.AddForce(transform.forward * movementSpeed);
-        }
-        else if (Input.GetKeyUp(KeyCode.W))
-        {
-            myRigidbody.velocity = Vector3.zero;
-        }
-        
-        if (Input.GetKey(KeyCode.S))
-        {
-            //transform.Translate(Vector3.back * movementSpeed * dt);
-            myRigidbody.AddForce(-transform.forward * movementSpeed);
-            LookingForward();
-        }
-        else if (Input.GetKeyUp(KeyCode.S))
-        {
-            myRigidbody.velocity = Vector3.zero;
-        }
+            if (Input.GetKey(KeyCode.W)) myRigidbody.AddForce(transform.forward * movementSpeed);
 
-        if (Input.GetKey(KeyCode.A))
-        {
-            //transform.Translate(Vector3.left * movementSpeed * dt);
-            myRigidbody.AddForce(-transform.right * movementSpeed);
-            LookingForward();
-        }
-        else if (Input.GetKeyUp(KeyCode.A))
-        {
-            myRigidbody.velocity = Vector3.zero;
-        }
 
-        if (Input.GetKey(KeyCode.D))
-        {
-            //transform.Translate(Vector3.right * movementSpeed * dt);
-            myRigidbody.AddForce(transform.right * movementSpeed);
-            LookingForward();
+            if (Input.GetKey(KeyCode.S)) myRigidbody.AddForce(-transform.forward * movementSpeed);
+
+
+            if (Input.GetKey(KeyCode.A)) myRigidbody.AddForce(-transform.right * movementSpeed);
+
+
+            if (Input.GetKey(KeyCode.D)) myRigidbody.AddForce(transform.right * movementSpeed);
+
+
+            if (myRigidbody.velocity.magnitude > maxMovementSpeed)
+            {
+                myRigidbody.velocity = myRigidbody.velocity.normalized * maxMovementSpeed;
+            }
         }
-        else if (Input.GetKeyUp(KeyCode.D))
+        else
         {
             myRigidbody.velocity = Vector3.zero;
         }
@@ -128,6 +109,11 @@ public class PlayerController : MonoBehaviour
         else
         {
             CameraChange(true, false);
+        }
+
+        if (Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.D))
+        {
+            LookingForward();
         }
     }
 

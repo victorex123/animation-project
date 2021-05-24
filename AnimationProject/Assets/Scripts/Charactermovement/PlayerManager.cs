@@ -21,7 +21,7 @@ public class PlayerManager : MonoBehaviour
     {
         actualHealth = maxHealth;
         healthBar.value = actualHealth / maxHealth;
-        startColor = new Color(0, 255, 63);
+        startColor = new Color(255, 0, 0);
         finalColor = new Color(255, 0, 0);
         healthBar.gameObject.transform.Find("Fill Area").Find("Fill").GetComponent<Image>().color = startColor;
     }
