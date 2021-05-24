@@ -832,23 +832,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 89f2a8ec7bc45644aa2368bdea848e61, type: 3}
---- !u!1 &643888402 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 5466238274484670034, guid: 05731b4f1ce6f8c4ea26f7b8fa4f9fcb, type: 3}
-  m_PrefabInstance: {fileID: 5123569628333233606}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &643888403
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 643888402}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4482fe55520b1844591071b5b19e5e08, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1001 &669466045
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1211,6 +1194,17 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c7821bc923171f24094e69062402d005, type: 3}
+--- !u!114 &1277260767 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5536862595450982121, guid: 05731b4f1ce6f8c4ea26f7b8fa4f9fcb, type: 3}
+  m_PrefabInstance: {fileID: 5123569628333233606}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c0a49da6dc950a848818335c171b3d88, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1284348245 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 89f2a8ec7bc45644aa2368bdea848e61, type: 3}
@@ -1937,6 +1931,14 @@ PrefabInstance:
       propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1642851226462675205, guid: 05731b4f1ce6f8c4ea26f7b8fa4f9fcb, type: 3}
+      propertyPath: healthBar
+      value: 
+      objectReference: {fileID: 1277260767}
+    - target: {fileID: 1642851226462675205, guid: 05731b4f1ce6f8c4ea26f7b8fa4f9fcb, type: 3}
+      propertyPath: currentHealth
+      value: 100
+      objectReference: {fileID: 0}
     - target: {fileID: 2634051486686984559, guid: 05731b4f1ce6f8c4ea26f7b8fa4f9fcb, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -2036,6 +2038,10 @@ PrefabInstance:
     - target: {fileID: 6579161323897333984, guid: 05731b4f1ce6f8c4ea26f7b8fa4f9fcb, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7921047763313722197, guid: 05731b4f1ce6f8c4ea26f7b8fa4f9fcb, type: 3}
+      propertyPath: m_Value
+      value: 63.1
       objectReference: {fileID: 0}
     - target: {fileID: 8059357638977323585, guid: 05731b4f1ce6f8c4ea26f7b8fa4f9fcb, type: 3}
       propertyPath: m_AnchorMax.x
