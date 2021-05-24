@@ -30,7 +30,14 @@ public class BoidsUnit : MonoBehaviour
     private float timeToShoot = 0.0f;
     public bool canShoot = false;
     public float time = 0.0f;
+
     public GameObject eyeBoid;
+
+    public GameObject healthBar;
+    public BoxCollider boxCollider;
+    public EnemyHeal currentLife;
+    public bool real;
+    public GameObject controlUnits;
 
     private void Awake()
     {
@@ -47,6 +54,14 @@ public class BoidsUnit : MonoBehaviour
 
     void Update()
     {
+        if(real)
+        {
+            if(currentLife.currentHealth<=0)
+            {
+                Destroy(this.controlUnits);
+            }
+            
+        }
         if(detectPlayer)
         {
             if (time >= maxTimeShoot)

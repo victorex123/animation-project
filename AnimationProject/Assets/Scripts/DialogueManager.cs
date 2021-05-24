@@ -64,6 +64,7 @@ public class DialogueManager : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
         startTalking = true;
+        i = dialogue.sentenceList.Length;
     }
 
     private void OnTriggerStay(Collider other)
@@ -71,8 +72,8 @@ public class DialogueManager : MonoBehaviour
 
         if ((other.CompareTag("Player")) && pressE && !startTalking)
         {
-            i++;
-            if(i>dialogue.sentenceList.Length)
+            i--;
+            if(i<0)
             {
                 dialoguePanel.SetActive(false);
                 return;

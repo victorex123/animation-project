@@ -55,6 +55,9 @@ public class Boids : MonoBehaviour
 
     public GameObject centralBoidsObject;
 
+    private int chooseRealBoid;
+    private int count = -1;
+
 
     // Start is called before the first frame update
     void Start()
@@ -64,7 +67,7 @@ public class Boids : MonoBehaviour
 
     // Update is called once per frame
     void Update()
-    {
+    {        
         if(allUnits[0]==null)
         {
             Destroy(this);
@@ -103,8 +106,13 @@ public class Boids : MonoBehaviour
     public void GenerateUnits()
     {
         allUnits = new BoidsUnit[flockSize];
+        chooseRealBoid = Random.Range(0, flockSize) -1;
+        print(chooseRealBoid);
+
         for (int i = 0; i < flockSize; i++)
         {
+            count++;
+
             var randomVector = Random.insideUnitSphere;
             randomVector = new Vector3(randomVector.x * spawnBounds.x, randomVector.y * spawnBounds.y, randomVector.z * spawnBounds.z);
             var spawnPosition = transform.position + randomVector;
@@ -112,6 +120,21 @@ public class Boids : MonoBehaviour
             allUnits[i] = Instantiate(flockUnitPrefab, spawnPosition, rotation);
             allUnits[i].AssignFlock(this);
             allUnits[i].InitializeSpeed(Random.Range(minSpeed, maxSpeed));
+
+            if(chooseRealBoid == count)
+            {
+                allUnits[i].healthBar.SetActive(true);
+                allUnits[i].real = true;
+            }
+            else
+            {
+                Destroy(this.allUnits[i].boxCollider);
+                allUnits[i].healthBar.SetActive(false);
+                allUnits[i].real = false;
+                
+            }
+
+            
         }
     }
 }

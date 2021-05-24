@@ -36,4 +36,9 @@ public class EnemyHeal : MonoBehaviour
         currentHealth -= dmg;
         healthBar.SetHealth(currentHealth);
     }
+
+    private void OnTriggerEnter(Collider other)
+    {
+
+    }
 }
