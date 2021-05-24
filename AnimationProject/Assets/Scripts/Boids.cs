@@ -65,6 +65,11 @@ public class Boids : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if(allUnits[0]==null)
+        {
+            Destroy(this);
+        }
+
         Vector3 directionToPlayer = allUnits[0].PlayerPosition().position - centralBoidsObject.transform.position;
         directionToPlayer.Normalize();
 
