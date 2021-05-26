@@ -96,6 +96,8 @@ public class PlayerManager : MonoBehaviour
         {
             playerController.killPlayer();
         }
+
+        print(actualHealth);
     }
     public void CleanPoison()
     {

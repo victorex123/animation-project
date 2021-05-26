@@ -21,6 +21,7 @@ public class TorretEnemy : MonoBehaviour
     private float timeWasteToShoot;
     public GameObject bullet;
     public GameObject bulletPos;
+    public GameObject healtBar;
 
     // Start is called before the first frame update
     void Start()
@@ -29,6 +30,7 @@ public class TorretEnemy : MonoBehaviour
         player = GameObject.FindWithTag("Player");
         timeToShoot = UnityEngine.Random.Range(2.0f, maxTimeShoot - 2.0f);
         timeWasteToShoot = timeToShoot;
+        healtBar.SetActive(false);
     }
 
     // Update is called once per frame
@@ -88,6 +90,8 @@ public class TorretEnemy : MonoBehaviour
             upTorret = true;
             downTorret = false;
             detectPlayer = true;
+            healtBar.SetActive(true);
+
         }
     }
 
@@ -98,6 +102,7 @@ public class TorretEnemy : MonoBehaviour
             rigibody.velocity = Vector3.zero;
             downTorret = true;
             upTorret = false;
+            healtBar.SetActive(false);
         }
     }
 
