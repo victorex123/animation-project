@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class PlayerManager : MonoBehaviour
@@ -9,12 +10,20 @@ public class PlayerManager : MonoBehaviour
     public float maxHealth;
     public Slider healthBar;
 
+    public PlayerController playerController;
+
+    public Image fadeIn;
+    public Text deathMessage;
+
     //Private attributes
     private float actualHealth;
     private float dt;
     private Color startColor;
     private Color finalColor;
 
+    private float dyingAnimationTime = 6;
+    private float dyingAnimationTimer = 0;
+    private float fadeInSpeed = 0.25f;
 
     // Start is called before the first frame update
     void Start()
@@ -40,11 +49,27 @@ public class PlayerManager : MonoBehaviour
         {
             ChangeHealthBar(-20f * dt);
         }
+
+        if (actualHealth < 0)
+        {
+            dyingAnimationTimer += dt;
+            if (fadeIn.color.a + fadeInSpeed*dt <= 0.75f)
+            {
+                fadeIn.color = new Color(0, 0, 0, fadeIn.color.a + fadeInSpeed * dt);
+                deathMessage.color= new Color(deathMessage.color.r, deathMessage.color.g, deathMessage.color.b, deathMessage.color.a + fadeInSpeed * dt);
+            }
+
+            if (dyingAnimationTimer >= dyingAnimationTime)
+            {
+                Debug.Log("Time OUT");
+                SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+            }
+        }
     }
 
     private void ChangeHealthBar(float newValue)
     {
-        actualHealth = actualHealth - newValue;
+        actualHealth -= newValue;
 
         if (actualHealth < 0) actualHealth = 0;
 
@@ -54,5 +79,22 @@ public class PlayerManager : MonoBehaviour
         //Color actualColor = New
         //healthBar.gameObject.transform.Find("Fill Area").Find("Fill").GetComponent<Image>().color = actualColor;
         healthBar.value = percentaje;
+    }
+
+    public void ReceiveDamage(float amount, int type)
+    {
+        if (actualHealth > 0)
+        {
+            actualHealth -= amount * dt;
+            healthBar.value = actualHealth / maxHealth;
+            if (type == 1)
+            {
+                healthBar.gameObject.transform.Find("Fill Area").Find("Fill").GetComponent<Image>().color = new Color(0.15f, 0.5f, 0.15f);
+            }
+        }
+        else if (actualHealth <= 0)
+        {
+            playerController.killPlayer();
+        }
     }
 }

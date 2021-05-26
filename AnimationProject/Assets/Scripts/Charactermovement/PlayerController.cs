@@ -53,12 +53,16 @@ public class PlayerController : MonoBehaviour
     {
         dt = Time.deltaTime;
 
-        CameraMove();
-        Look();
-        if (myRigidbody.velocity.y > -0.5f && myRigidbody.velocity.y < 0.5f)
+        if (isAlive)
         {
-            Movement();
+            CameraMove();
+            Look();
+            if (myRigidbody.velocity.y > -0.5f && myRigidbody.velocity.y < 0.5f)
+            {
+                Movement();
+            }
         }
+
     }
 
     private void FixedUpdate()
@@ -138,5 +142,9 @@ public class PlayerController : MonoBehaviour
             activeCamera = playerCamera;
         }
 
+    }
+    public void killPlayer()
+    {
+        isAlive = false;
     }
 }
