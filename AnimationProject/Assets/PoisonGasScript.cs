@@ -29,8 +29,14 @@ public class PoisonGasScript : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Player"))
         {
-            Debug.Log("In range with poison gas");
             other.GetComponent<PlayerManager>().ReceiveDamage(damage, 1);
+        }
+    }
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.gameObject.CompareTag("Player"))
+        {
+            other.GetComponent<PlayerManager>().CleanPoison();
         }
     }
 }

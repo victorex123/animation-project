@@ -21,7 +21,7 @@ public class PlayerManager : MonoBehaviour
     private Color startColor;
     private Color finalColor;
 
-    private float dyingAnimationTime = 6;
+    private float dyingAnimationTime = 4;
     private float dyingAnimationTimer = 0;
     private float fadeInSpeed = 0.25f;
 
@@ -97,4 +97,9 @@ public class PlayerManager : MonoBehaviour
             playerController.killPlayer();
         }
     }
+    public void CleanPoison()
+    {
+        healthBar.gameObject.transform.Find("Fill Area").Find("Fill").GetComponent<Image>().color = startColor;
+    }
+
 }
