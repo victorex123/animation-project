@@ -11,7 +11,7 @@ public class PoisonGasScript : MonoBehaviour
 
     //Private
 
-
+    private float dt;
 
     // Start is called before the first frame update
     void Start()
@@ -22,14 +22,14 @@ public class PoisonGasScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        dt = Time.deltaTime;
     }
 
     private void OnTriggerStay(Collider other)
     {
         if (other.gameObject.CompareTag("Player"))
         {
-            other.GetComponent<PlayerManager>().ReceiveDamage(damage, 1);
+            other.GetComponent<PlayerManager>().ReceiveDamage(damage * dt, 1);
         }
     }
     private void OnTriggerExit(Collider other)

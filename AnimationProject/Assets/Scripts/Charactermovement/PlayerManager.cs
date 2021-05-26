@@ -85,7 +85,7 @@ public class PlayerManager : MonoBehaviour
     {
         if (actualHealth > 0)
         {
-            actualHealth -= amount * dt;
+            actualHealth -= amount;
             healthBar.value = actualHealth / maxHealth;
             if (type == 1)
             {

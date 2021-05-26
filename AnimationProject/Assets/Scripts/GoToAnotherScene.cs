@@ -12,6 +12,25 @@ public class GoToAnotherScene : MonoBehaviour
         SceneManager.LoadScene(sceneName);
     }
 
+    public void LoadSceneByName(string nameOfScene)
+    {
+        SceneManager.LoadScene(nameOfScene);
+    }
+
+    public void CloseTheGame()
+    {
+        Application.Quit();
+    }
+
+    public void OpenWindow(Canvas window)
+    {
+        window.gameObject.SetActive(true);
+    }
+    public void CloseWindow(Canvas window)
+    {
+        window.gameObject.SetActive(false);
+    }
+
     private void Update()
     {
         if(Input.GetKeyDown(KeyCode.U))
