@@ -4,8 +4,11 @@ using UnityEngine;
 
 public class InteractuableController : MonoBehaviour
 {
-
-    public Camera playerCamera;
+    [SerializeField]
+    private Camera primaryCamera;
+    [SerializeField]
+    private Camera secondaryCamera;
+    private Camera cameraUsed;
     [SerializeField]
     private float interactRange = 10f;
     private bool equipped = false;
@@ -32,13 +35,14 @@ public class InteractuableController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        checkCamera();
         manager();
 
         gunTimer += Time.deltaTime;
     }
      public bool checkInteract()
     {
-        if (Physics.Raycast(gameObject.transform.position, gameObject.transform.forward,out hit, interactRange, layerobject))
+        if (Physics.Raycast(cameraUsed.transform.position, cameraUsed.transform.forward,out hit, interactRange, layerobject))
         {
             equipedObject = hit.collider.gameObject;
             if (equipedObject.CompareTag("Gun"))
@@ -55,7 +59,7 @@ public class InteractuableController : MonoBehaviour
     }
     public void manager()
     {
-        //Debug.DrawRay(transform.position, gameObject.transform.forward * interactRange, Color.yellow);
+
         if (Input.GetKeyDown(KeyCode.E) && !equipped && !buttonCheck && checkInteract())
         {
             buttonCheck = true;
@@ -149,7 +153,7 @@ public class InteractuableController : MonoBehaviour
                 buttonCheck = true;
             }
 
-            if (Input.GetKeyDown(KeyCode.Mouse0))
+            if (Input.GetKeyDown(KeyCode.Q))
             {
                 throwing();
             }
@@ -197,6 +201,19 @@ public class InteractuableController : MonoBehaviour
     public void equippedUpdate()
     {
         equipedObject.transform.position = equipPosition.transform.position;
-        equipedObject.transform.forward = playerCamera.transform.forward;
+        equipedObject.transform.forward = cameraUsed.transform.forward;
+        //equipedObject.transform.right = player.transform.right;
+    }
+
+    public void checkCamera()
+    {
+        if (primaryCamera.gameObject.activeInHierarchy)
+        {
+            cameraUsed = primaryCamera;
+        }
+        else
+        {
+            cameraUsed = secondaryCamera;
+        }
     }
 }
