@@ -136,6 +136,7 @@ public class InteractuableController : MonoBehaviour
         joint.useSpring = true;
         joint.spring = aux;
         joint.connectedBody = equipPosition.GetComponent<Rigidbody>();
+        joint.enableCollision = false;
     }
 
     public void withObject()
