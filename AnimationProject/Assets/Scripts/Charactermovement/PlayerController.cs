@@ -30,6 +30,8 @@ public class PlayerController : MonoBehaviour
 
     private float mouseX, mouseY;
 
+    private bool isAlive = true;
+
 
     private void Awake()
     {
