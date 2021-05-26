@@ -1316,6 +1316,7 @@ GameObject:
   - component: {fileID: 7004208811775147262}
   - component: {fileID: 1378902121379214526}
   - component: {fileID: 7004208811775147261}
+  - component: {fileID: 8442820228922203202}
   - component: {fileID: 7004208811775147263}
   - component: {fileID: 7004208811775147260}
   m_Layer: 0
@@ -1339,6 +1340,7 @@ Transform:
   - {fileID: 7004208811602744634}
   - {fileID: 7004208811988583224}
   - {fileID: 7004208811952230790}
+  - {fileID: 6152094597379984737}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1381,6 +1383,25 @@ MonoBehaviour:
   aimSpeed: 10
   movementSpeed: 5000
   maxMovementSpeed: 4
+--- !u!114 &8442820228922203202
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7004208811775147233}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ca04d0554398b6a44aa26eed392be23b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  primaryCamera: {fileID: 7004208811159365661}
+  secondaryCamera: {fileID: 7004208810689496135}
+  interactRange: 10
+  equipPosition: {fileID: 7432069648275900191}
+  player: {fileID: 7004208811988583227}
+  dropForwardForce: 10
+  joint: {fileID: 0}
 --- !u!54 &7004208811775147263
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -1734,4 +1755,34 @@ Transform:
   - {fileID: 7004208811003215883}
   m_Father: {fileID: 7004208811775147262}
   m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &7432069648275900191
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6152094597379984737}
+  m_Layer: 0
+  m_Name: PointGrab
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &6152094597379984737
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7432069648275900191}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.87, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 7004208811775147262}
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
