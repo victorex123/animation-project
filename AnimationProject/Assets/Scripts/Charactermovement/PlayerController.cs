@@ -26,6 +26,12 @@ public class PlayerController : MonoBehaviour
 
     private Camera activeCamera;
 
+    private float playerCameraOriginalDistance;
+    private float playerAimCameraOriginalDistance;
+
+    private float playerCameraActualDistance;
+    private float playerAimCameraActualDistance;
+
     private Vector3 vectorDirLook = new Vector3();
 
     private float mouseX, mouseY;
@@ -35,8 +41,14 @@ public class PlayerController : MonoBehaviour
 
     private void Awake()
     {
-        activeCamera = playerAimCamera;
+        activeCamera = playerCamera;
         myRigidbody = GetComponent<Rigidbody>();
+
+        playerCameraOriginalDistance = Vector3.Distance(transform.position, playerCamera.transform.position);
+        playerAimCameraOriginalDistance = Vector3.Distance(playerAimCamera.transform.position, transform.position);
+
+        playerCameraActualDistance = playerCameraOriginalDistance;
+        playerAimCameraActualDistance = playerAimCameraOriginalDistance;
     }
 
     // Start is called before the first frame update
@@ -61,6 +73,7 @@ public class PlayerController : MonoBehaviour
             {
                 Movement();
             }
+            CameraAdjustDistance();
         }
 
     }
@@ -108,7 +121,7 @@ public class PlayerController : MonoBehaviour
             CameraChange(false,true);
             LookingForward();
         }
-        else
+        else if (Input.GetMouseButtonUp(1))
         {
             CameraChange(true, false);
         }
@@ -133,16 +146,52 @@ public class PlayerController : MonoBehaviour
         playerCamera.gameObject.SetActive(cam1);
         playerAimCamera.gameObject.SetActive(cam2);
 
-        if (activeCamera == playerCamera)
-        {
-            activeCamera = playerAimCamera;
-        }
-        else
-        {
-            activeCamera = playerCamera;
-        }
+        if (cam1) activeCamera = playerCamera;
+        if (cam2) activeCamera = playerAimCamera;
 
     }
+    private void CameraAdjustDistance()
+    {
+        RaycastHit hit;
+        Ray ray = activeCamera.ScreenPointToRay(activeCamera.WorldToScreenPoint(transform.position));
+
+        Debug.DrawRay(activeCamera.transform.position, transform.position-activeCamera.transform.position, Color.green);
+
+        if (Physics.Raycast(ray, out hit))
+        {
+            Transform objectHit = hit.transform;
+
+            if (objectHit.CompareTag("Player"))
+            {
+                //Debug.Log("Estoy viendo al jugador.");
+                if (activeCamera == playerCamera && playerCameraActualDistance < playerCameraOriginalDistance)
+                {
+                    activeCamera.transform.position -= (transform.position - activeCamera.transform.position).normalized * 5 * dt;
+                    playerCameraActualDistance = Vector3.Distance(transform.position, activeCamera.transform.position);
+                }
+
+                if (activeCamera == playerAimCamera && playerAimCameraActualDistance < playerAimCameraOriginalDistance)
+                {
+                    activeCamera.transform.position -= (transform.position - activeCamera.transform.position).normalized * 5 * dt;
+                    playerAimCameraActualDistance = Vector3.Distance(transform.position, activeCamera.transform.position);
+                }
+
+                Debug.Log("Distancia actual: " + playerCameraActualDistance + ", Distancia máxima: " + playerCameraOriginalDistance);
+            }
+            else
+            {
+                //Debug.Log("No estoy viendo al jugador.");
+                activeCamera.transform.position += (transform.position - activeCamera.transform.position).normalized * 5 * dt;
+                if (activeCamera == playerCamera) playerCameraActualDistance = Vector3.Distance(transform.position, activeCamera.transform.position);
+                if (activeCamera == playerAimCamera) playerAimCameraActualDistance = Vector3.Distance(transform.position, activeCamera.transform.position);
+            }
+        }
+    }
+    private void CameraHitWall()
+    { 
+
+    }
+
     public void killPlayer()
     {
         isAlive = false;
