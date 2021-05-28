@@ -188,6 +188,7 @@ public class InteractuableController : MonoBehaviour
         equipedObject.transform.forward = player.transform.forward;
         gunCooldown = equipedObject.GetComponent<GunScript>().GetShootCooldown();
         equipped = true;
+        equipedObject.transform.parent = equipPosition.transform;
     }
 
     public void unequipGun()
@@ -196,12 +197,13 @@ public class InteractuableController : MonoBehaviour
         equipedObject.GetComponent<Collider>().enabled = true;
         equipedObject = null;
         equipped = false;
+        equipedObject.transform.parent = null;
     }
 
     public void equippedUpdate()
     {
-        equipedObject.transform.position = equipPosition.transform.position;
-        equipedObject.transform.forward = cameraUsed.transform.forward;
+        //equipedObject.transform.position = equipPosition.transform.position;
+        //equipedObject.transform.forward = cameraUsed.transform.forward;
         //equipedObject.transform.right = player.transform.right;
     }
 
