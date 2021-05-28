@@ -69,9 +69,14 @@ public class PlayerController : MonoBehaviour
             {
                 Movement();
             }
-            CameraAdjustDistance();
+            //CameraAdjustDistance();
         }
 
+    }
+
+    private void FixedUpdate()
+    {
+        if (isAlive) CameraAdjustDistance();
     }
 
     private void Movement()
@@ -147,18 +152,29 @@ public class PlayerController : MonoBehaviour
         float actualDistance = Vector3.Distance(transform.position, activeCamera.transform.position);
         Vector3 vectorDir = transform.position - activeCamera.transform.position;
         List<Ray> raylist = new List<Ray>();
+        List<Ray> futureRayList = new List<Ray>();
         RaycastHit hit;
+        RaycastHit futureHit;
 
-        Ray ray1 = new Ray(activeCamera.ScreenToWorldPoint(new Vector3(0, Screen.height, -0.1f)), vectorDir);
+        Ray ray1 = new Ray(activeCamera.ScreenToWorldPoint(new Vector3(0, Screen.height, 0.01f)), vectorDir);
+        Ray futureRay1 = new Ray(activeCamera.ScreenToWorldPoint(new Vector3(0, Screen.height, 0.01f)) - vectorDir.normalized * 0.5f, vectorDir);
         raylist.Add(ray1);
-        Ray ray2 = new Ray(activeCamera.ScreenToWorldPoint(new Vector3(Screen.width, Screen.height, -0.1f)), vectorDir);
+        futureRayList.Add(futureRay1);
+        Ray ray2 = new Ray(activeCamera.ScreenToWorldPoint(new Vector3(Screen.width, Screen.height, 0.01f)), vectorDir);
+        Ray futureRay2 = new Ray(activeCamera.ScreenToWorldPoint(new Vector3(Screen.width, Screen.height, 0.01f)) - vectorDir.normalized * 0.5f, vectorDir);
         raylist.Add(ray2);
-        Ray ray3 = new Ray(activeCamera.ScreenToWorldPoint(new Vector3(Screen.width, 0, -0.1f)), vectorDir);
+        futureRayList.Add(futureRay2);
+        Ray ray3 = new Ray(activeCamera.ScreenToWorldPoint(new Vector3(Screen.width, 0, 0.01f)), vectorDir);
+        Ray futureRay3 = new Ray(activeCamera.ScreenToWorldPoint(new Vector3(Screen.width, 0, 0.01f)) - vectorDir.normalized * 0.5f, vectorDir);
         raylist.Add(ray3);
-        Ray ray4 = new Ray(activeCamera.ScreenToWorldPoint(new Vector3(0, 0, -0.1f)), vectorDir);
+        futureRayList.Add(futureRay3);
+        Ray ray4 = new Ray(activeCamera.ScreenToWorldPoint(new Vector3(0, 0, 0.01f)), vectorDir);
+        Ray futureRay4 = new Ray(activeCamera.ScreenToWorldPoint(new Vector3(0, 0, 0.01f)) - vectorDir.normalized * 0.5f, vectorDir);
         raylist.Add(ray4);
+        futureRayList.Add(futureRay4);
 
-        //Debug.DrawRay(activeCamera.ScreenToWorldPoint(new Vector3(0,Screen.height,-0.3f)), vectorDir, Color.red);
+        //Debug.DrawRay(activeCamera.ScreenToWorldPoint(new Vector3(0,Screen.height,0.1f)), vectorDir, Color.red);
+        //Debug.DrawRay(activeCamera.ScreenToWorldPoint(new Vector3(0,Screen.height,0.1f))-vectorDir.normalized*0.1f, vectorDir, Color.blue);
         //Debug.DrawRay(activeCamera.ScreenToWorldPoint(new Vector3(Screen.width, Screen.height,-0.3f)), vectorDir, Color.red);
         //Debug.DrawRay(activeCamera.ScreenToWorldPoint(new Vector3(Screen.width, 0,-0.3f)), vectorDir, Color.red);
         //Debug.DrawRay(activeCamera.ScreenToWorldPoint(new Vector3(0,0,-0.3f)), vectorDir, Color.red);
@@ -167,24 +183,23 @@ public class PlayerController : MonoBehaviour
         {
             if (Physics.Raycast(raylist[i], out hit))
             {
-                if (!hit.transform.gameObject.CompareTag("Player") && actualDistance > 0.25f)
+                if (!hit.transform.gameObject.CompareTag("Player") && actualDistance > 0.65f)
                 {
-                    //Debug.Log("No puedo ver al jugador");
-                    activeCamera.transform.position += (transform.position - activeCamera.transform.position).normalized * 3 * dt;
+                    Debug.Log("No puedo ver al jugador"+ actualDistance);
+                    activeCamera.transform.position += (transform.position - activeCamera.transform.position).normalized * 1f * dt;
                 }
-                else if (actualDistance < maxDistance || actualDistance < 0.25f)
+                else if (actualDistance < maxDistance || actualDistance < 0.65f)
                 {
-                    Debug.Log("Puedo ver al jugador pero estoy muy cerca.");
-                    activeCamera.transform.position -= (transform.position - activeCamera.transform.position).normalized * 3 * dt;
-                }
-                else if (actualDistance >= maxDistance)
-                {
-                    Debug.Log("Puedo ver al jugador a la distancia correcta.");
-                    //activeCamera.transform.position = (transform.position - activeCamera.transform.position).normalized * maxDistance;
+                    Debug.Log("Puedo ver al jugador pero estoy muy cerca." + actualDistance);
+                    if (Physics.Raycast(futureRayList[i], out futureHit))
+                    {
+                        if (futureHit.transform.gameObject.CompareTag("Player") || actualDistance < 0.65f)
+                        {
+                            activeCamera.transform.position -= (transform.position - activeCamera.transform.position).normalized * 1f * dt;
+                        }
+                    }
                 }
             }
-
-            Debug.Log(actualDistance);
         }
     }
     public void KillPlayer()
