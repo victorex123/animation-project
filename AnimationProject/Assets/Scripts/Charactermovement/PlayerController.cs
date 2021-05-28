@@ -28,13 +28,9 @@ public class PlayerController : MonoBehaviour
 
     private Camera activeCamera;
 
-    private float playerCameraOriginalDistance;
-    private float playerAimCameraOriginalDistance;
-
-    private float playerCameraActualDistance;
-    private float playerAimCameraActualDistance;
-
     private GameObject objectBehindCamera;
+
+    private float originalDistanceCam1, originalDistanceCam2;
 
     private Vector3 vectorDirLook = new Vector3();
 
@@ -47,12 +43,8 @@ public class PlayerController : MonoBehaviour
     {
         activeCamera = playerCamera;
         myRigidbody = GetComponent<Rigidbody>();
-
-        playerCameraOriginalDistance = Vector3.Distance(transform.position, playerCamera.transform.position);
-        playerAimCameraOriginalDistance = Vector3.Distance(playerAimCamera.transform.position, transform.position);
-
-        playerCameraActualDistance = playerCameraOriginalDistance;
-        playerAimCameraActualDistance = playerAimCameraOriginalDistance;
+        originalDistanceCam1 = Vector3.Distance(transform.position, playerCamera.transform.position);
+        originalDistanceCam2 = Vector3.Distance(transform.position, playerAimCamera.transform.position);
     }
 
     // Start is called before the first frame update
@@ -80,11 +72,6 @@ public class PlayerController : MonoBehaviour
             CameraAdjustDistance();
         }
 
-    }
-
-    private void FixedUpdate()
-    {
-        //Movement();
     }
 
     private void Movement()
@@ -155,64 +142,52 @@ public class PlayerController : MonoBehaviour
     }
     private void CameraAdjustDistance()
     {
-        RaycastHit hit, backHit;
-        Ray ray = activeCamera.ScreenPointToRay(activeCamera.WorldToScreenPoint(transform.position));
-        Ray rayBack = new Ray(activeCamera.transform.position, (activeCamera.transform.position - transform.position).normalized * 0.5f);
+        float maxDistance = originalDistanceCam1;
+        if (activeCamera == playerAimCamera) maxDistance = originalDistanceCam2;
+        float actualDistance = Vector3.Distance(transform.position, activeCamera.transform.position);
+        Vector3 vectorDir = transform.position - activeCamera.transform.position;
+        List<Ray> raylist = new List<Ray>();
+        RaycastHit hit;
 
-        Debug.DrawRay(activeCamera.transform.position, transform.position-activeCamera.transform.position, Color.green);
-        Debug.DrawRay(activeCamera.transform.position, (activeCamera.transform.position-transform.position).normalized * 0.5f, Color.red);
+        Ray ray1 = new Ray(activeCamera.ScreenToWorldPoint(new Vector3(0, Screen.height, -0.1f)), vectorDir);
+        raylist.Add(ray1);
+        Ray ray2 = new Ray(activeCamera.ScreenToWorldPoint(new Vector3(Screen.width, Screen.height, -0.1f)), vectorDir);
+        raylist.Add(ray2);
+        Ray ray3 = new Ray(activeCamera.ScreenToWorldPoint(new Vector3(Screen.width, 0, -0.1f)), vectorDir);
+        raylist.Add(ray3);
+        Ray ray4 = new Ray(activeCamera.ScreenToWorldPoint(new Vector3(0, 0, -0.1f)), vectorDir);
+        raylist.Add(ray4);
 
-        if (Physics.Raycast(rayBack, out backHit))
+        //Debug.DrawRay(activeCamera.ScreenToWorldPoint(new Vector3(0,Screen.height,-0.3f)), vectorDir, Color.red);
+        //Debug.DrawRay(activeCamera.ScreenToWorldPoint(new Vector3(Screen.width, Screen.height,-0.3f)), vectorDir, Color.red);
+        //Debug.DrawRay(activeCamera.ScreenToWorldPoint(new Vector3(Screen.width, 0,-0.3f)), vectorDir, Color.red);
+        //Debug.DrawRay(activeCamera.ScreenToWorldPoint(new Vector3(0,0,-0.3f)), vectorDir, Color.red);
+
+        for (int i = 0; i < raylist.Count; i++)
         {
-            objectBehindCamera = backHit.transform.gameObject;
-            Instantiate(testCube, backHit.point, Quaternion.identity);
-
-        }
-
-        if (Physics.Raycast(ray, out hit))
-        {
-            Transform objectHit = hit.transform;
-
-            if (objectHit.CompareTag("Player"))
+            if (Physics.Raycast(raylist[i], out hit))
             {
-                //Debug.Log("Estoy viendo al jugador.");
-                if (activeCamera == playerCamera && (playerCameraActualDistance - dt * 0.5f) <= playerCameraOriginalDistance)
+                if (!hit.transform.gameObject.CompareTag("Player") && actualDistance > 0.25f)
                 {
-                    activeCamera.transform.position -= (transform.position - activeCamera.transform.position).normalized * dt * 0.5f;
+                    //Debug.Log("No puedo ver al jugador");
+                    activeCamera.transform.position += (transform.position - activeCamera.transform.position).normalized * 3 * dt;
                 }
-
-                if (activeCamera == playerAimCamera && (playerAimCameraActualDistance - dt * 0.5f) < playerAimCameraOriginalDistance)
+                else if (actualDistance < maxDistance || actualDistance < 0.25f)
                 {
-                    activeCamera.transform.position -= (transform.position - activeCamera.transform.position).normalized * dt * 0.5f;
+                    Debug.Log("Puedo ver al jugador pero estoy muy cerca.");
+                    activeCamera.transform.position -= (transform.position - activeCamera.transform.position).normalized * 3 * dt;
                 }
-
-                if (activeCamera == playerCamera)
+                else if (actualDistance >= maxDistance)
                 {
-                    playerCameraActualDistance = Vector3.Distance(transform.position, activeCamera.transform.position);
+                    Debug.Log("Puedo ver al jugador a la distancia correcta.");
+                    //activeCamera.transform.position = (transform.position - activeCamera.transform.position).normalized * maxDistance;
                 }
-
-                if (activeCamera == playerAimCamera)
-                {
-                    playerAimCameraActualDistance = Vector3.Distance(transform.position, activeCamera.transform.position);
-                }
-
-                //Debug.Log("Distancia actual: " + playerCameraActualDistance + ", Distancia máxima: " + playerCameraOriginalDistance);
             }
-            else
-            {
-                //Debug.Log("No estoy viendo al jugador.");
-                activeCamera.transform.position += (transform.position - activeCamera.transform.position).normalized * dt * 10f;
-                if (activeCamera == playerCamera) playerCameraActualDistance = Vector3.Distance(transform.position, activeCamera.transform.position);
-                if (activeCamera == playerAimCamera) playerAimCameraActualDistance = Vector3.Distance(transform.position, activeCamera.transform.position);
-            }
+
+            Debug.Log(actualDistance);
         }
     }
-    private void CameraHitWall()
-    { 
-
-    }
-
-    public void killPlayer()
+    public void KillPlayer()
     {
         isAlive = false;
     }

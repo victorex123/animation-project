@@ -94,7 +94,7 @@ public class PlayerManager : MonoBehaviour
         }
         else if (actualHealth <= 0)
         {
-            playerController.killPlayer();
+            playerController.KillPlayer();
         }
 
         print(actualHealth);
