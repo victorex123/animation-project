@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class InteractuableController : MonoBehaviour
 {
+    public Transform aimPos;
     [SerializeField]
     private Camera primaryCamera;
     [SerializeField]
@@ -195,16 +196,17 @@ public class InteractuableController : MonoBehaviour
     {
         equipedObject.GetComponent<Rigidbody>().isKinematic = false;
         equipedObject.GetComponent<Collider>().enabled = true;
+        equipedObject.transform.parent = null;
         equipedObject = null;
         equipped = false;
-        equipedObject.transform.parent = null;
     }
 
     public void equippedUpdate()
     {
-        //equipedObject.transform.position = equipPosition.transform.position;
-        //equipedObject.transform.forward = cameraUsed.transform.forward;
-        //equipedObject.transform.right = player.transform.right;
+        if (cameraUsed == secondaryCamera)
+        {
+            equipedObject.transform.LookAt(aimPos);
+        }
     }
 
     public void checkCamera()
