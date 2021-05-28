@@ -18,6 +18,8 @@ public class PlayerController : MonoBehaviour
     public float movementSpeed = 50;
     public float maxMovementSpeed = 5;
 
+    public GameObject testCube;
+
     //Private
 
     private float dt;
@@ -31,6 +33,8 @@ public class PlayerController : MonoBehaviour
 
     private float playerCameraActualDistance;
     private float playerAimCameraActualDistance;
+
+    private GameObject objectBehindCamera;
 
     private Vector3 vectorDirLook = new Vector3();
 
@@ -138,7 +142,6 @@ public class PlayerController : MonoBehaviour
         vectorDirLook.y = 0;
         var rotation = Quaternion.LookRotation(vectorDirLook);
         transform.rotation = Quaternion.Slerp(transform.rotation, rotation, 0.2f);
-        //Investigar acerca de torque
     }
 
     private void CameraChange(bool cam1, bool cam2)
@@ -152,10 +155,19 @@ public class PlayerController : MonoBehaviour
     }
     private void CameraAdjustDistance()
     {
-        RaycastHit hit;
+        RaycastHit hit, backHit;
         Ray ray = activeCamera.ScreenPointToRay(activeCamera.WorldToScreenPoint(transform.position));
+        Ray rayBack = new Ray(activeCamera.transform.position, (activeCamera.transform.position - transform.position).normalized * 0.5f);
 
         Debug.DrawRay(activeCamera.transform.position, transform.position-activeCamera.transform.position, Color.green);
+        Debug.DrawRay(activeCamera.transform.position, (activeCamera.transform.position-transform.position).normalized * 0.5f, Color.red);
+
+        if (Physics.Raycast(rayBack, out backHit))
+        {
+            objectBehindCamera = backHit.transform.gameObject;
+            Instantiate(testCube, backHit.point, Quaternion.identity);
+
+        }
 
         if (Physics.Raycast(ray, out hit))
         {
@@ -164,24 +176,32 @@ public class PlayerController : MonoBehaviour
             if (objectHit.CompareTag("Player"))
             {
                 //Debug.Log("Estoy viendo al jugador.");
-                if (activeCamera == playerCamera && playerCameraActualDistance < playerCameraOriginalDistance)
+                if (activeCamera == playerCamera && (playerCameraActualDistance - dt * 0.5f) <= playerCameraOriginalDistance)
                 {
-                    activeCamera.transform.position -= (transform.position - activeCamera.transform.position).normalized * 5 * dt;
+                    activeCamera.transform.position -= (transform.position - activeCamera.transform.position).normalized * dt * 0.5f;
+                }
+
+                if (activeCamera == playerAimCamera && (playerAimCameraActualDistance - dt * 0.5f) < playerAimCameraOriginalDistance)
+                {
+                    activeCamera.transform.position -= (transform.position - activeCamera.transform.position).normalized * dt * 0.5f;
+                }
+
+                if (activeCamera == playerCamera)
+                {
                     playerCameraActualDistance = Vector3.Distance(transform.position, activeCamera.transform.position);
                 }
 
-                if (activeCamera == playerAimCamera && playerAimCameraActualDistance < playerAimCameraOriginalDistance)
+                if (activeCamera == playerAimCamera)
                 {
-                    activeCamera.transform.position -= (transform.position - activeCamera.transform.position).normalized * 5 * dt;
                     playerAimCameraActualDistance = Vector3.Distance(transform.position, activeCamera.transform.position);
                 }
 
-                Debug.Log("Distancia actual: " + playerCameraActualDistance + ", Distancia máxima: " + playerCameraOriginalDistance);
+                //Debug.Log("Distancia actual: " + playerCameraActualDistance + ", Distancia máxima: " + playerCameraOriginalDistance);
             }
             else
             {
                 //Debug.Log("No estoy viendo al jugador.");
-                activeCamera.transform.position += (transform.position - activeCamera.transform.position).normalized * 5 * dt;
+                activeCamera.transform.position += (transform.position - activeCamera.transform.position).normalized * dt * 10f;
                 if (activeCamera == playerCamera) playerCameraActualDistance = Vector3.Distance(transform.position, activeCamera.transform.position);
                 if (activeCamera == playerAimCamera) playerAimCameraActualDistance = Vector3.Distance(transform.position, activeCamera.transform.position);
             }
