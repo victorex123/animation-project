@@ -236,7 +236,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &132971112
 Transform:
   m_ObjectHideFlags: 0
@@ -763,7 +763,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1062345855
 Transform:
   m_ObjectHideFlags: 0
@@ -858,7 +858,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1216660561
 Transform:
   m_ObjectHideFlags: 0
@@ -1139,7 +1139,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1739325358
 Transform:
   m_ObjectHideFlags: 0
@@ -1263,6 +1263,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
+    - target: {fileID: 7004208811775147261, guid: 3d71e39a52ba63147ba0c607d61bac24, type: 3}
+      propertyPath: testCube
+      value: 
+      objectReference: {fileID: 582810589315971956, guid: 1216f8ee474cf2b4abe48ab2f020ff7c, type: 3}
     - target: {fileID: 7004208811775147262, guid: 3d71e39a52ba63147ba0c607d61bac24, type: 3}
       propertyPath: m_RootOrder
       value: 0
