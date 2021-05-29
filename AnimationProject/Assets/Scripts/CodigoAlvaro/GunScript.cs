@@ -12,9 +12,9 @@ public class GunScript : MonoBehaviour
     private GameObject bright;
     private float bulletForwardForce;
     [SerializeField]
-    private float mode = 0;
+    private int mode = 0;
     private float shootCooldown;
-    private float ammo = 0;
+    private int ammo = 0;
     // Start is called before the first frame update
     void Start()
     {
@@ -65,5 +65,20 @@ public class GunScript : MonoBehaviour
     public float GetShootCooldown()
     {
         return shootCooldown;
+    }
+
+    public int GetMode()
+    {
+        return mode;
+    }
+
+    public void setAmmo(int munition)
+    {
+        ammo += munition;
+    }
+
+    public int GetAmmo()
+    {
+        return ammo;
     }
 }

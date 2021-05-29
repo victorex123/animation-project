@@ -177,6 +177,7 @@ GameObject:
   - component: {fileID: 4853961288968348553}
   - component: {fileID: 7550070971458782161}
   - component: {fileID: 6168093169821674666}
+  - component: {fileID: 5599154389427347971}
   m_Layer: 3
   m_Name: Handgun_01
   m_TagString: Gun
@@ -295,6 +296,19 @@ MonoBehaviour:
   bullet: {fileID: 125566422200118507, guid: eddd5dbbd5cba0343953e804ef2e05c8, type: 3}
   bright: {fileID: 6665424232794180704, guid: c33a03785af5887429544f47b8090c5e, type: 3}
   mode: 0
+--- !u!135 &5599154389427347971
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1669814075106190}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.11156441
+  m_Center: {x: 0.00002830103, y: -0.021096118, z: 0.016558815}
 --- !u!1 &1672287814348484
 GameObject:
   m_ObjectHideFlags: 0
