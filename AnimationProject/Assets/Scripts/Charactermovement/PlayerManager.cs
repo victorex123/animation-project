@@ -106,7 +106,7 @@ public class PlayerManager : MonoBehaviour
             playerController.KillPlayer();
         }
 
-        print(actualHealth);
+        //print(actualHealth);
     }
     public void CleanPoison()
     {

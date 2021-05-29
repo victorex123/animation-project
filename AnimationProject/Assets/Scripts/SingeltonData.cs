@@ -7,8 +7,8 @@ public class SingeltonData : MonoBehaviour
     public static SingeltonData instance;
 
     #region Player
-    public float maxHealth;
-    public float actualHealth;
+    public float maxHealth = 100;
+    public float actualHealth = 100;
     #endregion
 
     private void Awake()
@@ -36,6 +36,6 @@ public class SingeltonData : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        print(maxHealth);
+        //print(maxHealth);
     }
 }

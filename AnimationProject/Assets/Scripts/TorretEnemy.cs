@@ -102,6 +102,7 @@ public class TorretEnemy : MonoBehaviour
             rigibody.velocity = Vector3.zero;
             downTorret = true;
             upTorret = false;
+            detectPlayer = false;
             healtBar.SetActive(false);
         }
     }
