@@ -9,17 +9,22 @@ public class FollowEnemy : MonoBehaviour
     private GameObject player;
     public NavMeshAgent navMeshAgent;
 
-    public float maxDistanceToWalk=10.0f;
-    public float minDistanceTowalk=5.0f;
-    public float timeToWalk=5.0f;
+    public float maxDistanceToWalk = 10.0f;
+    public float minDistanceTowalk = 5.0f;
+    public float timeToWalk = 5.0f;
     public float distanceToFollowPlayer = 300.0f;
-    public float distanceAtack=3.0f;
-    public float timeAtack=2.0f;
+    public float distanceAtack = 3.0f;
+    public float timeAtack = 2.0f;
     public float dmg = 10;
+    public Animator animator;
 
     private float distance;
+
     private bool follow;
     private bool moveRandom;
+    private bool iddle;
+    private bool atack;
+
     private Vector3 newPos;
     private PlayerManager healtPlayer;
 
@@ -28,17 +33,17 @@ public class FollowEnemy : MonoBehaviour
         navMeshAgent = GetComponent<NavMeshAgent>();
         player = GameObject.FindGameObjectWithTag("Player");
         healtPlayer = player.GetComponent<PlayerManager>();
+        animator = gameObject.GetComponent<Animator>();
     }
     // Start is called before the first frame update
     void Start()
     {
-        
+        iddle = true;
     }
 
     // Update is called once per frame
     void Update()
-    {
-        
+    {          
         distance = Vector3.Distance(player.transform.position, transform.position);
         print(distance);
 
@@ -61,18 +66,21 @@ public class FollowEnemy : MonoBehaviour
             
             if (distance<=distanceAtack)
             {
+                atack = true;
                 navMeshAgent.SetDestination(transform.position);
 
                 //navMeshAgent.isStopped = true;
                 timeAtack -= Time.deltaTime;
                 if(timeAtack<=0)
                 {
+
                     healtPlayer.ReceiveDamage(dmg, 0);
                     timeAtack = 2.0f;
                 }
             }
             else
             {
+                atack = false;
                 navMeshAgent.SetDestination(player.transform.position);
                 //navMeshAgent.isStopped = false;
                 timeAtack += Time.deltaTime;
@@ -84,6 +92,7 @@ public class FollowEnemy : MonoBehaviour
         }
         else if(moveRandom)
         {
+            iddle = false;
             timeToWalk -= Time.deltaTime;
             timeAtack += Time.deltaTime;
             if (timeToWalk<=0)
@@ -92,7 +101,13 @@ public class FollowEnemy : MonoBehaviour
                 timeToWalk = Random.Range(minDistanceTowalk, maxDistanceToWalk);
             }
         }
-       
+
+        animator.SetBool("Iddle", iddle);
+        animator.SetBool("MoveRandom", moveRandom);
+        animator.SetBool("Follow", follow);
+        animator.SetBool("Atack", atack);
+
+
     }
 
     public void moveRandomPosition()
