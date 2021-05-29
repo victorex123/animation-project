@@ -28,7 +28,9 @@ public class PlayerManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        actualHealth = maxHealth;
+        LoadDataSingelton();
+
+        //actualHealth = maxHealth;
         healthBar.value = actualHealth / maxHealth;
         startColor = new Color(255, 0, 0);
         finalColor = new Color(255, 0, 0);
@@ -38,6 +40,8 @@ public class PlayerManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        print("SCPIRT" + actualHealth);
+
         dt = Time.deltaTime;
 
         if (Input.GetKey(KeyCode.K))
@@ -65,6 +69,11 @@ public class PlayerManager : MonoBehaviour
                 SceneManager.LoadScene(SceneManager.GetActiveScene().name);
             }
         }
+    }
+
+    public void OnDestroy()
+    {
+        SaveDataSingelton();
     }
 
     private void ChangeHealthBar(float newValue)
@@ -102,6 +111,17 @@ public class PlayerManager : MonoBehaviour
     public void CleanPoison()
     {
         healthBar.gameObject.transform.Find("Fill Area").Find("Fill").GetComponent<Image>().color = startColor;
+    }
+
+    private void LoadDataSingelton()
+    {
+        maxHealth = SingeltonData.instance.maxHealth;
+        actualHealth = SingeltonData.instance.actualHealth;
+    }
+
+    private void SaveDataSingelton()
+    {
+        SingeltonData.instance.actualHealth = actualHealth; 
     }
 
 }

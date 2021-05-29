@@ -185,12 +185,12 @@ public class PlayerController : MonoBehaviour
             {
                 if (!hit.transform.gameObject.CompareTag("Player") && actualDistance > 0.65f)
                 {
-                    Debug.Log("No puedo ver al jugador"+ actualDistance);
+                    //Debug.Log("No puedo ver al jugador"+ actualDistance);
                     activeCamera.transform.position += (transform.position - activeCamera.transform.position).normalized * 1f * dt;
                 }
                 else if (actualDistance < maxDistance || actualDistance < 0.65f)
                 {
-                    Debug.Log("Puedo ver al jugador pero estoy muy cerca." + actualDistance);
+                    //Debug.Log("Puedo ver al jugador pero estoy muy cerca." + actualDistance);
                     if (Physics.Raycast(futureRayList[i], out futureHit))
                     {
                         if (futureHit.transform.gameObject.CompareTag("Player") || actualDistance < 0.65f)
