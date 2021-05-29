@@ -1,10 +1,10 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class InteractuableController : MonoBehaviour
 {
-    public Transform aimPos;
     [SerializeField]
     private Camera primaryCamera;
     [SerializeField]
@@ -27,6 +27,8 @@ public class InteractuableController : MonoBehaviour
     private HingeJoint joint;
     private float gunCooldown;
     private float gunTimer = 0;
+    [SerializeField]
+    private Text textAmmo;
     // Start is called before the first frame update
     void Start()
     {
@@ -38,7 +40,7 @@ public class InteractuableController : MonoBehaviour
     {
         checkCamera();
         manager();
-
+        checkText();
         gunTimer += Time.deltaTime;
     }
      public bool checkInteract()
@@ -56,6 +58,7 @@ public class InteractuableController : MonoBehaviour
             }
             return true;
         }
+
         return false;
     }
     public void manager()
@@ -174,7 +177,6 @@ public class InteractuableController : MonoBehaviour
 
             if (Input.GetKey(KeyCode.Mouse0) && gunTimer >= gunCooldown)
             {
-                Debug.Log("PIUM");
                 equipedObject.GetComponent<GunScript>().Shoot();
                 gunTimer = 0;
             }
@@ -184,29 +186,35 @@ public class InteractuableController : MonoBehaviour
     public void equipGun()
     {
         equipedObject.GetComponent<Rigidbody>().isKinematic = true;
-        equipedObject.GetComponent<Collider>().enabled = false;
+        equipedObject.GetComponent<BoxCollider>().enabled = false;
+        equipedObject.GetComponent<SphereCollider>().enabled = false;
         equipedObject.transform.position = equipPosition.transform.position;
         equipedObject.transform.forward = player.transform.forward;
         gunCooldown = equipedObject.GetComponent<GunScript>().GetShootCooldown();
         equipped = true;
-        equipedObject.transform.parent = equipPosition.transform;
     }
 
     public void unequipGun()
     {
         equipedObject.GetComponent<Rigidbody>().isKinematic = false;
-        equipedObject.GetComponent<Collider>().enabled = true;
-        equipedObject.transform.parent = null;
+        equipedObject.GetComponent<BoxCollider>().enabled = false;
+        equipedObject.GetComponent<SphereCollider>().enabled = false;
         equipedObject = null;
         equipped = false;
     }
 
     public void equippedUpdate()
     {
-        if (cameraUsed == secondaryCamera)
+        equipedObject.transform.position = equipPosition.transform.position;
+        if (cameraUsed == primaryCamera)
         {
-            equipedObject.transform.LookAt(aimPos);
+            equipedObject.transform.right = player.transform.right;
         }
+        else
+        {
+            equipedObject.transform.forward = cameraUsed.transform.forward;
+        }
+        
     }
 
     public void checkCamera()
@@ -218,6 +226,36 @@ public class InteractuableController : MonoBehaviour
         else
         {
             cameraUsed = secondaryCamera;
+        }
+    }
+
+    public void giveAmmo(int ammo)
+    {
+        equipedObject.GetComponent<GunScript>().setAmmo(ammo);
+    }
+
+    public void checkText()
+    {
+        if(equipedObject != null && equipedObject.CompareTag("Gun"))
+        {
+            textAmmo.text = equipedObject.GetComponent<GunScript>().GetAmmo() + "";
+            textAmmo.gameObject.SetActive(true);
+        }
+        else if(textAmmo.IsActive())
+        {
+            textAmmo.gameObject.SetActive(false);
+        }
+    }
+
+   private void OnTriggerEnter(Collider other)
+    {
+        if(equipedObject != null)
+        {
+            if (other.CompareTag("Ammo") && equipedObject.CompareTag("Gun"))
+            {
+                giveAmmo(other.GetComponent<AmmoPackage>().returnAmmo(equipedObject.GetComponent<GunScript>().GetMode()));
+                Destroy(other.gameObject);
+            }
         }
     }
 }
