@@ -257,6 +257,7 @@ GameObject:
   - component: {fileID: 372490724650236982}
   - component: {fileID: 3856385409068906687}
   - component: {fileID: 2600345279637167302}
+  - component: {fileID: 3548018440130262206}
   m_Layer: 3
   m_Name: Assault_Rifle_01
   m_TagString: Gun
@@ -375,6 +376,19 @@ BoxCollider:
   m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 0.038359024, y: 0.19727895, z: 0.92186975}
+  m_Center: {x: 0.00046790857, y: -0.04159014, z: -0.018963993}
+--- !u!135 &3548018440130262206
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1719131515888008}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.34
   m_Center: {x: 0.00046790857, y: -0.04159014, z: -0.018963993}
 --- !u!1 &6564506741427742581
 GameObject:

@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 7977558873975980759}
   - component: {fileID: -7199296490728195523}
   - component: {fileID: -4815679341738145918}
+  - component: {fileID: 2906127487278731182}
   m_Layer: 3
   m_Name: Bazooka
   m_TagString: Gun
@@ -130,6 +131,19 @@ MonoBehaviour:
   bullet: {fileID: 9119619135198367116, guid: 58e3ea7e80ef5bf48a815e65d51a835b, type: 3}
   bright: {fileID: 8682770048915063131, guid: e4f5c5fdf0d7fee4c927d059df6d9e4c, type: 3}
   mode: 2
+--- !u!135 &2906127487278731182
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6412888392237498452}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.5
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &6804148567415045905
 GameObject:
   m_ObjectHideFlags: 0
