@@ -25,6 +25,8 @@ public class PlayerManager : MonoBehaviour
     private float dyingAnimationTimer = 0;
     private float fadeInSpeed = 0.25f;
 
+    private float fallDamage = 0;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -40,7 +42,7 @@ public class PlayerManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        print("SCPIRT" + actualHealth);
+        //print("SCPIRT" + actualHealth);
 
         dt = Time.deltaTime;
 
@@ -54,7 +56,7 @@ public class PlayerManager : MonoBehaviour
             ChangeHealthBar(-20f * dt);
         }
 
-        if (actualHealth < 0)
+        if (actualHealth <= 0)
         {
             dyingAnimationTimer += dt;
             if (fadeIn.color.a + fadeInSpeed*dt <= 0.75f)
@@ -69,11 +71,13 @@ public class PlayerManager : MonoBehaviour
                 SceneManager.LoadScene(SceneManager.GetActiveScene().name);
             }
         }
+
+        FallDamage();
     }
 
     public void OnDestroy()
     {
-        SaveDataSingelton();
+        if (actualHealth > 0) SaveDataSingelton();
     }
 
     private void ChangeHealthBar(float newValue)
@@ -101,7 +105,7 @@ public class PlayerManager : MonoBehaviour
                 healthBar.gameObject.transform.Find("Fill Area").Find("Fill").GetComponent<Image>().color = new Color(0.15f, 0.5f, 0.15f);
             }
         }
-        else if (actualHealth <= 0)
+        if (actualHealth <= 0)
         {
             playerController.KillPlayer();
         }
@@ -124,4 +128,24 @@ public class PlayerManager : MonoBehaviour
         SingeltonData.instance.actualHealth = actualHealth; 
     }
 
+    private void FallDamage()
+    {
+        float actualYSpeed = GetComponent<Rigidbody>().velocity.y;
+        if (actualYSpeed < -10)
+        {
+            fallDamage = -actualYSpeed;
+        }
+
+        if (actualYSpeed < -25 && transform.position.y < 0)
+        {
+            ReceiveDamage(99999999, 0);
+        }
+
+        if (actualYSpeed == 0 && fallDamage != 0)
+        {
+            ReceiveDamage(fallDamage, 0);
+            fallDamage = 0;
+        }
+
+    }
 }
