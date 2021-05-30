@@ -18,7 +18,7 @@ public class Tentacle : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        points = transform.GetComponentsInChildren<Transform>();
+        //points = transform.GetComponentsInChildren<Transform>();
         for (int x = 0; x < points.Length; x++)
         {
             if (x + 1 != points.Length)
