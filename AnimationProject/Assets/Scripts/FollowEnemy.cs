@@ -52,6 +52,8 @@ public class FollowEnemy : MonoBehaviour
         if(health.currentHealth<=0)
         {
             dead = true;
+            animator.SetBool("Dead", true);
+            //animator.SetBool("Dead", false);
         }
 
         if(!dead)
@@ -119,7 +121,7 @@ public class FollowEnemy : MonoBehaviour
         animator.SetBool("MoveRandom", moveRandom);
         animator.SetBool("Follow", follow);
         animator.SetBool("Atack", atack);
-        animator.SetBool("Dead", dead);
+        
 
 
 
