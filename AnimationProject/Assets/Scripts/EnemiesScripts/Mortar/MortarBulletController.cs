@@ -74,4 +74,9 @@ public class MortarBulletController : MonoBehaviour
         explosion.GetComponent<ExplosionScript>().SetValues(radius, power);
         Destroy(this.gameObject);
     }
+
+    public void SetTarget(Transform target)
+    {
+        this.target = target;
+    }
 }

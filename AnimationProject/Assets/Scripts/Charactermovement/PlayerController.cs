@@ -205,5 +205,6 @@ public class PlayerController : MonoBehaviour
     public void KillPlayer()
     {
         isAlive = false;
+        activeCamera.transform.parent = null;
     }
 }

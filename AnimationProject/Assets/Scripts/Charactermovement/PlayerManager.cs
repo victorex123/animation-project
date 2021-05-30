@@ -108,6 +108,8 @@ public class PlayerManager : MonoBehaviour
         if (actualHealth <= 0)
         {
             playerController.KillPlayer();
+            GetComponent<Rigidbody>().freezeRotation = false;
+            
         }
 
         //print(actualHealth);
