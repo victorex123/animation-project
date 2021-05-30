@@ -190,7 +190,7 @@ AnimatorStateTransition:
   - m_ConditionMode: 1
     m_ConditionEvent: Iddle
     m_EventTreshold: 0
-  - m_ConditionMode: 2
+  - m_ConditionMode: 1
     m_ConditionEvent: MoveRandom
     m_EventTreshold: 0
   - m_ConditionMode: 2

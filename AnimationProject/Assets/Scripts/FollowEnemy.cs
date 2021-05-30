@@ -59,7 +59,7 @@ public class FollowEnemy : MonoBehaviour
         if(!dead)
         {
             distance = Vector3.Distance(player.transform.position, transform.position);
-            print(distance);
+            //print(distance);
 
             if (distance <= distanceToFollowPlayer)
             {
@@ -111,6 +111,18 @@ public class FollowEnemy : MonoBehaviour
                 if (timeToWalk <= 0)
                 {
                     moveRandomPosition();
+
+                    //if(transform.position == newPos)
+                    //{
+                    //    iddle = true;
+
+                    //}
+                    //else
+                    //{
+                    //    iddle = false;
+
+                    //}
+
                     timeToWalk = Random.Range(minDistanceTowalk, maxDistanceToWalk);
                 }
             }
@@ -130,7 +142,9 @@ public class FollowEnemy : MonoBehaviour
 
     public void moveRandomPosition()
     {
+        
         newPos = transform.position + new Vector3(Random.onUnitSphere.x * 10.0f, 1.0f, Random.onUnitSphere.z * 10.0f);
+        print(newPos);
         navMeshAgent.SetDestination(newPos);
         navMeshAgent.speed = 5.0f;
     }
