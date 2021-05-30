@@ -13,10 +13,11 @@ public class FollowEnemy : MonoBehaviour
     public float minDistanceTowalk = 5.0f;
     public float timeToWalk = 5.0f;
     public float distanceToFollowPlayer = 300.0f;
-    public float distanceAtack = 3.0f;
+    public float distanceAtack = 3.5f;
     public float timeAtack = 2.0f;
     public float dmg = 10;
     public Animator animator;
+    public EnemyHeal health;
 
     private float distance;
 
@@ -24,9 +25,11 @@ public class FollowEnemy : MonoBehaviour
     private bool moveRandom;
     private bool iddle;
     private bool atack;
+    private bool dead;
 
     private Vector3 newPos;
     private PlayerManager healtPlayer;
+    
 
     public void Awake()
     {
@@ -34,6 +37,8 @@ public class FollowEnemy : MonoBehaviour
         player = GameObject.FindGameObjectWithTag("Player");
         healtPlayer = player.GetComponent<PlayerManager>();
         animator = gameObject.GetComponent<Animator>();
+        health = GetComponent<EnemyHeal>();
+
     }
     // Start is called before the first frame update
     void Start()
@@ -43,69 +48,80 @@ public class FollowEnemy : MonoBehaviour
 
     // Update is called once per frame
     void Update()
-    {          
-        distance = Vector3.Distance(player.transform.position, transform.position);
-        print(distance);
-
-        if(distance <= distanceToFollowPlayer)
+    {
+        if(health.currentHealth<=0)
         {
-            follow = true;
-            moveRandom = false;
-            
-        }
-        else
-        {
-            follow = false;
-            moveRandom = true;
+            dead = true;
         }
 
-
-        if(follow)
+        if(!dead)
         {
-            navMeshAgent.speed = 10.0f;
-            
-            if (distance<=distanceAtack)
+            distance = Vector3.Distance(player.transform.position, transform.position);
+            print(distance);
+
+            if (distance <= distanceToFollowPlayer)
             {
-                atack = true;
-                navMeshAgent.SetDestination(transform.position);
+                follow = true;
+                moveRandom = false;
 
-                //navMeshAgent.isStopped = true;
-                timeAtack -= Time.deltaTime;
-                if(timeAtack<=0)
-                {
-
-                    healtPlayer.ReceiveDamage(dmg, 0);
-                    timeAtack = 2.0f;
-                }
             }
             else
             {
-                atack = false;
-                navMeshAgent.SetDestination(player.transform.position);
-                //navMeshAgent.isStopped = false;
-                timeAtack += Time.deltaTime;
-                if(timeAtack>=2.0f)
+                follow = false;
+                moveRandom = true;
+            }
+
+            if (follow)
+            {
+                navMeshAgent.speed = 10.0f;
+
+                if (distance <= distanceAtack)
                 {
-                    timeAtack = 2.0f;
+                    atack = true;
+                    navMeshAgent.SetDestination(transform.position);
+
+                    //navMeshAgent.isStopped = true;
+                    timeAtack -= Time.deltaTime;
+                    if (timeAtack <= 0)
+                    {
+
+                        healtPlayer.ReceiveDamage(dmg, 0);
+                        timeAtack = 2.0f;
+                    }
+                }
+                else
+                {
+                    atack = false;
+                    navMeshAgent.SetDestination(player.transform.position);
+                    //navMeshAgent.isStopped = false;
+                    timeAtack += Time.deltaTime;
+                    if (timeAtack >= 2.0f)
+                    {
+                        timeAtack = 2.0f;
+                    }
                 }
             }
-        }
-        else if(moveRandom)
-        {
-            iddle = false;
-            timeToWalk -= Time.deltaTime;
-            timeAtack += Time.deltaTime;
-            if (timeToWalk<=0)
+            else if (moveRandom)
             {
-                moveRandomPosition();
-                timeToWalk = Random.Range(minDistanceTowalk, maxDistanceToWalk);
+                iddle = false;
+                timeToWalk -= Time.deltaTime;
+                timeAtack += Time.deltaTime;
+                if (timeToWalk <= 0)
+                {
+                    moveRandomPosition();
+                    timeToWalk = Random.Range(minDistanceTowalk, maxDistanceToWalk);
+                }
             }
+
         }
 
         animator.SetBool("Iddle", iddle);
         animator.SetBool("MoveRandom", moveRandom);
         animator.SetBool("Follow", follow);
         animator.SetBool("Atack", atack);
+        animator.SetBool("Dead", dead);
+
+
 
 
     }

@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Boids : MonoBehaviour
 {
@@ -78,6 +79,11 @@ public class Boids : MonoBehaviour
 
         for (int i = 0; i < allUnits.Length; i++)
         {
+            if(allUnits[i].real && allUnits[i].currentLife.currentHealth<=0)
+            {
+                DestoyAll();
+            }
+
             if(allUnits[i].DetectingPlayer())
             {
                 if(!allUnits[i].alreadyPaint)
@@ -90,6 +96,7 @@ public class Boids : MonoBehaviour
                 centralBoidsObject.transform.position = allUnits[i].PlayerPosition().position - 30.0f * directionToPlayer;
 
                 allUnits[i].MoveUnit();
+
                 if(allUnits[i].canShoot)
                 {
                     allUnits[i].Shoot();
@@ -136,5 +143,14 @@ public class Boids : MonoBehaviour
 
             
         }
+    }
+
+    public void DestoyAll()
+    {
+        for (int j = 0; j < allUnits.Length; j++)
+        {
+            Destroy(allUnits[j].gameObject);
+        }
+        Destroy(this.gameObject);
     }
 }

@@ -58,7 +58,7 @@ public class BoidsUnit : MonoBehaviour
         {
             if(currentLife.currentHealth<=0)
             {
-                Destroy(this.controlUnits);
+              // Destroy(this.controlUnits);
             }
             
         }

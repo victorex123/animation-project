@@ -462,6 +462,46 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.y
       value: -1.576
       objectReference: {fileID: 0}
+    - target: {fileID: 8352889374793201336, guid: 3d71e39a52ba63147ba0c607d61bac24, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8352889374793201336, guid: 3d71e39a52ba63147ba0c607d61bac24, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8352889375275546342, guid: 3d71e39a52ba63147ba0c607d61bac24, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 4.2230225
+      objectReference: {fileID: 0}
+    - target: {fileID: 8352889375275546342, guid: 3d71e39a52ba63147ba0c607d61bac24, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 11
+      objectReference: {fileID: 0}
+    - target: {fileID: 8352889375275546342, guid: 3d71e39a52ba63147ba0c607d61bac24, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -53.92977
+      objectReference: {fileID: 0}
+    - target: {fileID: 8352889375275546342, guid: 3d71e39a52ba63147ba0c607d61bac24, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: -0.9958
+      objectReference: {fileID: 0}
+    - target: {fileID: 8352889375275546342, guid: 3d71e39a52ba63147ba0c607d61bac24, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8352889375275546342, guid: 3d71e39a52ba63147ba0c607d61bac24, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0.09155497
+      objectReference: {fileID: 0}
+    - target: {fileID: 8352889375275546342, guid: 3d71e39a52ba63147ba0c607d61bac24, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8352889375275546342, guid: 3d71e39a52ba63147ba0c607d61bac24, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 349.494
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3d71e39a52ba63147ba0c607d61bac24, type: 3}
 --- !u!4 &250006063 stripped
@@ -1860,7 +1900,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 50, y: -30, z: 0}
 --- !u!4 &1787161134 stripped
 Transform:

@@ -23,11 +23,14 @@ public class TorretEnemy : MonoBehaviour
     public GameObject bulletPos;
     public GameObject healtBar;
 
+    public EnemyHeal health;
+
     // Start is called before the first frame update
     void Start()
     {
         rigibody = GetComponent<Rigidbody>();
         player = GameObject.FindWithTag("Player");
+        health = GetComponent<EnemyHeal>();
         timeToShoot = UnityEngine.Random.Range(2.0f, maxTimeShoot - 2.0f);
         timeWasteToShoot = timeToShoot;
         healtBar.SetActive(false);
@@ -36,6 +39,11 @@ public class TorretEnemy : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (health.currentHealth <= 0)
+        {
+            Destroy(this.gameObject);
+        }
+
         RotateTorret();
 
         if (upTorret)

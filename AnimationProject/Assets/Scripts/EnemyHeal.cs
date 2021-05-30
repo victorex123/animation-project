@@ -24,11 +24,6 @@ public class EnemyHeal : MonoBehaviour
         {
             TakeDamage(20);
         }
-
-        if(currentHealth<=0)
-        {
-            Destroy(this.gameObject);
-        }
     }
 
     public void TakeDamage(int dmg)
