@@ -30,7 +30,7 @@ public class ExplosionScript : MonoBehaviour
 
                 if (hit.CompareTag("Player"))
                 {
-                    hit.GetComponent<PlayerManager>().ReceiveDamage(100 - Vector3.Distance(explosionPos, hit.transform.position)*18, 0);
+                    hit.GetComponent<PlayerManager>().ReceiveDamage(150 - (150 * Vector3.Distance(explosionPos, hit.transform.position)/radius), 0);
                 }
             }
         }
