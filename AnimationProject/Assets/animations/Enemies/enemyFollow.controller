@@ -129,9 +129,6 @@ AnimatorStateTransition:
     m_ConditionEvent: Dead
     m_EventTreshold: 0
   - m_ConditionMode: 2
-    m_ConditionEvent: Iddle
-    m_EventTreshold: 0
-  - m_ConditionMode: 2
     m_ConditionEvent: MoveRandom
     m_EventTreshold: 0
   - m_ConditionMode: 1
@@ -164,7 +161,7 @@ AnimatorStateTransition:
     m_EventTreshold: 0
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: 6361042137953695523}
-  m_Solo: 0
+  m_Solo: 1
   m_Mute: 0
   m_IsExit: 0
   serializedVersion: 3
@@ -175,7 +172,7 @@ AnimatorStateTransition:
   m_HasFixedDuration: 1
   m_InterruptionSource: 0
   m_OrderedInterruption: 1
-  m_CanTransitionToSelf: 1
+  m_CanTransitionToSelf: 0
 --- !u!1101 &-1781487845989203919
 AnimatorStateTransition:
   m_ObjectHideFlags: 1
@@ -336,9 +333,6 @@ AnimatorStateTransition:
   - m_ConditionMode: 2
     m_ConditionEvent: Dead
     m_EventTreshold: 0
-  - m_ConditionMode: 2
-    m_ConditionEvent: Iddle
-    m_EventTreshold: 0
   - m_ConditionMode: 1
     m_ConditionEvent: MoveRandom
     m_EventTreshold: 0
@@ -370,7 +364,7 @@ AnimatorStateTransition:
   - m_ConditionMode: 2
     m_ConditionEvent: Dead
     m_EventTreshold: 0
-  - m_ConditionMode: 2
+  - m_ConditionMode: 1
     m_ConditionEvent: Iddle
     m_EventTreshold: 0
   - m_ConditionMode: 2

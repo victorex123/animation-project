@@ -18,6 +18,7 @@ public class FollowEnemy : MonoBehaviour
     public float dmg = 10;
     public Animator animator;
     public EnemyHeal health;
+    public GameObject healthBar;
 
     private float distance;
 
@@ -44,6 +45,7 @@ public class FollowEnemy : MonoBehaviour
     void Start()
     {
         iddle = true;
+        healthBar.SetActive(true);
     }
 
     // Update is called once per frame
@@ -53,6 +55,7 @@ public class FollowEnemy : MonoBehaviour
         {
             dead = true;
             animator.SetBool("Dead", true);
+            healthBar.SetActive(false);
             //animator.SetBool("Dead", false);
         }
 
@@ -79,6 +82,9 @@ public class FollowEnemy : MonoBehaviour
 
                 if (distance <= distanceAtack)
                 {
+                    Vector3 destinationLook = player.transform.position;
+                    destinationLook.y = transform.position.y;
+                    transform.LookAt(destinationLook,Vector3.up);
                     atack = true;
                     navMeshAgent.SetDestination(transform.position);
 
@@ -111,23 +117,32 @@ public class FollowEnemy : MonoBehaviour
                 if (timeToWalk <= 0)
                 {
                     moveRandomPosition();
+                    //print("Sin funcion"+newPos);
 
-                    //if(transform.position == newPos)
-                    //{
-                    //    iddle = true;
-
-                    //}
-                    //else
-                    //{
-                    //    iddle = false;
-
-                    //}
+                    
 
                     timeToWalk = Random.Range(minDistanceTowalk, maxDistanceToWalk);
+                }
+
+                Vector3 directionToDestination = transform.position - newPos;
+                directionToDestination.y = 0;
+                if (directionToDestination.sqrMagnitude <= 2 * 2)
+                {
+                    //print("he entrado");
+                    //poner newPos = 0
+                    iddle = true;
+
+                }
+                else
+                {
+                    iddle = false;
+
                 }
             }
 
         }
+
+        
 
         animator.SetBool("Iddle", iddle);
         animator.SetBool("MoveRandom", moveRandom);
@@ -142,9 +157,8 @@ public class FollowEnemy : MonoBehaviour
 
     public void moveRandomPosition()
     {
-        
         newPos = transform.position + new Vector3(Random.onUnitSphere.x * 10.0f, 1.0f, Random.onUnitSphere.z * 10.0f);
-        print(newPos);
+        //print("En funcion:"+newPos);
         navMeshAgent.SetDestination(newPos);
         navMeshAgent.speed = 5.0f;
     }
