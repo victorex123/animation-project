@@ -244,7 +244,8 @@ MonoBehaviour:
   timeAtack: 2
   dmg: 10
   animator: {fileID: 112391077}
-  health: {fileID: 0}
+  health: {fileID: 112391078}
+  healthBar: {fileID: 295814481}
 --- !u!195 &112391074
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -794,6 +795,11 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 50, y: -30, z: 0}
+--- !u!1 &295814481 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8464311638491489067, guid: ba14d7b4753dad049a2aed6600c126da, type: 3}
+  m_PrefabInstance: {fileID: 529169549}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &350536752
 GameObject:
   m_ObjectHideFlags: 0
@@ -1200,6 +1206,7 @@ MonoBehaviour:
   dmg: 10
   animator: {fileID: 556603351}
   health: {fileID: 0}
+  healthBar: {fileID: 0}
 --- !u!195 &556603345
 NavMeshAgent:
   m_ObjectHideFlags: 0
