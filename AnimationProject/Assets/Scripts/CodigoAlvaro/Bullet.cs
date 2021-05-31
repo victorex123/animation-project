@@ -7,7 +7,7 @@ public class Bullet : MonoBehaviour
     [SerializeField]
     private int mode;
     private bool explosive = false;
-    private float damage;
+    public int damage;
     [SerializeField]
     private GameObject explosion;
     // Start is called before the first frame update
@@ -46,10 +46,12 @@ public class Bullet : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        if(explosive)
+        if (explosive)
         {
             GameObject.Instantiate(explosion, gameObject.transform.position, Quaternion.identity);
         }
-        Destroy(gameObject);
+
+            Destroy(gameObject);
+
     }
 }
