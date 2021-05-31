@@ -7,8 +7,10 @@ public class SingeltonData : MonoBehaviour
     public static SingeltonData instance;
 
     #region Player
-    public float maxHealth = 100;
+    //public float maxHealth = 100;
     public float actualHealth = 100;
+    public int specialInitialState = 0;
+    public Color fadeColor;
     #endregion
 
     private void Awake()

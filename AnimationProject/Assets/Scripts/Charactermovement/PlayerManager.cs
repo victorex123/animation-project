@@ -15,6 +15,8 @@ public class PlayerManager : MonoBehaviour
     public Image fadeIn;
     public Text deathMessage;
 
+    public Image fadeInFullScreen;
+
     //Private attributes
     private float actualHealth;
     private float dt;
@@ -26,6 +28,17 @@ public class PlayerManager : MonoBehaviour
     private float fadeInSpeed = 0.25f;
 
     private float fallDamage = 0;
+
+    private bool cinematicMode = false;
+    private int fading = 0;
+    private int specialInitialState;
+    private float fadingCinemaTimer = 0;
+    private float fadingCinemaTime = 0;
+
+    private string nextScene;
+    private bool teleporting = false;
+    private float tpTimer = 0;
+    private float tpTime = 0;
 
     // Start is called before the first frame update
     void Start()
@@ -46,16 +59,6 @@ public class PlayerManager : MonoBehaviour
 
         dt = Time.deltaTime;
 
-        if (Input.GetKey(KeyCode.K))
-        {
-            ChangeHealthBar(20f * dt);
-        }
-
-        if (Input.GetKey(KeyCode.H))
-        {
-            ChangeHealthBar(-20f * dt);
-        }
-
         if (actualHealth <= 0)
         {
             dyingAnimationTimer += dt;
@@ -73,11 +76,18 @@ public class PlayerManager : MonoBehaviour
         }
 
         FallDamage();
+
+        ManageFading();
+
+        ManageEvents();
     }
 
     public void OnDestroy()
     {
-        if (actualHealth > 0) SaveDataSingelton();
+        if (actualHealth > 0)
+        {
+            SaveDataSingelton();
+        }
     }
 
     private void ChangeHealthBar(float newValue)
@@ -121,13 +131,19 @@ public class PlayerManager : MonoBehaviour
 
     private void LoadDataSingelton()
     {
-        maxHealth = SingeltonData.instance.maxHealth;
         actualHealth = SingeltonData.instance.actualHealth;
+        specialInitialState = SingeltonData.instance.specialInitialState;
+        fadeInFullScreen.color = SingeltonData.instance.fadeColor;
+
+        ManageInitialState();
     }
 
     private void SaveDataSingelton()
     {
-        SingeltonData.instance.actualHealth = actualHealth; 
+        SingeltonData.instance.actualHealth = actualHealth;
+        SingeltonData.instance.specialInitialState = specialInitialState;
+        SingeltonData.instance.fadeColor = fadeInFullScreen.color;
+
     }
 
     private void FallDamage()
@@ -149,5 +165,76 @@ public class PlayerManager : MonoBehaviour
             fallDamage = 0;
         }
 
+    }
+
+    private void ManageInitialState()
+    {
+        if (specialInitialState == 1)
+        {
+            cinematicMode = true;
+            playerController.SetCinematicMode(cinematicMode);
+            fadingCinemaTime = 3;
+            fading = 2;
+            specialInitialState = 0;
+        }
+    }
+    public void TeleportScenePlayer(string newScene, float timeToWarp, Color fadeColor)
+    {
+        cinematicMode = true;
+        playerController.SetCinematicMode(cinematicMode);
+        fadeInFullScreen.color = fadeColor;
+        specialInitialState = 1;
+        fadingCinemaTime = timeToWarp;
+        fading = 1;
+        tpTime = timeToWarp;
+        teleporting = true;
+        nextScene = newScene;
+    }
+    public void ManageFading()
+    {
+        if (fading == 0) return;
+
+        Color newColor;
+        fadingCinemaTimer += dt;
+
+        if (fading == 1) //Fade in
+        {
+            newColor = new Color(fadeInFullScreen.color.r, fadeInFullScreen.color.g, fadeInFullScreen.color.b, 
+                fadingCinemaTimer/fadingCinemaTime*1f);
+            fadeInFullScreen.color = newColor;
+        }
+
+        if (fading == 2) //Fade out
+        {
+            newColor = new Color(fadeInFullScreen.color.r, fadeInFullScreen.color.g, fadeInFullScreen.color.b,
+                1 - fadingCinemaTimer / fadingCinemaTime*1f);
+            fadeInFullScreen.color = newColor;
+        }
+
+        if (fadingCinemaTimer > fadingCinemaTime)
+        {
+            if (fading == 2)
+            {
+                cinematicMode = false;
+                playerController.SetCinematicMode(cinematicMode);
+            }
+            fading = 0;
+            fadingCinemaTimer = 0;
+            fadingCinemaTime = 0;
+        }
+    }
+    public void ManageEvents()
+    {
+        if (teleporting)
+        {
+            tpTimer += dt;
+
+            if (tpTimer > tpTime)
+            {
+                teleporting = false;
+                tpTimer = 0;
+                SceneManager.LoadScene(nextScene);
+            }         
+        }
     }
 }

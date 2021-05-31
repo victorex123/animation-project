@@ -38,6 +38,8 @@ public class PlayerController : MonoBehaviour
 
     private bool isAlive = true;
 
+    private bool cinematicMode = false;
+
 
     private void Awake()
     {
@@ -61,7 +63,7 @@ public class PlayerController : MonoBehaviour
     {
         dt = Time.deltaTime;
 
-        if (isAlive)
+        if (isAlive && !cinematicMode)
         {
             CameraMove();
             Look();
@@ -206,5 +208,10 @@ public class PlayerController : MonoBehaviour
     {
         isAlive = false;
         activeCamera.transform.parent = null;
+    }
+
+    public void SetCinematicMode(bool newValue)
+    {
+        cinematicMode = newValue;
     }
 }
