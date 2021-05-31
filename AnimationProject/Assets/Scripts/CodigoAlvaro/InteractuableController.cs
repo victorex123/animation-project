@@ -196,8 +196,8 @@ public class InteractuableController : MonoBehaviour
 
     public void unequipGun()
     {
-        equipedObject.GetComponent<Rigidbody>().isKinematic = false;
-        equipedObject.GetComponent<BoxCollider>().enabled = false;
+        equipedObject.GetComponent<Rigidbody>().isKinematic = true;
+        equipedObject.GetComponent<BoxCollider>().enabled = true;
         equipedObject.GetComponent<SphereCollider>().enabled = false;
         equipedObject = null;
         equipped = false;
