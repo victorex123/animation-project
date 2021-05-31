@@ -6,6 +6,8 @@ TagManager:
   tags:
   - Gun
   - Terrain
+  - Ammo
+  - Door
   layers:
   - Default
   - TransparentFX
