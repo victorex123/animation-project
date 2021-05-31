@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SocialPlatforms;
 using UnityEngine.XR;
 
 public class Keys : MonoBehaviour
@@ -8,11 +9,14 @@ public class Keys : MonoBehaviour
     public List<Transform> waypoints;
     private int randomNumber;
     public GameObject handPlayer;
+    private bool handOn;
 
     // Start is called before the first frame update
     void Start()
     {
         randomNumber = Random.Range(0, waypoints.Count);
+        print(waypoints.Count);
+       
         transform.position = waypoints[randomNumber].position;
         handPlayer.SetActive(false);
         //print(key.transform.position);
@@ -21,7 +25,10 @@ public class Keys : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        //key.transform.Rotate(0.0f, 90.0f, 0.0f);
+        if(!handOn)
+        {
+            transform.Rotate(0.0f, 1.0f, 0.0f);
+        }
     }
 
     private void OnTriggerEnter(Collider other)
@@ -30,10 +37,9 @@ public class Keys : MonoBehaviour
         {
             //print("hola");
             handPlayer.SetActive(true);
-            transform.position = handPlayer.transform.position;
-            transform.rotation = handPlayer.transform.rotation;
-            transform.position = new Vector3(transform.position.x + 0.18f, transform.position.y, transform.position.z);
-            transform.SetParent(handPlayer.transform);
+            putKeyHand();
+            handOn = true;
+            
         }
 
         else if (other.CompareTag("Door"))
@@ -42,6 +48,15 @@ public class Keys : MonoBehaviour
             Destroy(other.gameObject);
             Destroy(this.gameObject);
         }
+    }
+
+    public void putKeyHand()
+    {
+        transform.position = handPlayer.transform.position;
+        transform.rotation = handPlayer.transform.rotation;
+        transform.position = new Vector3(transform.position.x + 0.18f, transform.position.y, transform.position.z);
+        transform.localScale = new Vector3(0.5f, 1.0f, 0.5f);
+        transform.SetParent(handPlayer.transform);
     }
 
 }
