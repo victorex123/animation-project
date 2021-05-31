@@ -31,6 +31,8 @@ public class Keys : MonoBehaviour
             //print("hola");
             handPlayer.SetActive(true);
             transform.position = handPlayer.transform.position;
+            transform.rotation = handPlayer.transform.rotation;
+            transform.position = new Vector3(transform.position.x + 0.18f, transform.position.y, transform.position.z);
             transform.SetParent(handPlayer.transform);
         }
 
