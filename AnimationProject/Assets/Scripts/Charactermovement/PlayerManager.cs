@@ -149,6 +149,7 @@ public class PlayerManager : MonoBehaviour
     private void FallDamage()
     {
         float actualYSpeed = GetComponent<Rigidbody>().velocity.y;
+        Debug.Log(actualYSpeed);
         if (actualYSpeed < -10)
         {
             fallDamage = -actualYSpeed;
