@@ -119,6 +119,7 @@ public class LorePagesManager : MonoBehaviour
         print(lorePages.enemyNamesList.Length);
         print(lorePages.enemyCharacteristicList.Length);
 
+
         displayEnemyText.text = lorePages.enemyCharacteristicList[i];
         displayEnemyImage.sprite = lorePages.enemyImagesList[i];
         
