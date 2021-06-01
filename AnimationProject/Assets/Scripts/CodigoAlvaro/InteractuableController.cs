@@ -29,6 +29,8 @@ public class InteractuableController : MonoBehaviour
     private float gunTimer = 0;
     [SerializeField]
     private Text textAmmo;
+    [SerializeField]
+    private Image puntero;
     // Start is called before the first frame update
     void Start()
     {
@@ -221,11 +223,13 @@ public class InteractuableController : MonoBehaviour
     {
         if (primaryCamera.gameObject.activeInHierarchy)
         {
+            puntero.gameObject.SetActive(false);
             cameraUsed = primaryCamera;
         }
         else
         {
             cameraUsed = secondaryCamera;
+            puntero.gameObject.SetActive(true);
         }
     }
 
