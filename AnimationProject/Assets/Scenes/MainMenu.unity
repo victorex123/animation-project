@@ -2077,8 +2077,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3cc8c04e88fbeb0449cb60cf1a0c5c28, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 0
-  actualHealth: 0
+  actualHealth: 100
+  specialInitialState: 0
+  fadeColor: {r: 0, g: 0, b: 0, a: 0}
 --- !u!4 &1317629116
 Transform:
   m_ObjectHideFlags: 0
