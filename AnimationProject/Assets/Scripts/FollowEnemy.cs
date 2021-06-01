@@ -47,6 +47,7 @@ public class FollowEnemy : MonoBehaviour
     {
         iddle = true;
         healthBar.SetActive(true);
+        timeAtack = 0;
     }
 
     // Update is called once per frame
@@ -89,11 +90,14 @@ public class FollowEnemy : MonoBehaviour
                     Vector3 destinationLook = player.transform.position;
                     destinationLook.y = transform.position.y;
                     transform.LookAt(destinationLook,Vector3.up);
+
                     atack = true;
                     navMeshAgent.SetDestination(transform.position);
 
                     //navMeshAgent.isStopped = true;
                     timeAtack -= Time.deltaTime;
+                    print(timeAtack);
+
                     if (timeAtack <= 0)
                     {
 
@@ -106,18 +110,18 @@ public class FollowEnemy : MonoBehaviour
                     atack = false;
                     navMeshAgent.SetDestination(player.transform.position);
                     //navMeshAgent.isStopped = false;
-                    timeAtack += Time.deltaTime;
-                    if (timeAtack >= 2.0f)
-                    {
-                        timeAtack = 2.0f;
-                    }
+                    timeAtack -= Time.deltaTime;
+                    //if (timeAtack <= 0.0f)
+                    //{
+                    //    timeAtack = 0.0f;
+                    //}
                 }
             }
             else if (moveRandom)
             {
                 iddle = false;
                 timeToWalk -= Time.deltaTime;
-                timeAtack += Time.deltaTime;
+                timeAtack -= Time.deltaTime;
                 if (timeToWalk <= 0)
                 {
                     moveRandomPosition();
