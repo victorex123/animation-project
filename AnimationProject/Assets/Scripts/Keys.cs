@@ -10,6 +10,7 @@ public class Keys : MonoBehaviour
     private int randomNumber;
     public GameObject handPlayer;
     private bool handOn;
+    public GameObject effect;
 
     // Start is called before the first frame update
     void Start()
@@ -55,6 +56,7 @@ public class Keys : MonoBehaviour
         transform.position = handPlayer.transform.position;
         transform.rotation = handPlayer.transform.rotation;
         transform.localScale = new Vector3(0.5f, 1.0f, 0.5f);
+        Destroy(effect);
         transform.SetParent(handPlayer.transform);
     }
 
