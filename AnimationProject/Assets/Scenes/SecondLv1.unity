@@ -1937,11 +1937,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 2616525377404287624, guid: 757eca7937fc83f4ea05b2d2f3d3e9a9, type: 3}
   m_PrefabInstance: {fileID: 1266566945}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &798172619 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 7626100494345980366, guid: 3d71e39a52ba63147ba0c607d61bac24, type: 3}
-  m_PrefabInstance: {fileID: 1892677726}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &800686375
 GameObject:
   m_ObjectHideFlags: 0
@@ -8412,7 +8407,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: -8679921383154817045, guid: 1600e31a3d7491048ab98c9c2011dd50, type: 3}
       propertyPath: m_RootOrder
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 1600e31a3d7491048ab98c9c2011dd50, type: 3}
       propertyPath: m_LocalScale.x
@@ -9436,6 +9431,26 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 4035955702694301486, guid: 3d71e39a52ba63147ba0c607d61bac24, type: 3}
+      propertyPath: m_RootOrder
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4035955702694301486, guid: 3d71e39a52ba63147ba0c607d61bac24, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -177.7
+      objectReference: {fileID: 0}
+    - target: {fileID: 4035955702694301486, guid: 3d71e39a52ba63147ba0c607d61bac24, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -51.9
+      objectReference: {fileID: 0}
+    - target: {fileID: 4035955703050817392, guid: 3d71e39a52ba63147ba0c607d61bac24, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4035955703050817392, guid: 3d71e39a52ba63147ba0c607d61bac24, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7004208811775147233, guid: 3d71e39a52ba63147ba0c607d61bac24, type: 3}
       propertyPath: m_Name
       value: Player
@@ -10289,7 +10304,7 @@ PrefabInstance:
     - target: {fileID: 3969197481172886508, guid: ca86407da6d8b8c4f9db826a389671a4, type: 3}
       propertyPath: handPlayer
       value: 
-      objectReference: {fileID: 798172619}
+      objectReference: {fileID: 0}
     - target: {fileID: 3969197481172886508, guid: ca86407da6d8b8c4f9db826a389671a4, type: 3}
       propertyPath: waypoints.Array.data[0]
       value: 
@@ -10328,7 +10343,7 @@ PrefabInstance:
       objectReference: {fileID: 1749487832}
     - target: {fileID: 3969197481172886509, guid: ca86407da6d8b8c4f9db826a389671a4, type: 3}
       propertyPath: m_RootOrder
-      value: 2
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 3969197481172886509, guid: ca86407da6d8b8c4f9db826a389671a4, type: 3}
       propertyPath: m_LocalPosition.x
