@@ -189,7 +189,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxHealth: 100
   currentHealth: 100
+  bloodSplat: {fileID: 0}
+  bloodSplat2: {fileID: 0}
   healthBar: {fileID: 3641136780542944503}
+  organic: 0
 --- !u!65 &4551122679182999863
 BoxCollider:
   m_ObjectHideFlags: 0

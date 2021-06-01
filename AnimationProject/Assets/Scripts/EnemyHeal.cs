@@ -12,6 +12,7 @@ public class EnemyHeal : MonoBehaviour
     public GameObject bloodSplat2;
 
     public HealthBarEnemy healthBar;
+    public bool organic;
 
     // Start is called before the first frame update
     void Start()
@@ -43,7 +44,7 @@ public class EnemyHeal : MonoBehaviour
         if (other.CompareTag("Bullet"))
         {
             TakeDamage((int)other.GetComponent<Bullet>().damage);
-            if (currentHealth > 0)
+            if (currentHealth > 0 && organic)
             {
                 GameObject newBloodSplat = Instantiate(bloodSplat2, other.transform.position, transform.rotation);
             }

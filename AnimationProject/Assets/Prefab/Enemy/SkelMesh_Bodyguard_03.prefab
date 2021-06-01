@@ -541,6 +541,7 @@ MonoBehaviour:
   bloodSplat: {fileID: 984888993326705811, guid: dc4543fa9d3c1e44d8aed4545ac0ba29, type: 3}
   bloodSplat2: {fileID: 7361347716282247372, guid: 6397934b2c4b601479f02fabe09e9ea1, type: 3}
   healthBar: {fileID: 3026396554912487661}
+  organic: 1
 --- !u!195 &6512350013966019763
 NavMeshAgent:
   m_ObjectHideFlags: 0

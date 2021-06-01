@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.73410386, g: 0.6855091, b: 0.69166213, a: 1}
+  m_IndirectSpecularColor: {r: 0.73410594, g: 0.6855105, b: 0.6916628, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -220,7 +220,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &167718668
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -248,7 +248,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 167718667}
   m_LocalRotation: {x: -0, y: 0.7546759, z: -0, w: 0.65609777}
-  m_LocalPosition: {x: 35.53, y: 1.98, z: 5.287014}
+  m_LocalPosition: {x: 36.91, y: 17.17, z: 15.12}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 250006063}
@@ -805,7 +805,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: -8679921383154817045, guid: 89f2a8ec7bc45644aa2368bdea848e61, type: 3}
       propertyPath: m_RootOrder
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 89f2a8ec7bc45644aa2368bdea848e61, type: 3}
       propertyPath: m_LocalScale.x
@@ -821,7 +821,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 89f2a8ec7bc45644aa2368bdea848e61, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -0
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 89f2a8ec7bc45644aa2368bdea848e61, type: 3}
       propertyPath: m_LocalPosition.y
@@ -1325,6 +1325,7 @@ MonoBehaviour:
   actualHealth: 100
   specialInitialState: 0
   fadeColor: {r: 0, g: 0, b: 0, a: 0}
+  deads: 0
 --- !u!4 &1298323890
 Transform:
   m_ObjectHideFlags: 0
@@ -2037,7 +2038,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7327097163539441498, guid: fcca14aeaf6219548995290bc1e07c0b, type: 3}
       propertyPath: m_RootOrder
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7327097163539441498, guid: fcca14aeaf6219548995290bc1e07c0b, type: 3}
       propertyPath: m_LocalPosition.x

@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class SnakeEnemy : MonoBehaviour
 {
@@ -18,7 +19,38 @@ public class SnakeEnemy : MonoBehaviour
     private float dis;
     private Transform currentBodyPart;
     private Transform prevBodyPart;
+    private GameObject player;
+    public NavMeshAgent navMeshAgent;
+
+    public float maxDistanceToWalk = 10.0f;
+    public float minDistanceTowalk = 5.0f;
+    public float timeToWalk = 5.0f;
+    public float distanceToFollowPlayer = 300.0f;
+    public float distanceAtack = 3.5f;
+    public float timeAtack = 2.0f;
+    public float dmg = 10;
+    public EnemyHeal health;
+
+    private float distance;
+
+    private bool follow;
+    private bool moveRandom;
+    private bool dead;
+    private Vector3 newPos;
+    private PlayerManager healtPlayer;
+
+
     // Start is called before the first frame update
+
+    public void Awake()
+    {
+        navMeshAgent = GetComponent<NavMeshAgent>();
+        player = GameObject.FindGameObjectWithTag("Player");
+        healtPlayer = player.GetComponent<PlayerManager>();
+        health = GetComponent<EnemyHeal>();
+        timeAtack = 0;
+
+    }
     void Start()
     {
         for(int i=0; i<beginSize-1;i++)
@@ -29,12 +61,13 @@ public class SnakeEnemy : MonoBehaviour
 
     void Update()
     {
-        Move();
-
-        if(Input.GetKey(KeyCode.Q))
+        if (health.currentHealth <= 0)
         {
-            AddBodyPart();
+            dead = true;
+            navMeshAgent.SetDestination(transform.position);
         }
+
+        Move();
     }
 
     // Update is called once per frame
@@ -42,18 +75,60 @@ public class SnakeEnemy : MonoBehaviour
     {
         float currentSpeed = moveSpeed;
 
-        if (Input.GetKey(KeyCode.W))
+        if (!dead)
         {
-            currentSpeed *= 2;
-        }
+            distance = Vector3.Distance(player.transform.position, transform.position);
 
-        //BodyParts[0].transform.Translate(BodyParts[0].transform.forward * currentSpeed * Time.smoothDeltaTime, Space.World);
-        BodyParts[0].GetComponent<Rigidbody>().AddForce(BodyParts[0].transform.forward * currentSpeed * Time.smoothDeltaTime);
+            if (distance <= distanceToFollowPlayer)
+            {
+                follow = true;
+                moveRandom = false;
 
-        if (Input.GetAxis("Horizontal") != 0)
-        {
-            BodyParts[0].transform.Rotate(Vector3.up * rotationSpeed * Time.deltaTime * Input.GetAxis("Horizontal"));
+            }
+            else
+            {
+                follow = false;
+                moveRandom = true;
+            }
+
+            if (follow)
+            {
+                navMeshAgent.speed = currentSpeed;
+
+                if (distance <= distanceAtack)
+                {
+                    Vector3 destinationLook = player.transform.position;
+                    destinationLook.y = transform.position.y;
+                    transform.LookAt(destinationLook, Vector3.up);
+
+                    navMeshAgent.SetDestination(transform.position);
+
+                    timeAtack -= Time.deltaTime;
+
+                    if (timeAtack <= 0)
+                    {
+                        healtPlayer.ReceiveDamage(dmg, 0);
+                        timeAtack = 2.0f;
+                    }
+                }
+                else
+                {
+                    navMeshAgent.SetDestination(player.transform.position);
+                    timeAtack -= Time.deltaTime;
+                }
+            }
+            else if (moveRandom)
+            {
+                timeToWalk -= Time.deltaTime;
+                if (timeToWalk <= 0)
+                {
+                    moveRandomPosition();
+                    timeToWalk = Random.Range(minDistanceTowalk, maxDistanceToWalk);
+                }
+            }
+
         }
+        
 
         for (int i = 1; i < BodyParts.Count; i++)
         {
@@ -79,5 +154,13 @@ public class SnakeEnemy : MonoBehaviour
         GameObject newpart = Instantiate(bodyPrefab, BodyParts[BodyParts.Count - 1].transform.position, BodyParts[BodyParts.Count - 1].transform.rotation);
         newpart.transform.SetParent(transform);
         BodyParts.Add(newpart);
+    }
+
+    public void moveRandomPosition()
+    {
+        newPos = transform.position + new Vector3(Random.onUnitSphere.x * 10.0f, 1.0f, Random.onUnitSphere.z * 10.0f);
+        //print("En funcion:"+newPos);
+        navMeshAgent.SetDestination(newPos);
+        navMeshAgent.speed = 5.0f;
     }
 }
