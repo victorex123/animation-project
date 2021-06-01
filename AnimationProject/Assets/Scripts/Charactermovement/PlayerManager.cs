@@ -88,8 +88,11 @@ public class PlayerManager : MonoBehaviour
         {
             SaveDataSingelton();
         }
-        SingeltonData.instance.deads += 1;
-        Debug.Log("Has muerto " + SingeltonData.instance.deads + " veces.");
+        if (actualHealth <= 0)
+        {
+            SingeltonData.instance.deads += 1;
+            Debug.Log("Has muerto " + SingeltonData.instance.deads + " veces.");
+        }
     }
 
     private void ChangeHealthBar(float newValue)

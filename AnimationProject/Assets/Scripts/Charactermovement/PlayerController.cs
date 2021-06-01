@@ -30,7 +30,7 @@ public class PlayerController : MonoBehaviour
 
     private GameObject objectBehindCamera;
 
-    private float originalDistanceCam1, originalDistanceCam2;
+    private float originalDistanceCam1, originalDistanceCam2, wallDistance;
 
     private Vector3 vectorDirLook = new Vector3();
 
@@ -47,6 +47,7 @@ public class PlayerController : MonoBehaviour
         myRigidbody = GetComponent<Rigidbody>();
         originalDistanceCam1 = Vector3.Distance(transform.position, playerCamera.transform.position);
         originalDistanceCam2 = Vector3.Distance(transform.position, playerAimCamera.transform.position);
+        wallDistance = 500;
     }
 
     // Start is called before the first frame update
@@ -209,28 +210,38 @@ public class PlayerController : MonoBehaviour
     {
         float maxDistance = originalDistanceCam1;
         if (activeCamera == playerAimCamera) maxDistance = originalDistanceCam2;
-        float actualDistance = Vector3.Distance(activeCamera.transform.position, transform.position + Vector3.up * transform.localScale.y / 2);
-        Debug.Log(actualDistance);
+        float actualDistance = Vector3.Distance(activeCamera.ScreenToWorldPoint(new Vector3(Screen.width / 2, Screen.height / 2, 0.3f)), transform.position + Vector3.up);
+        //Debug.Log(actualDistance);
         //float actualDistance = Vector3.Distance(transform.position, activeCamera.transform.position);
-        Vector3 vectorDirToCamera = activeCamera.transform.position - transform.position;
+        Vector3 vectorDirToCamera1 = activeCamera.ScreenToWorldPoint(new Vector3(Screen.width/2, Screen.height/2, 0.3f)) - (transform.position + Vector3.up);
 
         List<Ray> raylistToCamera = new List<Ray>();
         RaycastHit hitToCamera;
 
-        Ray ray1ToCamera = new Ray(transform.position+Vector3.up*transform.localScale.y/2, vectorDirToCamera);
+        Ray ray1ToCamera = new Ray(transform.position+Vector3.up, vectorDirToCamera1*0.01f);
         raylistToCamera.Add(ray1ToCamera);
-        Debug.DrawRay(transform.position+Vector3.up*transform.localScale.y/2, vectorDirToCamera, Color.red);
+        Debug.DrawRay(transform.position + Vector3.up, vectorDirToCamera1);
 
-        if (Physics.Raycast(ray1ToCamera, out hitToCamera))
+        for (int i = 0; i < raylistToCamera.Count; i++)
         {
-            if (!hitToCamera.transform.gameObject.CompareTag("Player"))
+            if (Physics.Raycast(raylistToCamera[i], out hitToCamera))
             {
-                activeCamera.transform.position += (transform.position - activeCamera.transform.position).normalized * 1f * dt;
+                if (hitToCamera.transform.gameObject.CompareTag("Terrain")) //Ve la pared
+                {
+                    wallDistance = Vector3.Distance(hitToCamera.point, transform.position + (Vector3.up));
+                    activeCamera.transform.position += (transform.position - activeCamera.transform.position).normalized * 3f * dt;
+                }
+
+                if (hitToCamera.transform.gameObject.CompareTag("Player")) //Ve al jugador
+                {
+                    if (actualDistance < maxDistance && (actualDistance + 3f * dt) < wallDistance)
+                    {
+                        activeCamera.transform.position -= (transform.position - activeCamera.transform.position).normalized * 3f * dt;
+                    }
+                }
             }
-            else if (actualDistance < maxDistance || actualDistance < 1f)
-            {
-                activeCamera.transform.position -= (transform.position - activeCamera.transform.position).normalized * 1f * dt;
-            }
+
+            //Debug.Log("Distancia a la pared: " + wallDistance + ", Distancia a la cámara: " + actualDistance);
         }
     }
     public void KillPlayer()
