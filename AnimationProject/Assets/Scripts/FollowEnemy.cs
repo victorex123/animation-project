@@ -123,7 +123,6 @@ public class FollowEnemy : MonoBehaviour
             {
                 iddle = false;
                 timeToWalk -= Time.deltaTime;
-                timeAtack -= Time.deltaTime;
                 if (timeToWalk <= 0)
                 {
                     moveRandomPosition();
