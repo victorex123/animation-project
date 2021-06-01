@@ -12,6 +12,8 @@ public class AirConductor : MonoBehaviour
     [SerializeField]
     private float force;
     private Vector3 changePoint;
+    [SerializeField]
+    private float Scalemultiplier;
 
     void Start()
     {
@@ -30,9 +32,9 @@ public class AirConductor : MonoBehaviour
         Vector3 aux = gameObject.GetComponent<CapsuleCollider>().center;
         aux.y = 0;
         gameObject.GetComponent<CapsuleCollider>().isTrigger = true;
-        gameObject.GetComponent<CapsuleCollider>().height = length * 100;
+        gameObject.GetComponent<CapsuleCollider>().height = length * 100* Scalemultiplier;
         gameObject.GetComponent<CapsuleCollider>().center = aux;
-        gameObject.GetComponent<CapsuleCollider>().center+= new Vector3(0, 50 * (length - 1), 0);
+        gameObject.GetComponent<CapsuleCollider>().center+= new Vector3(0, (50 * (length - 1))* Scalemultiplier, 0);
         gameObject.GetComponent<CapsuleCollider>().radius = 0.5f;
         changePoint = aux;
         changePoint += new Vector3(0,length-0.5f,0);
