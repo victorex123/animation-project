@@ -47,7 +47,7 @@ public class AirConductor : MonoBehaviour
 
     private void OnTriggerStay(Collider other)
     {
-        other.GetComponent<Rigidbody>().AddForce(direction, ForceMode.Force);
+        other.GetComponent<Rigidbody>().AddForce(direction, ForceMode.Acceleration);
     }
 
 }
