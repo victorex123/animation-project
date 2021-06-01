@@ -171,7 +171,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5586711456404118048}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: GDX
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -287,7 +287,7 @@ GameObject:
   - component: {fileID: 5586711457157643358}
   - component: {fileID: 5586711457157643359}
   - component: {fileID: 5586711457157643353}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: HealPlatform
   m_TagString: Untagged
   m_Icon: {fileID: 0}

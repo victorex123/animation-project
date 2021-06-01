@@ -690,6 +690,7 @@ GameObject:
   - component: {fileID: 4035955703210990538}
   - component: {fileID: 4035955703210990541}
   - component: {fileID: 4035955703210990540}
+  - component: {fileID: 5915528952993461033}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -762,6 +763,19 @@ AudioListener:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4035955703210990543}
   m_Enabled: 1
+--- !u!135 &5915528952993461033
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4035955703210990543}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.5
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &4035955703258916429
 GameObject:
   m_ObjectHideFlags: 0
@@ -1293,6 +1307,7 @@ GameObject:
   - component: {fileID: 4035955703813633945}
   - component: {fileID: 4035955703813633943}
   - component: {fileID: 4035955703813633942}
+  - component: {fileID: 21101546624148349}
   m_Layer: 0
   m_Name: AimCamera
   m_TagString: MainCamera
@@ -1365,6 +1380,19 @@ AudioListener:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4035955703813633944}
   m_Enabled: 1
+--- !u!135 &21101546624148349
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4035955703813633944}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.5
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &4035955704000320373
 GameObject:
   m_ObjectHideFlags: 0

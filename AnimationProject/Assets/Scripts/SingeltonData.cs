@@ -11,6 +11,7 @@ public class SingeltonData : MonoBehaviour
     public float actualHealth = 100;
     public int specialInitialState = 0;
     public Color fadeColor;
+    public int deads = 0;
     #endregion
 
     private void Awake()

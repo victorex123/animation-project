@@ -78,7 +78,8 @@ public class PlayerController : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if (isAlive) CameraAdjustDistance();
+        //if (isAlive) CameraAdjustDistance();
+        if (isAlive) CameraAdjustDistancev2();
     }
 
     private void Movement()
@@ -201,6 +202,34 @@ public class PlayerController : MonoBehaviour
                         }
                     }
                 }
+            }
+        }
+    }
+    private void CameraAdjustDistancev2()
+    {
+        float maxDistance = originalDistanceCam1;
+        if (activeCamera == playerAimCamera) maxDistance = originalDistanceCam2;
+        float actualDistance = Vector3.Distance(activeCamera.transform.position, transform.position + Vector3.up * transform.localScale.y / 2);
+        Debug.Log(actualDistance);
+        //float actualDistance = Vector3.Distance(transform.position, activeCamera.transform.position);
+        Vector3 vectorDirToCamera = activeCamera.transform.position - transform.position;
+
+        List<Ray> raylistToCamera = new List<Ray>();
+        RaycastHit hitToCamera;
+
+        Ray ray1ToCamera = new Ray(transform.position+Vector3.up*transform.localScale.y/2, vectorDirToCamera);
+        raylistToCamera.Add(ray1ToCamera);
+        Debug.DrawRay(transform.position+Vector3.up*transform.localScale.y/2, vectorDirToCamera, Color.red);
+
+        if (Physics.Raycast(ray1ToCamera, out hitToCamera))
+        {
+            if (!hitToCamera.transform.gameObject.CompareTag("Player"))
+            {
+                activeCamera.transform.position += (transform.position - activeCamera.transform.position).normalized * 1f * dt;
+            }
+            else if (actualDistance < maxDistance || actualDistance < 1f)
+            {
+                activeCamera.transform.position -= (transform.position - activeCamera.transform.position).normalized * 1f * dt;
             }
         }
     }

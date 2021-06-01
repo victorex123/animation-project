@@ -98,7 +98,7 @@ public class FollowEnemy : MonoBehaviour
 
                     //navMeshAgent.isStopped = true;
                     timeAtack -= Time.deltaTime;
-                    print(timeAtack);
+                    //print(timeAtack);
 
                     if (timeAtack <= 0)
                     {
