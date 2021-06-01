@@ -54,14 +54,7 @@ public class BoidsUnit : MonoBehaviour
 
     void Update()
     {
-        if(real)
-        {
-            if(currentLife.currentHealth<=0)
-            {
-              // Destroy(this.controlUnits);
-            }
-            
-        }
+
         if(detectPlayer)
         {
             if (time >= maxTimeShoot)

@@ -54,7 +54,7 @@ public class Boids : MonoBehaviour
     public float boundsWeight { get { return _boundsWeight; } }
     public BoidsUnit[] allUnits { get; set; }
 
-    public GameObject centralBoidsObject;
+    //public GameObject centralBoidsObject;
 
     private int chooseRealBoid;
     private int count = -1;
@@ -74,7 +74,7 @@ public class Boids : MonoBehaviour
             Destroy(this);
         }
 
-        Vector3 directionToPlayer = allUnits[0].PlayerPosition().position - centralBoidsObject.transform.position;
+        Vector3 directionToPlayer = allUnits[0].PlayerPosition().position - transform.position;
         directionToPlayer.Normalize();
 
         for (int i = 0; i < allUnits.Length; i++)
@@ -93,7 +93,8 @@ public class Boids : MonoBehaviour
                         allUnits[j].ChangeTexture();
                     } 
                 }
-                centralBoidsObject.transform.position = allUnits[i].PlayerPosition().position - 30.0f * directionToPlayer;
+                transform.position = allUnits[i].PlayerPosition().position - 30.0f * directionToPlayer;
+
 
                 allUnits[i].MoveUnit();
 

@@ -114,7 +114,7 @@ SphereCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 15.47
+  m_Radius: 50
   m_Center: {x: -0.0100928545, y: 0.37486315, z: -0.0009486079}
 --- !u!114 &5123569628592980504
 MonoBehaviour:
@@ -133,12 +133,13 @@ MonoBehaviour:
   maxTimeToDown: 0
   upTorret: 0
   downTorret: 0
-  forceToApplyToUpp: 5
+  forceToApplyToUpp: 100
   accelerationAngular: 5
   maxTimeShoot: 10
   bullet: {fileID: 7909942522510467150, guid: 63ce26a58e7ebfb41a09d4eda7284dc8, type: 3}
   bulletPos: {fileID: 6673872787279114968}
   healtBar: {fileID: 5349939716060945835}
+  health: {fileID: 1642851226462675205}
 --- !u!114 &1642851226462675205
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -191,6 +192,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 4652264677424616680}
     m_Modifications:
+    - target: {fileID: 7207003057862727264, guid: ba14d7b4753dad049a2aed6600c126da, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7207003057862727264, guid: ba14d7b4753dad049a2aed6600c126da, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8464311638491489067, guid: ba14d7b4753dad049a2aed6600c126da, type: 3}
       propertyPath: m_Name
       value: FinalHeal
