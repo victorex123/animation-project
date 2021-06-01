@@ -586,6 +586,7 @@ MonoBehaviour:
   animator: {fileID: 6512350014017549831}
   health: {fileID: 6512350013966019762}
   healthBar: {fileID: 3393397738494725039}
+  boxCollider: {fileID: 6512350013966019773}
 --- !u!1 &6512350014010279007
 GameObject:
   m_ObjectHideFlags: 0

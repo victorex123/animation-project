@@ -19,6 +19,7 @@ public class FollowEnemy : MonoBehaviour
     public Animator animator;
     public EnemyHeal health;
     public GameObject healthBar;
+    public BoxCollider boxCollider;
 
     private float distance;
 
@@ -60,6 +61,7 @@ public class FollowEnemy : MonoBehaviour
             animator.SetBool("Dead", true);
             healthBar.SetActive(false);
             alreadyDead = true;
+            Destroy(boxCollider);
             //print("hola");
             //animator.SetBool("Dead", false);
         }

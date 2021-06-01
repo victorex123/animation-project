@@ -2714,6 +2714,7 @@ MonoBehaviour:
   animator: {fileID: 8642204337243182568}
   health: {fileID: 8642204335916359043}
   healthBar: {fileID: 186901140773237123}
+  boxCollider: {fileID: 8642204335916359041}
 --- !u!195 &8642204335916359047
 NavMeshAgent:
   m_ObjectHideFlags: 0
