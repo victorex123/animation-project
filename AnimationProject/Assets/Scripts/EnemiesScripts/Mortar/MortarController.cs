@@ -14,10 +14,15 @@ public class MortarController : MonoBehaviour
 
     public Transform spawnBulletPos;
 
+    public GameObject turretMan;
+
     // Private attributes
 
     private float dt;
     private float timerBetwennShoots = 0;
+    private bool active = true;
+    private float maxArtilleroDistance = 8;
+
 
 
     // Start is called before the first frame update
@@ -31,12 +36,9 @@ public class MortarController : MonoBehaviour
     {
         dt = Time.deltaTime;
 
-        timerBetwennShoots += dt;
-        if (timerBetwennShoots > timeBetweenShoots && target != null)
+        if (active || turretMan != null)
         {
-            timerBetwennShoots = 0;
-            GameObject bullet = Instantiate(bulletType, spawnBulletPos.position, Quaternion.identity);
-            bullet.GetComponent<MortarBulletController>().SetTarget(target);
+            BeingControlled();
         }
     }
     private void OnTriggerEnter(Collider other)
@@ -53,5 +55,27 @@ public class MortarController : MonoBehaviour
         {
             target = null;
         }
+    }
+    private void Shoot()
+    {
+        timerBetwennShoots += dt;
+        if (timerBetwennShoots > timeBetweenShoots && target != null)
+        {
+            timerBetwennShoots = 0;
+            GameObject bullet = Instantiate(bulletType, spawnBulletPos.position, Quaternion.identity);
+            bullet.GetComponent<MortarBulletController>().SetTarget(target);
+        }
+    }
+    private void BeingControlled()
+    {
+        if (Vector3.Distance(transform.position, turretMan.transform.position) <= maxArtilleroDistance)
+        {
+            Shoot();
+        }
+        if (turretMan.GetComponent<EnemyHeal>().currentHealth <= 0)
+        {
+            active = false;
+        }
+
     }
 }

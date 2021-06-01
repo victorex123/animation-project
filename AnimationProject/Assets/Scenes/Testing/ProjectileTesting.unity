@@ -2244,6 +2244,11 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1501120091}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!1 &1560725566 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8642204337233799090, guid: 02e07e13b3ccdc040b5ec2e4b70e9557, type: 3}
+  m_PrefabInstance: {fileID: 2000269814}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1594883497
 GameObject:
   m_ObjectHideFlags: 0
@@ -3503,6 +3508,10 @@ PrefabInstance:
       propertyPath: target
       value: 
       objectReference: {fileID: 1436781002}
+    - target: {fileID: 8694743273401452684, guid: 013bf2ffc824b3248a2dd982306af3f6, type: 3}
+      propertyPath: turretMan
+      value: 
+      objectReference: {fileID: 1560725566}
     - target: {fileID: 8694743273401452685, guid: 013bf2ffc824b3248a2dd982306af3f6, type: 3}
       propertyPath: m_RootOrder
       value: 5

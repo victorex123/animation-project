@@ -13,6 +13,7 @@ public class Bullet : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        Destroy(this.gameObject, 5);
         settings();
     }
 
@@ -35,7 +36,7 @@ public class Bullet : MonoBehaviour
         }
         if (mode == 1)
         {
-            damage = 5;
+            damage = 25;
         }
         if (mode == 2)
         {
