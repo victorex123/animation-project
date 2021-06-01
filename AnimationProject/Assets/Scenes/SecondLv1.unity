@@ -9350,6 +9350,10 @@ PrefabInstance:
       value: key
       objectReference: {fileID: 0}
     - target: {fileID: 3969197481172886508, guid: ca86407da6d8b8c4f9db826a389671a4, type: 3}
+      propertyPath: effect
+      value: 
+      objectReference: {fileID: 1345792915}
+    - target: {fileID: 3969197481172886508, guid: ca86407da6d8b8c4f9db826a389671a4, type: 3}
       propertyPath: handPlayer
       value: 
       objectReference: {fileID: 798172619}
