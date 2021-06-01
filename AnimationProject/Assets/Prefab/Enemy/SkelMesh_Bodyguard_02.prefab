@@ -720,6 +720,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxHealth: 100
   currentHealth: 0
+  bloodSplat: {fileID: 984888993326705811, guid: dc4543fa9d3c1e44d8aed4545ac0ba29, type: 3}
+  bloodSplat2: {fileID: 7361347716282247372, guid: 6397934b2c4b601479f02fabe09e9ea1, type: 3}
   healthBar: {fileID: 6327746056484299860}
 --- !u!195 &2616525376450008955
 NavMeshAgent:

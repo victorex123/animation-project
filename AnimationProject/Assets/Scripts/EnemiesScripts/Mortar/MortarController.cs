@@ -36,7 +36,7 @@ public class MortarController : MonoBehaviour
     {
         dt = Time.deltaTime;
 
-        if (active || turretMan != null)
+        if (active && turretMan != null)
         {
             BeingControlled();
         }
