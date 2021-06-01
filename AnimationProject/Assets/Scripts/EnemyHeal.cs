@@ -5,8 +5,8 @@ using UnityEngine.UI;
 
 public class EnemyHeal : MonoBehaviour
 {
-    public int maxHealth = 100;
-    public int currentHealth;
+    public float maxHealth = 100;
+    public float currentHealth;
 
     public GameObject bloodSplat;
     public GameObject bloodSplat2;
@@ -29,10 +29,13 @@ public class EnemyHeal : MonoBehaviour
         }
     }
 
-    public void TakeDamage(int dmg)
+    public void TakeDamage(float dmg)
     {
         currentHealth -= dmg;
         healthBar.SetHealth(currentHealth);
+        GameObject blood = Instantiate(bloodSplat, transform.position, Quaternion.identity);
+        blood.transform.rotation = Quaternion.Euler(0, Random.Range(0, 360), 0);
+        blood.transform.position -= Vector3.up * 0.08f;
     }
 
     private void OnTriggerEnter(Collider other)
@@ -40,9 +43,6 @@ public class EnemyHeal : MonoBehaviour
         if (other.CompareTag("Bullet"))
         {
             TakeDamage((int)other.GetComponent<Bullet>().damage);
-            GameObject blood = Instantiate(bloodSplat, transform.position, Quaternion.identity);
-            blood.transform.rotation = Quaternion.Euler(0, Random.Range(0, 360), 0);
-            blood.transform.position -= Vector3.up * 0.08f;
             if (currentHealth > 0)
             {
                 GameObject newBloodSplat = Instantiate(bloodSplat2, other.transform.position, transform.rotation);

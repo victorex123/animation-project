@@ -9,6 +9,7 @@ TagManager:
   - Ammo
   - Door
   - Bullet
+  - Enemy
   layers:
   - Default
   - TransparentFX

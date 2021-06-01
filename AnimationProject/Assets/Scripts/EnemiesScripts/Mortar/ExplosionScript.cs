@@ -27,11 +27,17 @@ public class ExplosionScript : MonoBehaviour
             if (rb != null)
             {
                 rb.AddExplosionForce(power, explosionPos, radius, 3.0f);
+                float totalDamage = 150 - (150 * Vector3.Distance(explosionPos, hit.transform.position) / radius);
 
                 if (hit.CompareTag("Player"))
                 {
-                    hit.GetComponent<PlayerManager>().ReceiveDamage(150 - (150 * Vector3.Distance(explosionPos, hit.transform.position)/radius), 0);
+                    hit.GetComponent<PlayerManager>().ReceiveDamage(totalDamage, 0);
                 }
+                if (hit.CompareTag("Enemy"))
+                {
+                    hit.GetComponent<EnemyHeal>().TakeDamage(totalDamage*2);
+                }
+
             }
         }
         Destroy(this.gameObject);
