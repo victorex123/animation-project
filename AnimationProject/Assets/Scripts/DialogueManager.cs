@@ -32,10 +32,10 @@ public class DialogueManager : MonoBehaviour
         {
             pressE = true;
         }
-        else
-        {
-            pressE = false;
-        }
+        //else
+        //{
+        //    pressE = false;
+        //}
     }
 
     public void StartDialogue()
@@ -79,6 +79,7 @@ public class DialogueManager : MonoBehaviour
                 return;
             }
             DisplayNextSentence();
+            pressE = false;
         }
 
 
@@ -87,6 +88,8 @@ public class DialogueManager : MonoBehaviour
             dialoguePanel.SetActive(true);
             StartDialogue();
             startTalking = false;
+            pressE = false;
+
         }
     }
 

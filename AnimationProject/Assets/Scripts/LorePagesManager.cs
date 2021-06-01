@@ -34,6 +34,7 @@ public class LorePagesManager : MonoBehaviour
     {
         actualCharacteristicsList = new string[0];
         actualSpriteList = new Sprite[0];
+        actualTitleList = new string[0];
     }
 
     public void BackButtonsPanel()
@@ -63,11 +64,13 @@ public class LorePagesManager : MonoBehaviour
             {
                 displayEnemyText.text = actualCharacteristicsList[i];
                 displayEnemyImage.sprite = actualSpriteList[i];
+                displayEnemyTitle.text = actualTitleList[i];
             }
             else if (actualCanvas == controlPanel)
             {
-                displayControlText.text = lorePages.controlCharacteristicsList[i];
-                displayControlImage.sprite = lorePages.controlImagesList[i];
+                displayControlText.text = actualCharacteristicsList[i];
+                displayControlImage.sprite = actualSpriteList[i];
+                displayControlTitle.text = actualTitleList[i];
             }
         }
         
@@ -88,11 +91,13 @@ public class LorePagesManager : MonoBehaviour
             {
                 displayEnemyText.text = actualCharacteristicsList[i];
                 displayEnemyImage.sprite = actualSpriteList[i];
+                displayEnemyTitle.text = actualTitleList[i];
             }
             else if (actualCanvas == controlPanel)
             {
-                displayControlText.text = lorePages.controlCharacteristicsList[i];
-                displayControlImage.sprite = lorePages.controlImagesList[i];
+                displayControlText.text = actualCharacteristicsList[i];
+                displayControlImage.sprite = actualSpriteList[i];
+                displayControlTitle.text = actualTitleList[i];
             }
             
         }
@@ -109,12 +114,15 @@ public class LorePagesManager : MonoBehaviour
 
         actualCharacteristicsList = lorePages.enemyCharacteristicList;
         actualSpriteList = lorePages.enemyImagesList;
-        actualTitleList = lorePages.enemyNamesList;
+        //actualTitleList = lorePages.enemyNamesList;
+
+        print(lorePages.enemyNamesList.Length);
+        print(lorePages.enemyCharacteristicList.Length);
 
         displayEnemyText.text = lorePages.enemyCharacteristicList[i];
         displayEnemyImage.sprite = lorePages.enemyImagesList[i];
-        print(lorePages.enemyCharacteristicList[i]);
-
+        
+        //displayEnemyTitle.text = lorePages.enemyNamesList[i];
     }
 
     public void ControlPage()
@@ -131,6 +139,7 @@ public class LorePagesManager : MonoBehaviour
 
         displayControlText.text = lorePages.controlCharacteristicsList[i];
         displayControlImage.sprite = lorePages.controlImagesList[i];
+        displayControlTitle.text = lorePages.controlNamesList[i];
     }
 
     public void ObjetivePage()
