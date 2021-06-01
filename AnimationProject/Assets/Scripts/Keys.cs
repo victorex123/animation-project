@@ -54,7 +54,6 @@ public class Keys : MonoBehaviour
     {
         transform.position = handPlayer.transform.position;
         transform.rotation = handPlayer.transform.rotation;
-        transform.position = new Vector3(transform.position.x + 0.18f, transform.position.y, transform.position.z);
         transform.localScale = new Vector3(0.5f, 1.0f, 0.5f);
         transform.SetParent(handPlayer.transform);
     }

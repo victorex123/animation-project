@@ -27,6 +27,7 @@ public class FollowEnemy : MonoBehaviour
     private bool iddle;
     private bool atack;
     private bool dead;
+    private bool alreadyDead =false;
 
     private Vector3 newPos;
     private PlayerManager healtPlayer;
@@ -51,11 +52,14 @@ public class FollowEnemy : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(health.currentHealth<=0)
+        if(health.currentHealth<=0 && !alreadyDead)
         {
             dead = true;
+            navMeshAgent.SetDestination(transform.position);
             animator.SetBool("Dead", true);
             healthBar.SetActive(false);
+            alreadyDead = true;
+            //print("hola");
             //animator.SetBool("Dead", false);
         }
 
