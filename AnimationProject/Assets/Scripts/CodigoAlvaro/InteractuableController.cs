@@ -20,8 +20,6 @@ public class InteractuableController : MonoBehaviour
     [SerializeField]
     private GameObject equipPosition;
     [SerializeField]
-    private GameObject zaHando;
-    [SerializeField]
     private GameObject player;
     [SerializeField]
     private float dropForwardForce = 10;
@@ -50,7 +48,6 @@ public class InteractuableController : MonoBehaviour
         if (Physics.Raycast(cameraUsed.transform.position, cameraUsed.transform.forward,out hit, interactRange, layerobject))
         {
             equipedObject = hit.collider.gameObject;
-            zaHando.gameObject.SetActive(false);
             if (equipedObject.CompareTag("Gun"))
             {
                 equipGun();
@@ -158,13 +155,11 @@ public class InteractuableController : MonoBehaviour
             {
                 unequipJoint();
                 buttonCheck = true;
-                zaHando.gameObject.SetActive(true);
             }
 
             if (Input.GetKeyDown(KeyCode.Q))
             {
                 throwing();
-                zaHando.gameObject.SetActive(true);
             }
         }
 
@@ -204,7 +199,6 @@ public class InteractuableController : MonoBehaviour
         equipedObject.GetComponent<Rigidbody>().isKinematic = false;
         equipedObject.GetComponent<BoxCollider>().enabled = true;   
         equipedObject.GetComponent<SphereCollider>().enabled = true;
-        zaHando.gameObject.SetActive(true);
         equipedObject = null;
         equipped = false;
     }
