@@ -121,6 +121,10 @@ public class PlayerManager : MonoBehaviour
             GetComponent<Rigidbody>().freezeRotation = false;
             
         }
+        if (actualHealth > maxHealth)
+        {
+            actualHealth = maxHealth;
+        }
 
         //print(actualHealth);
     }
