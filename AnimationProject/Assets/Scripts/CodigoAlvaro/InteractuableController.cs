@@ -183,6 +183,7 @@ public class InteractuableController : MonoBehaviour
             if (Input.GetKey(KeyCode.Mouse0) && gunTimer >= gunCooldown)
             {
                 equipedObject.GetComponent<GunScript>().Shoot();
+                playermanager.UdpateWeaponAmmo(equipedObject.GetComponent<GunScript>().GetAmmo());
                 gunTimer = 0;
             }
         }

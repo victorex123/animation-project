@@ -40,9 +40,6 @@ public class PlayerManager : MonoBehaviour
     private float tpTimer = 0;
     private float tpTime = 0;
 
-    private int typeOfWeapon;
-    private GameObject weapon;
-
     // Start is called before the first frame update
     void Start()
     {
@@ -83,6 +80,7 @@ public class PlayerManager : MonoBehaviour
         ManageFading();
 
         ManageEvents();
+
     }
 
     public void OnDestroy()
@@ -161,8 +159,6 @@ public class PlayerManager : MonoBehaviour
                 Debug.Log("Tengo un rifle de asalto.");
                 GameObject rifle = Instantiate(SingeltonData.instance.rifle, transform.position + Vector3.up * 5, Quaternion.identity);
                 rifle.GetComponent<GunScript>().SetSpecificAmmo(SingeltonData.instance.ammo);
-
-                Debug.Log(SingeltonData.instance.ammo);
                 break;
             case 3: // Bazooka
                 Debug.Log("Tengo un bazooka.");
@@ -182,12 +178,6 @@ public class PlayerManager : MonoBehaviour
         SingeltonData.instance.actualHealth = actualHealth;
         SingeltonData.instance.specialInitialState = specialInitialState;
         SingeltonData.instance.fadeColor = fadeInFullScreen.color;
-
-        if (weapon != null)
-        {
-            SingeltonData.instance.weapon = typeOfWeapon;
-            SingeltonData.instance.ammo = weapon.GetComponent<GunScript>().GetAmmo();
-        }
     }
 
     private void FallDamage()
@@ -286,15 +276,17 @@ public class PlayerManager : MonoBehaviour
     {
         if (arma == null)
         {
-            typeOfWeapon = 0;
-            this.weapon = null;
-            Debug.Log("Arma desequipada");
+            SingeltonData.instance.weapon = 0;
+            SingeltonData.instance.ammo = 0;
         }
         if (arma != null)
         {
-            typeOfWeapon = arma.GetComponent<GunScript>().GetMode() + 1;
-            this.weapon = arma;
-            Debug.Log("Arma equipada");
+            SingeltonData.instance.weapon = arma.GetComponent<GunScript>().GetMode() + 1;
+            SingeltonData.instance.ammo = arma.GetComponent<GunScript>().GetAmmo();
         }
+    }
+    public void UdpateWeaponAmmo(int ammo)
+    {
+        SingeltonData.instance.ammo = ammo;
     }
 }
