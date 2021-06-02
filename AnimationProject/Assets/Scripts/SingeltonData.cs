@@ -19,6 +19,7 @@ public class SingeltonData : MonoBehaviour
     public GameObject pistol;
     public GameObject rifle;
     public GameObject bazooka;
+    public int difficult;
     #endregion
 
     private void Awake()

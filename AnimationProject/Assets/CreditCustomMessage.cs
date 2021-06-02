@@ -11,7 +11,20 @@ public class CreditCustomMessage : MonoBehaviour
 
     void Start()
     {
-        customText.text = "Juego completado en dificultad: ####\n Número de muertes: " + SingeltonData.instance.deads +
+        string difficultText = "normal";
+        switch (SingeltonData.instance.difficult)
+        {
+            case 0:
+                difficultText = "easy";
+                break;
+            case 1:
+                difficultText = "normal";
+                break;
+            case 2:
+                difficultText = "hard";
+                break;
+        }
+        customText.text = "Game completed on "+ difficultText +"\n Number of deads: " + SingeltonData.instance.deads +
             "\n\n" + customText.text;
     }
 }

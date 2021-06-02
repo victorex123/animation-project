@@ -43,17 +43,20 @@ public class GoToAnotherScene : MonoBehaviour
     public void EasyMode()
     {
         //SingeltonData.instance.maxHealth = 100.0f;
-        SingeltonData.instance.actualHealth = 100.0f;
+        //SingeltonData.instance.actualHealth = 100.0f;
+        SingeltonData.instance.difficult = 0;
     }
     public void NormalMode()
     {
         //SingeltonData.instance.maxHealth = 100.0f;
-        SingeltonData.instance.actualHealth = 50.0f;
+        //SingeltonData.instance.actualHealth = 50.0f;
+        SingeltonData.instance.difficult = 1;
     }
     public void HardMode()
     {
         //SingeltonData.instance.maxHealth = 100.0f;
-        SingeltonData.instance.actualHealth = 25.0f;
+        //SingeltonData.instance.actualHealth = 25.0f;
+        SingeltonData.instance.difficult = 2;
     }
 
 
