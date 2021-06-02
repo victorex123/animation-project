@@ -159,6 +159,7 @@ MonoBehaviour:
   currentLife: {fileID: 2129981791145992126}
   real: 0
   distanceToFollowPlayer: 70
+  speedShoot: 50
 --- !u!54 &4586852543040871882
 Rigidbody:
   m_ObjectHideFlags: 0

@@ -2775,11 +2775,28 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   lorePages:
     enemyCharacteristicList:
-    - pokemon213142345
-    - p-p
-    - HAHAHAHAHAA
-    - HAHAHAHAHAA
-    - HAHAHAHAHAA
+    - They are like a swarm with a fairly high intelligence, but they have a trap
+      and that is that only one of the boids is the real one while the others are
+      mere illusions. But, even if they are illusions, they can cause you damage
+      since their bullets are real, also if a single boid sees you, they will all
+      chase you until they destroy you. To destroy all the boids destroy the real
+      boid.
+    - They are quite difficult to find defenses and can be hidden anywhere on the
+      ground of the map. Once you enter their attack range they will come out to
+      attack you until you are destroyed, if by chance you move away from them they
+      hide under the ground until you pass through their area again. You do not have
+      to worry these turrets do not move.
+    - They are not very smart and they do not get paid much for their work, but they
+      are very loyal to their boss. The only thing they do is that they are patrolling
+      the map and if they detect you they will chase you and beat you until they
+      destroy you. If you run faster than they can lose sight of you.
+    - It is the typical mortar of all life, only this is much more powerful than
+      the rest. If it hits you squarely, it will most likely destroy you. They have
+      a weak point and that is that if you kill the guard that is around, you will
+      spoil the mechanims of the mortar.
+    - I'm sorry for the photo the one who took the photo did not end very well ..
+      It is the typical poison that if you touch it it will hurt you little by little.
+      The best thing to do is to get away from it and try not to touch it.
     enemyImagesList:
     - {fileID: 21300000, guid: a9de6678273def74bb6596f8575ad5ff, type: 3}
     - {fileID: 21300000, guid: fe009374b9965dc4e928b36f911a8153, type: 3}
@@ -2787,17 +2804,27 @@ MonoBehaviour:
     - {fileID: 21300000, guid: 255737c89a6b0bc4fa737374726e3ba7, type: 3}
     - {fileID: 21300000, guid: 4dde958331e968044b55f0b42fe1a16f, type: 3}
     enemyNamesList:
-    - pokemon
-    - p-p
-    - HAHAHAHAHAA
-    - HAHAHAHAHAA
-    - HAHAHAHAHAA
+    - The boids
+    - Torret
+    - Guards
+    - Mortar
+    - Poisson gass
     controlCharacteristicsList:
-    - "que cosas P_P\t"
-    - estadistica es vida, quien diga lo contrario miente
-    - estadistica es vida, quien diga lo contrario miente
-    - estadistica es vida, quien diga lo contrario miente
-    - estadistica es vida, quien diga lo contrario miente
+    - 'Keys W, A, S, D to move, be careful you are a quite experimental robot so
+      if you go very fast it will take time to brake.
+
+      The camera moves with
+      the mouse'
+    - To pick up a weapon you have to aim at the weapon and press e and you can shoot
+      with the left click. If you want you can point with right click. The ammunition
+      will appear in the lower right area of the screen
+    - It appears at each end of the level to heal the player. You stand on the platform
+      and your life will heal
+    - The teleport is present at the end of each level, you place yourself on top
+      of the platform and it will teleport you to the next level
+    - It is a mechanism that is used in future levels, the player has to touch the
+      key to take it and once they have it they will have to go to a purple door
+      to unlock it and use the teleportation.
     controlImagesList:
     - {fileID: 21300000, guid: 6922956f624f98f4eac5a1cead2e4a16, type: 3}
     - {fileID: 21300000, guid: ed1b2973fc2b74640af87a5003e9460a, type: 3}
@@ -2805,11 +2832,11 @@ MonoBehaviour:
     - {fileID: 21300000, guid: 38c98ec9d9562ef43bc0d6d7dcba8148, type: 3}
     - {fileID: 21300000, guid: 111f19b7aa73e11479d8f337736fc3a6, type: 3}
     controlNamesList:
-    - 5
-    - 9
-    - 9
-    - 9
-    - 9
+    - Move / Camera
+    - Guns
+    - Health Tower
+    - Teleport
+    - mechanim Key
   controlPanel: {fileID: 286399786}
   enemiesPanel: {fileID: 221892758}
   objectivePanel: {fileID: 1851836946}
@@ -5802,7 +5829,8 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: El objetivo es robar el diamante
+  m_Text: Your main objective is to steal the big diamond, which I need to analyze
+    that diamond and be able to improve you and your brothers into a stronger robots.
 --- !u!222 &847398265
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -6555,7 +6583,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.089403026, y: 0.33979565}
   m_AnchorMax: {x: 0.193, y: 0.43500003}
-  m_AnchoredPosition: {x: 2.999939, y: 2}
+  m_AnchoredPosition: {x: 2.9997559, y: 2}
   m_SizeDelta: {x: 5.2185, y: 6.4965973}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &941992640
@@ -8503,7 +8531,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0.887}
   m_AnchorMax: {x: 0.1478172, y: 1}
-  m_AnchoredPosition: {x: 0.5, y: 1.5}
+  m_AnchoredPosition: {x: 0.5, y: 1.4999847}
   m_SizeDelta: {x: 2.8131561, y: -0.33237267}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1154250569
@@ -9132,7 +9160,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.19607843, g: 0.19607843, b: 0.19607843, a: 1}
+  m_Color: {r: 0.22352941, g: 1, b: 0, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -9142,7 +9170,7 @@ MonoBehaviour:
   m_FontData:
     m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
     m_FontSize: 14
-    m_FontStyle: 0
+    m_FontStyle: 1
     m_BestFit: 0
     m_MinSize: 10
     m_MaxSize: 40
@@ -12174,10 +12202,10 @@ RectTransform:
   m_Father: {fileID: 221892759}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.33536565, y: 0.732567}
-  m_AnchorMax: {x: 0.6633657, y: 0.96321654}
-  m_AnchoredPosition: {x: 0.5, y: -2.5}
-  m_SizeDelta: {x: -1.8470001, y: 4.6105957}
+  m_AnchorMin: {x: 0.33118287, y: 0.611}
+  m_AnchorMax: {x: 0.6647743, y: 0.96321654}
+  m_AnchoredPosition: {x: 1.5, y: -3.4651031}
+  m_SizeDelta: {x: -5.847, y: 6.540798}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1543550357
 MonoBehaviour:
@@ -12588,10 +12616,10 @@ RectTransform:
   m_Father: {fileID: 221892759}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.2667425, y: 0.048700977}
-  m_AnchorMax: {x: 0.7551743, y: 0.5737956}
-  m_AnchoredPosition: {x: 0.80978394, y: -0.33129883}
-  m_SizeDelta: {x: -0.57559204, y: 1.1661072}
+  m_AnchorMin: {x: 0.2694086, y: 0.022360224}
+  m_AnchorMax: {x: 0.7551743, y: 0.48032266}
+  m_AnchoredPosition: {x: -0.19021606, y: -0.5}
+  m_SizeDelta: {x: 1.4244003, y: 1.2643013}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1626535034
 MonoBehaviour:
@@ -15146,10 +15174,10 @@ RectTransform:
   m_Father: {fileID: 221892759}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.35369703, y: 0.6295848}
-  m_AnchorMax: {x: 0.648, y: 0.68337715}
-  m_AnchoredPosition: {x: -0.5, y: 0.3999939}
-  m_SizeDelta: {x: -1, y: 0}
+  m_AnchorMin: {x: 0.35369703, y: 0.52772045}
+  m_AnchorMax: {x: 0.64222574, y: 0.5815592}
+  m_AnchoredPosition: {x: 1.5, y: -4}
+  m_SizeDelta: {x: 3, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &1913812952
 CanvasRenderer:
@@ -15172,7 +15200,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.19607843, g: 0.19607843, b: 0.19607843, a: 1}
+  m_Color: {r: 0.22352941, g: 1, b: 0, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -15182,7 +15210,7 @@ MonoBehaviour:
   m_FontData:
     m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
     m_FontSize: 14
-    m_FontStyle: 0
+    m_FontStyle: 1
     m_BestFit: 0
     m_MinSize: 10
     m_MaxSize: 40
@@ -15616,7 +15644,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.089403026, y: 0.33979565}
   m_AnchorMax: {x: 0.193, y: 0.43500003}
-  m_AnchoredPosition: {x: 2.9976807, y: 2.2203217}
+  m_AnchoredPosition: {x: 2.9974365, y: 2.2203217}
   m_SizeDelta: {x: 5.2188053, y: 6.462311}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1978292514

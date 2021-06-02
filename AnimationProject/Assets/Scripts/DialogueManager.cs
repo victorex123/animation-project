@@ -16,7 +16,7 @@ public class DialogueManager : MonoBehaviour
     string activeSentence;
     bool startTalking = false;
     private int i;
-    private bool pressE;
+    private bool pressZ;
 
     // Start is called before the first frame update
     void Start()
@@ -28,9 +28,9 @@ public class DialogueManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(Input.GetKeyDown(KeyCode.E))
+        if(Input.GetKeyDown(KeyCode.Z))
         {
-            pressE = true;
+            pressZ = true;
         }
         //else
         //{
@@ -70,7 +70,7 @@ public class DialogueManager : MonoBehaviour
     private void OnTriggerStay(Collider other)
     {
 
-        if ((other.CompareTag("Player")) && pressE && !startTalking)
+        if ((other.CompareTag("Player")) && pressZ && !startTalking)
         {
             i--;
             if(i<0)
@@ -79,16 +79,16 @@ public class DialogueManager : MonoBehaviour
                 return;
             }
             DisplayNextSentence();
-            pressE = false;
+            pressZ = false;
         }
 
 
-        if (other.CompareTag("Player") && pressE && startTalking)
+        if (other.CompareTag("Player") && pressZ && startTalking)
         {
             dialoguePanel.SetActive(true);
             StartDialogue();
             startTalking = false;
-            pressE = false;
+            pressZ = false;
 
         }
     }

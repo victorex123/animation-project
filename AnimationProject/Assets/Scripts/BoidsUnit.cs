@@ -39,6 +39,7 @@ public class BoidsUnit : MonoBehaviour
     public bool real;
 
     public float distanceToFollowPlayer = 0.0f;
+    public float speedShoot;
     private float distance;
 
     private void Awake()
@@ -265,7 +266,7 @@ public class BoidsUnit : MonoBehaviour
         aux = Instantiate(bullet, bulletPoint.transform.position, Quaternion.identity);
 
         aux.transform.LookAt(player.transform.position);
-        aux.GetComponent<Rigidbody>().AddForce(aux.transform.forward *10.0f, ForceMode.Impulse);
+        aux.GetComponent<Rigidbody>().AddForce(aux.transform.forward *speedShoot, ForceMode.Impulse);
 
         canShoot = false;
         time = timeToShoot;

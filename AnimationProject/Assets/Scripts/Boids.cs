@@ -95,7 +95,7 @@ public class Boids : MonoBehaviour
                     } 
                 }
 
-                transform.position = allUnits[i].PlayerPosition().position - 30.0f * directionToPlayer;
+                transform.position = allUnits[i].PlayerPosition().position - 40.0f * directionToPlayer;
 
                 allUnits[i].MoveUnit();
 

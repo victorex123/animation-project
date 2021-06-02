@@ -136,6 +136,7 @@ MonoBehaviour:
   downTorret: 0
   forceToApplyToUpp: 5000
   accelerationAngular: 5
+  speedShoot: 50
   maxTimeShoot: 10
   bullet: {fileID: 7909942522510467150, guid: 63ce26a58e7ebfb41a09d4eda7284dc8, type: 3}
   bulletPos: {fileID: 6673872787279114968}

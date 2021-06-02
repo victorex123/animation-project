@@ -14,10 +14,11 @@ public class TorretEnemy : MonoBehaviour
     public float forceToApplyToUpp = 5.0f;
     private GameObject player;
     public float accelerationAngular = 100.0f;
+    public float speedShoot;
 
     private bool detectPlayer = false;
     private float timeToShoot;
-    public float maxTimeShoot = 10.0f;
+    public float maxTimeShoot = 6.0f;
     private float timeWasteToShoot;
     public GameObject bullet;
     public GameObject bulletPos;
@@ -33,7 +34,7 @@ public class TorretEnemy : MonoBehaviour
         rigibody = GetComponent<Rigidbody>();
         player = GameObject.FindWithTag("Player");
         health = GetComponent<EnemyHeal>();
-        timeToShoot = UnityEngine.Random.Range(2.0f, maxTimeShoot - 2.0f);
+        timeToShoot = UnityEngine.Random.Range(1.0f, maxTimeShoot);
         timeWasteToShoot = timeToShoot;
         healtBar.SetActive(false);
     }
@@ -207,7 +208,7 @@ public class TorretEnemy : MonoBehaviour
         aux = Instantiate(bullet, bulletPos.transform.position, Quaternion.identity);
 
         aux.transform.LookAt(player.transform.position);
-        aux.GetComponent<Rigidbody>().AddForce(aux.transform.forward * 10.0f, ForceMode.Impulse);
+        aux.GetComponent<Rigidbody>().AddForce(aux.transform.forward * speedShoot, ForceMode.Impulse);
 
         timeWasteToShoot = timeToShoot;
     }
