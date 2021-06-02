@@ -14,7 +14,7 @@ public class TorretEnemy : MonoBehaviour
     public float forceToApplyToUpp = 5.0f;
     private GameObject player;
     public float accelerationAngular = 100.0f;
-    public float speedShoot;
+    private float speedShoot;
 
     private bool detectPlayer = false;
     private float timeToShoot;

@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class BulletEnemy : MonoBehaviour
 {
-    public float damage;
+    private float damage;
     private PlayerManager player;
     // Start is called before the first frame update
     void Start()

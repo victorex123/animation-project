@@ -39,7 +39,7 @@ public class BoidsUnit : MonoBehaviour
     public bool real;
 
     public float distanceToFollowPlayer = 0.0f;
-    public float speedShoot;
+    private float speedShoot;
     private float distance;
 
     private void Awake()
