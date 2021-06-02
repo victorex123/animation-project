@@ -10224,8 +10224,8 @@ MonoBehaviour:
   deads: 0
   weapon: 0
   ammo: 0
-  pistol: {fileID: 1719131515888008, guid: 33f6247810b654041bccca4adbd93f45, type: 3}
-  rifle: {fileID: 1669814075106190, guid: ea530e89dc913d14480baec0a57c7801, type: 3}
+  pistol: {fileID: 1669814075106190, guid: ea530e89dc913d14480baec0a57c7801, type: 3}
+  rifle: {fileID: 1719131515888008, guid: 33f6247810b654041bccca4adbd93f45, type: 3}
   bazooka: {fileID: 3134810973971713421, guid: ffec6a85934f4cd4faeb0c133d9ee6aa, type: 3}
   difficult: 0
 --- !u!4 &1292922963
@@ -11578,9 +11578,9 @@ MonoBehaviour:
     m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
     m_FontSize: 30
     m_FontStyle: 0
-    m_BestFit: 0
+    m_BestFit: 1
     m_MinSize: 10
-    m_MaxSize: 44
+    m_MaxSize: 30
     m_Alignment: 0
     m_AlignByGeometry: 0
     m_RichText: 1

@@ -8188,6 +8188,14 @@ PrefabInstance:
         Defeat all those underpaid
         bodyguards and get my P_P diamond'
       objectReference: {fileID: 0}
+    - target: {fileID: 4848500939072604752, guid: c6c1a6b82ef97e548bac40303e7c2148, type: 3}
+      propertyPath: m_FontData.m_BestFit
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4848500939072604752, guid: c6c1a6b82ef97e548bac40303e7c2148, type: 3}
+      propertyPath: m_FontData.m_MaxSize
+      value: 30
+      objectReference: {fileID: 0}
     - target: {fileID: 5825083371658795607, guid: c6c1a6b82ef97e548bac40303e7c2148, type: 3}
       propertyPath: m_RootOrder
       value: 1

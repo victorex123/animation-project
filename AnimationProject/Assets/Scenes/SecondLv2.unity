@@ -1179,6 +1179,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 139441454302806, guid: c6c1a6b82ef97e548bac40303e7c2148, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 358447592836303223, guid: c6c1a6b82ef97e548bac40303e7c2148, type: 3}
       propertyPath: dialogue.sentenceList.Array.size
       value: 1
@@ -1188,6 +1192,14 @@ PrefabInstance:
       value: "Neither is my diamond >: /\nThere are still guards here and the same
         key mechanism as in the previous level. But it seems that this level there
         are \xA1\xA1\xA1Elevators!!!, what a luxury."
+      objectReference: {fileID: 0}
+    - target: {fileID: 4848500939072604752, guid: c6c1a6b82ef97e548bac40303e7c2148, type: 3}
+      propertyPath: m_FontData.m_BestFit
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4848500939072604752, guid: c6c1a6b82ef97e548bac40303e7c2148, type: 3}
+      propertyPath: m_FontData.m_MaxSize
+      value: 30
       objectReference: {fileID: 0}
     - target: {fileID: 5825083371658795607, guid: c6c1a6b82ef97e548bac40303e7c2148, type: 3}
       propertyPath: m_RootOrder
@@ -1236,6 +1248,34 @@ PrefabInstance:
     - target: {fileID: 6601444561697997037, guid: c6c1a6b82ef97e548bac40303e7c2148, type: 3}
       propertyPath: m_Name
       value: miniScreen-lp
+      objectReference: {fileID: 0}
+    - target: {fileID: 8472843197156199385, guid: c6c1a6b82ef97e548bac40303e7c2148, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8472843197156199385, guid: c6c1a6b82ef97e548bac40303e7c2148, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8472843197156199385, guid: c6c1a6b82ef97e548bac40303e7c2148, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8472843197156199385, guid: c6c1a6b82ef97e548bac40303e7c2148, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8472843197156199385, guid: c6c1a6b82ef97e548bac40303e7c2148, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8472843197156199385, guid: c6c1a6b82ef97e548bac40303e7c2148, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8472843197156199385, guid: c6c1a6b82ef97e548bac40303e7c2148, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c6c1a6b82ef97e548bac40303e7c2148, type: 3}
