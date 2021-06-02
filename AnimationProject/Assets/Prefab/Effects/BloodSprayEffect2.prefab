@@ -4595,7 +4595,7 @@ GameObject:
   - component: {fileID: 7271539109107320346}
   - component: {fileID: -7177494888850326438}
   m_Layer: 0
-  m_Name: BloodSprayEffect
+  m_Name: BloodSprayEffect2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -9227,3 +9227,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e68c5e607ec07394987b3687063c6467, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  timer: 1

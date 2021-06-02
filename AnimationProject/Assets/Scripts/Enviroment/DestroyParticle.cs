@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class DestroyParticle : MonoBehaviour
 {
-    private float timer;
+    public float timer = 4;
     // Start is called before the first frame update
     void Start()
     {
