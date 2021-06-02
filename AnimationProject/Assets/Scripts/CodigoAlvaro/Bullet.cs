@@ -32,7 +32,7 @@ public class Bullet : MonoBehaviour
     {
         if (mode == 0)
         {
-            damage = 10;
+            damage = 20;
         }
         if (mode == 1)
         {
@@ -40,7 +40,7 @@ public class Bullet : MonoBehaviour
         }
         if (mode == 2)
         {
-            damage = 20;
+            damage = 100;
             explosive = true;
         }
     }

@@ -1950,7 +1950,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "T\xEDtulo del juego"
+  m_Text: KillerBot 47
 --- !u!222 &947106265
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -2468,6 +2468,7 @@ MonoBehaviour:
   pistol: {fileID: 1669814075106190, guid: ea530e89dc913d14480baec0a57c7801, type: 3}
   rifle: {fileID: 1719131515888008, guid: 33f6247810b654041bccca4adbd93f45, type: 3}
   bazooka: {fileID: 3134810973971713421, guid: ffec6a85934f4cd4faeb0c133d9ee6aa, type: 3}
+  difficult: 0
 --- !u!4 &1317629116
 Transform:
   m_ObjectHideFlags: 0

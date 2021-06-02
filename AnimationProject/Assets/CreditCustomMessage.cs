@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class CreditCustomMessage : MonoBehaviour
@@ -26,5 +27,12 @@ public class CreditCustomMessage : MonoBehaviour
         }
         customText.text = "Game completed on "+ difficultText +"\n Number of deads: " + SingeltonData.instance.deads +
             "\n\n" + customText.text;
+
+        Destroy(this.gameObject,20);
+    }
+
+    private void OnDestroy()
+    {
+        SceneManager.LoadScene("MainMenu");
     }
 }
