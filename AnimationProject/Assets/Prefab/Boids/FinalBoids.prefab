@@ -128,7 +128,7 @@ SphereCollider:
   m_GameObject: {fileID: 6193225043041227863}
   m_Material: {fileID: 0}
   m_IsTrigger: 1
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 2
   m_Radius: 50
   m_Center: {x: 0, y: 0, z: 0}
@@ -158,7 +158,7 @@ MonoBehaviour:
   boxCollider: {fileID: 4551122679182999863}
   currentLife: {fileID: 2129981791145992126}
   real: 0
-  controlUnits: {fileID: 5931362796687966995, guid: fbe08f9f5dc3311458878a74b3574624, type: 3}
+  distanceToFollowPlayer: 70
 --- !u!54 &4586852543040871882
 Rigidbody:
   m_ObjectHideFlags: 0

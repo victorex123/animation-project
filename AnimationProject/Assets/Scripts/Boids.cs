@@ -58,6 +58,7 @@ public class Boids : MonoBehaviour
 
     private int chooseRealBoid;
     private int count = -1;
+    
 
 
     // Start is called before the first frame update
@@ -93,8 +94,8 @@ public class Boids : MonoBehaviour
                         allUnits[j].ChangeTexture();
                     } 
                 }
-                transform.position = allUnits[i].PlayerPosition().position - 30.0f * directionToPlayer;
 
+                transform.position = allUnits[i].PlayerPosition().position - 30.0f * directionToPlayer;
 
                 allUnits[i].MoveUnit();
 

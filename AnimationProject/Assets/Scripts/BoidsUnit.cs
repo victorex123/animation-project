@@ -37,7 +37,9 @@ public class BoidsUnit : MonoBehaviour
     public BoxCollider boxCollider;
     public EnemyHeal currentLife;
     public bool real;
-    public GameObject controlUnits;
+
+    public float distanceToFollowPlayer = 0.0f;
+    private float distance;
 
     private void Awake()
     {
@@ -54,8 +56,7 @@ public class BoidsUnit : MonoBehaviour
 
     void Update()
     {
-
-        if(detectPlayer)
+        if (detectPlayer)
         {
             if (time >= maxTimeShoot)
             {
@@ -66,6 +67,17 @@ public class BoidsUnit : MonoBehaviour
                 time += Time.deltaTime;
             }
         }
+        else
+        {
+            distance = Vector3.Distance(player.transform.position, transform.position);
+            
+
+            if (distance <= distanceToFollowPlayer)
+            {
+                detectPlayer = true;
+            }
+        }
+              
     }
 
     public void AssignFlock(Boids flock)
@@ -239,13 +251,13 @@ public class BoidsUnit : MonoBehaviour
         alreadyPaint = false;
     }
 
-    private void OnTriggerEnter(Collider other)
-    {
-        if (other.CompareTag("Player"))
-        {
-            detectPlayer = true;
-        }
-    }
+    //public void OnCollisionEnter(Collision collision)
+    //{
+    //    if (collision.gameObject.tag=="Player")
+    //    {
+    //        detectPlayer = true;
+    //    }
+    //}
 
     public void Shoot()
     {

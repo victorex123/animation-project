@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 5123569628592980508}
   - component: {fileID: 5123569628592980504}
   - component: {fileID: 1642851226462675205}
+  - component: {fileID: 1583288261327587064}
   m_Layer: 0
   m_Name: FinalTorret
   m_TagString: Untagged
@@ -112,7 +113,7 @@ SphereCollider:
   m_GameObject: {fileID: 5466238274484670034}
   m_Material: {fileID: 0}
   m_IsTrigger: 1
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 2
   m_Radius: 50
   m_Center: {x: -0.0100928545, y: 0.37486315, z: -0.0009486079}
@@ -133,13 +134,14 @@ MonoBehaviour:
   maxTimeToDown: 0
   upTorret: 0
   downTorret: 0
-  forceToApplyToUpp: 100
+  forceToApplyToUpp: 5000
   accelerationAngular: 5
   maxTimeShoot: 10
   bullet: {fileID: 7909942522510467150, guid: 63ce26a58e7ebfb41a09d4eda7284dc8, type: 3}
   bulletPos: {fileID: 6673872787279114968}
   healtBar: {fileID: 5349939716060945835}
   health: {fileID: 1642851226462675205}
+  distanceToFollowPlayer: 50
 --- !u!114 &1642851226462675205
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -154,7 +156,23 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxHealth: 100
   currentHealth: 0
+  bloodSplat: {fileID: 0}
+  bloodSplat2: {fileID: 0}
   healthBar: {fileID: 5536862595450982121}
+  organic: 0
+--- !u!65 &1583288261327587064
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5466238274484670034}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1.5898149, y: 4.256484, z: 1.3100066}
+  m_Center: {x: -0.034179002, y: 0.083768845, z: -0.0009486079}
 --- !u!1 &6673872787279114968
 GameObject:
   m_ObjectHideFlags: 0

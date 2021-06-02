@@ -24,6 +24,8 @@ public class TorretEnemy : MonoBehaviour
     public GameObject healtBar;
 
     public EnemyHeal health;
+    public float distanceToFollowPlayer = 0.0f;
+    private float distance;
 
     // Start is called before the first frame update
     void Start()
@@ -44,24 +46,66 @@ public class TorretEnemy : MonoBehaviour
             Destroy(this.gameObject);
         }
 
-        RotateTorret();
+        distance = Vector3.Distance(player.transform.position, transform.position);
 
+        if (distance<=distanceToFollowPlayer)
+        {
+            rigibody.velocity = Vector3.zero;
+            upTorret = true;
+            downTorret = false;
+            detectPlayer = true;
+            healtBar.SetActive(true);
+        }
+        else
+        {
+            rigibody.velocity = Vector3.zero;
+            downTorret = true;
+            upTorret = false;
+            detectPlayer = false;
+            healtBar.SetActive(false);
+        }
+
+        RotateTorret();
+        CheckState();
+    }
+
+
+
+    //private void OnTriggerEnter(Collider other)
+    //{
+    //    if (other.CompareTag("Player"))
+    //    {
+            
+
+    //    }
+    //}
+
+    //private void OnTriggerExit(Collider other)
+    //{
+    //    if (other.CompareTag("Player"))
+    //    {
+            
+    //    }
+    //}
+
+    public void CheckState()
+    {
         if (upTorret)
         {
             if (timeToWaitToMove >= maxTimeToUp)
             {
                 upTorret = false;
                 rigibody.velocity = Vector3.zero;
-                
+
             }
-            else 
+            else
             {
                 timeToWaitToMove += Time.deltaTime;
                 UpTorret();
             }
         }
 
-        if(downTorret)
+        if (downTorret)
         {
             if (timeToWaitToMove <= maxTimeToDown)
             {
@@ -87,34 +131,6 @@ public class TorretEnemy : MonoBehaviour
             }
         }
     }
-
-
-
-    private void OnTriggerEnter(Collider other)
-    {
-        if (other.CompareTag("Player"))
-        {
-            rigibody.velocity = Vector3.zero;
-            upTorret = true;
-            downTorret = false;
-            detectPlayer = true;
-            healtBar.SetActive(true);
-
-        }
-    }
-
-    private void OnTriggerExit(Collider other)
-    {
-        if (other.CompareTag("Player"))
-        {
-            rigibody.velocity = Vector3.zero;
-            downTorret = true;
-            upTorret = false;
-            detectPlayer = false;
-            healtBar.SetActive(false);
-        }
-    }
-
     private void UpTorret()
     {
         rigibody.AddForce((forceToApplyToUpp * Vector3.up) * Time.deltaTime, ForceMode.Acceleration);
