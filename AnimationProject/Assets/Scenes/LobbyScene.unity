@@ -783,7 +783,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1247451792}
+      - m_Target: {fileID: 388015381}
         m_TargetAssemblyTypeName: LorePagesManager, Assembly-CSharp
         m_MethodName: BackButtonsPanel
         m_Mode: 1
@@ -916,7 +916,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1247451792}
+      - m_Target: {fileID: 388015381}
         m_TargetAssemblyTypeName: LorePagesManager, Assembly-CSharp
         m_MethodName: GoToRightPage
         m_Mode: 1
@@ -1632,7 +1632,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1247451792}
+      - m_Target: {fileID: 388015381}
         m_TargetAssemblyTypeName: LorePagesManager, Assembly-CSharp
         m_MethodName: ControlPage
         m_Mode: 1
@@ -3321,10 +3321,6 @@ MonoBehaviour:
     - pokemon
     - p-p
     - HAHAHAHAHAA
-    pruebaNameList:
-    - WOLOLO
-    - WOLOLO
-    - WOLOLO
     controlCharacteristicsList:
     - "que cosas P_P\t"
     - estadistica es vida, quien diga lo contrario miente
@@ -3441,7 +3437,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1247451792}
+      - m_Target: {fileID: 388015381}
         m_TargetAssemblyTypeName: LorePagesManager, Assembly-CSharp
         m_MethodName: EnemiesPage
         m_Mode: 1
@@ -4073,7 +4069,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1247451792}
+      - m_Target: {fileID: 388015381}
         m_TargetAssemblyTypeName: LorePagesManager, Assembly-CSharp
         m_MethodName: ObjetivePage
         m_Mode: 1
@@ -7018,7 +7014,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1247451792}
+      - m_Target: {fileID: 388015381}
         m_TargetAssemblyTypeName: LorePagesManager, Assembly-CSharp
         m_MethodName: GoToLeftPage
         m_Mode: 1
@@ -8805,7 +8801,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1247451792}
+      - m_Target: {fileID: 388015381}
         m_TargetAssemblyTypeName: LorePagesManager, Assembly-CSharp
         m_MethodName: GoToLeftPage
         m_Mode: 1
@@ -10202,7 +10198,6 @@ MonoBehaviour:
     - {fileID: 21300000, guid: e4a3c5e96bcf61b49bc9bff56340757b, type: 3}
     - {fileID: 21300000, guid: e0e2f4cb0de771d48bfa1e128bbc2630, type: 3}
     enemyNamesList: []
-    pruebaNameList: []
     controlCharacteristicsList:
     - "que cosas P_P\t"
     - estadistica es vida, quien diga lo contrario miente
@@ -12220,7 +12215,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1247451792}
+      - m_Target: {fileID: 388015381}
         m_TargetAssemblyTypeName: LorePagesManager, Assembly-CSharp
         m_MethodName: CloseLorePages
         m_Mode: 1
@@ -13593,7 +13588,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1247451792}
+      - m_Target: {fileID: 388015381}
         m_TargetAssemblyTypeName: LorePagesManager, Assembly-CSharp
         m_MethodName: BackButtonsPanel
         m_Mode: 1
@@ -13726,7 +13721,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1247451792}
+      - m_Target: {fileID: 388015381}
         m_TargetAssemblyTypeName: LorePagesManager, Assembly-CSharp
         m_MethodName: CloseLorePages
         m_Mode: 1
@@ -14757,7 +14752,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1247451792}
+      - m_Target: {fileID: 388015381}
         m_TargetAssemblyTypeName: LorePagesManager, Assembly-CSharp
         m_MethodName: BackButtonsPanel
         m_Mode: 1
@@ -14890,7 +14885,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1247451792}
+      - m_Target: {fileID: 388015381}
         m_TargetAssemblyTypeName: LorePagesManager, Assembly-CSharp
         m_MethodName: GoToRightPage
         m_Mode: 1

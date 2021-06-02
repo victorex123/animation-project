@@ -114,7 +114,7 @@ public class LorePagesManager : MonoBehaviour
 
         actualCharacteristicsList = lorePages.enemyCharacteristicList;
         actualSpriteList = lorePages.enemyImagesList;
-        //actualTitleList = lorePages.enemyNamesList;
+        actualTitleList = lorePages.enemyNamesList;
 
         print(lorePages.enemyNamesList.Length);
         print(lorePages.enemyCharacteristicList.Length);
@@ -122,8 +122,7 @@ public class LorePagesManager : MonoBehaviour
 
         displayEnemyText.text = lorePages.enemyCharacteristicList[i];
         displayEnemyImage.sprite = lorePages.enemyImagesList[i];
-        
-        //displayEnemyTitle.text = lorePages.enemyNamesList[i];
+        displayEnemyTitle.text = lorePages.enemyNamesList[i];
     }
 
     public void ControlPage()
