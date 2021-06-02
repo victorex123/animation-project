@@ -14,7 +14,7 @@ public class ExplosionScript : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        Debug.Log("Explosion generada");
+        //Debug.Log("Explosion generada");
         Vector3 explosionPos = transform.position;
         Collider[] colliders = Physics.OverlapSphere(explosionPos, radius);
 

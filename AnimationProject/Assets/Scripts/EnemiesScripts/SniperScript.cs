@@ -74,4 +74,8 @@ public class SniperScript : MonoBehaviour
             }
         }
     }
+    public bool GetActivated()
+    {
+        return activated;
+    }
 }

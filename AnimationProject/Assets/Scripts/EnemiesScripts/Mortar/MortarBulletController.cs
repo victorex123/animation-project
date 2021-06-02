@@ -54,7 +54,7 @@ public class MortarBulletController : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            Debug.Log("Cagaste");
+            //Debug.Log("Cagaste");
             other.GetComponent<PlayerManager>().ReceiveDamage(100, 0);
             //Crear explosión
             CreateExplosion();
@@ -62,7 +62,7 @@ public class MortarBulletController : MonoBehaviour
 
         if (other.CompareTag("Terrain"))
         {
-            Debug.Log("Impacto contra el suelo");
+            //Debug.Log("Impacto contra el suelo");
             //Crear explosión
             CreateExplosion();
         }

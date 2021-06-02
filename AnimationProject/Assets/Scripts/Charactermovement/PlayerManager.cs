@@ -148,25 +148,25 @@ public class PlayerManager : MonoBehaviour
         switch (SingeltonData.instance.weapon)
         {
             case 0: // Sin arma
-                Debug.Log("No tengo arma.");
+                //Debug.Log("No tengo arma.");
                 break;
             case 1: // Pistola
-                Debug.Log("Tengo una pistola.");
+                //Debug.Log("Tengo una pistola.");
                 GameObject pistol = Instantiate(SingeltonData.instance.pistol, transform.position + Vector3.up * 5, Quaternion.identity);
                 pistol.GetComponent<GunScript>().SetSpecificAmmo(SingeltonData.instance.ammo);
                 break;
             case 2: // Rifle
-                Debug.Log("Tengo un rifle de asalto.");
+                //Debug.Log("Tengo un rifle de asalto.");
                 GameObject rifle = Instantiate(SingeltonData.instance.rifle, transform.position + Vector3.up * 5, Quaternion.identity);
                 rifle.GetComponent<GunScript>().SetSpecificAmmo(SingeltonData.instance.ammo);
                 break;
             case 3: // Bazooka
-                Debug.Log("Tengo un bazooka.");
+                //Debug.Log("Tengo un bazooka.");
                 GameObject bazooka = Instantiate(SingeltonData.instance.bazooka, transform.position + Vector3.up * 5, Quaternion.identity);
                 bazooka.GetComponent<GunScript>().SetSpecificAmmo(SingeltonData.instance.ammo);
                 break;
             default: // Sin arma
-                Debug.Log("No tengo arma.");
+                //Debug.Log("No tengo arma.");
                 break;
         }
 
