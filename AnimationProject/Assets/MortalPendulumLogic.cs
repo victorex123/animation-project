@@ -8,10 +8,10 @@ public class MortalPendulumLogic : MonoBehaviour
     //Private
     float minAngle = -90;
     float maxAngle = 90;
-    float actualAngle;
+    float actualAngle = -90;
 
-    float speed;
-    float aceleration = 1;
+    float speed = 60;
+    float direction = 1;
 
     float dt;
 
@@ -25,11 +25,22 @@ public class MortalPendulumLogic : MonoBehaviour
     {
         dt = Time.deltaTime;
 
-        speed += aceleration * dt;
-        actualAngle = transform.rotation.z + speed * dt;
+        actualAngle += speed * direction * dt;
 
-        transform.rotation = Quaternion.AngleAxis(actualAngle, Vector3.forward);
+        if (actualAngle + speed * direction * dt <= minAngle || actualAngle + speed * direction * dt >= maxAngle)
+        {
+            direction *= -1;
+        }
 
-        Debug.Log(actualAngle);
+        transform.rotation = Quaternion.Euler(0,0,actualAngle);
+
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.CompareTag("Player"))
+        {
+            other.gameObject.GetComponent<PlayerManager>().ReceiveDamage(9999, 0);
+        }
     }
 }
