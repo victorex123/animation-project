@@ -31,7 +31,7 @@ public class DestroyConection : MonoBehaviour
                 child.GetComponent<Rigidbody>().isKinematic = false;
                 child.GetComponent<Rigidbody>().useGravity = true;
                 child.transform.parent = null;
-                Destroy(this.gameObject);
+                Destroy(this.transform.parent.gameObject);
             }
         }
     }
