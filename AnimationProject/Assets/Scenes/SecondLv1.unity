@@ -3984,6 +3984,12 @@ MonoBehaviour:
   actualHealth: 100
   specialInitialState: 0
   fadeColor: {r: 0, g: 0, b: 0, a: 0}
+  deads: 0
+  weapon: 0
+  ammo: 0
+  pistol: {fileID: 1669814075106190, guid: ea530e89dc913d14480baec0a57c7801, type: 3}
+  rifle: {fileID: 1719131515888008, guid: 33f6247810b654041bccca4adbd93f45, type: 3}
+  bazooka: {fileID: 3134810973971713421, guid: ffec6a85934f4cd4faeb0c133d9ee6aa, type: 3}
 --- !u!4 &1711844218
 Transform:
   m_ObjectHideFlags: 0

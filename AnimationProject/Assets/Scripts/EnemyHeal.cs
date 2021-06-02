@@ -34,9 +34,12 @@ public class EnemyHeal : MonoBehaviour
     {
         currentHealth -= dmg;
         healthBar.SetHealth(currentHealth);
-        GameObject blood = Instantiate(bloodSplat, transform.position, Quaternion.identity);
-        blood.transform.rotation = Quaternion.Euler(0, Random.Range(0, 360), 0);
-        blood.transform.position -= Vector3.up * 0.06f;
+        if (organic)
+        {
+            GameObject blood = Instantiate(bloodSplat, transform.position, Quaternion.identity);
+            blood.transform.rotation = Quaternion.Euler(0, Random.Range(0, 360), 0);
+            blood.transform.position -= Vector3.up * 0.06f;
+        }
     }
 
     private void OnTriggerEnter(Collider other)

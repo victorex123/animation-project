@@ -115,7 +115,7 @@ public class Boids : MonoBehaviour
     {
         allUnits = new BoidsUnit[flockSize];
         chooseRealBoid = Random.Range(0, flockSize) -1;
-        print(chooseRealBoid);
+        //print(chooseRealBoid);
 
         for (int i = 0; i < flockSize; i++)
         {

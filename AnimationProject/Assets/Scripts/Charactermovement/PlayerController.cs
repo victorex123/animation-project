@@ -220,7 +220,6 @@ public class PlayerController : MonoBehaviour
 
         List<Ray> raylistToCamera = new List<Ray>();
         RaycastHit hitToCamera;
-        RaycastHit hitToWall;
 
         Ray ray1ToCamera = new Ray(transform.position+Vector3.up, vectorDirToCamera1);
         raylistToCamera.Add(ray1ToCamera);
@@ -247,7 +246,7 @@ public class PlayerController : MonoBehaviour
                     }
                 }
 
-                Debug.Log(actualDistance + " " + wallDistance);
+                //Debug.Log(actualDistance + " " + wallDistance);
             }
         }
     }

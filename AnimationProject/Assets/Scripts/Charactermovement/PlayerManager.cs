@@ -40,6 +40,9 @@ public class PlayerManager : MonoBehaviour
     private float tpTimer = 0;
     private float tpTime = 0;
 
+    private int typeOfWeapon;
+    private GameObject weapon;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -144,6 +147,33 @@ public class PlayerManager : MonoBehaviour
         specialInitialState = SingeltonData.instance.specialInitialState;
         fadeInFullScreen.color = SingeltonData.instance.fadeColor;
 
+        switch (SingeltonData.instance.weapon)
+        {
+            case 0: // Sin arma
+                Debug.Log("No tengo arma.");
+                break;
+            case 1: // Pistola
+                Debug.Log("Tengo una pistola.");
+                GameObject pistol = Instantiate(SingeltonData.instance.pistol, transform.position + Vector3.up * 5, Quaternion.identity);
+                pistol.GetComponent<GunScript>().SetSpecificAmmo(SingeltonData.instance.ammo);
+                break;
+            case 2: // Rifle
+                Debug.Log("Tengo un rifle de asalto.");
+                GameObject rifle = Instantiate(SingeltonData.instance.rifle, transform.position + Vector3.up * 5, Quaternion.identity);
+                rifle.GetComponent<GunScript>().SetSpecificAmmo(SingeltonData.instance.ammo);
+
+                Debug.Log(SingeltonData.instance.ammo);
+                break;
+            case 3: // Bazooka
+                Debug.Log("Tengo un bazooka.");
+                GameObject bazooka = Instantiate(SingeltonData.instance.bazooka, transform.position + Vector3.up * 5, Quaternion.identity);
+                bazooka.GetComponent<GunScript>().SetSpecificAmmo(SingeltonData.instance.ammo);
+                break;
+            default: // Sin arma
+                Debug.Log("No tengo arma.");
+                break;
+        }
+
         ManageInitialState();
     }
 
@@ -153,6 +183,11 @@ public class PlayerManager : MonoBehaviour
         SingeltonData.instance.specialInitialState = specialInitialState;
         SingeltonData.instance.fadeColor = fadeInFullScreen.color;
 
+        if (weapon != null)
+        {
+            SingeltonData.instance.weapon = typeOfWeapon;
+            SingeltonData.instance.ammo = weapon.GetComponent<GunScript>().GetAmmo();
+        }
     }
 
     private void FallDamage()
@@ -244,6 +279,22 @@ public class PlayerManager : MonoBehaviour
                 tpTimer = 0;
                 SceneManager.LoadScene(nextScene);
             }         
+        }
+    }
+
+    public void EquipWeaponManager(GameObject arma)
+    {
+        if (arma == null)
+        {
+            typeOfWeapon = 0;
+            this.weapon = null;
+            Debug.Log("Arma desequipada");
+        }
+        if (arma != null)
+        {
+            typeOfWeapon = arma.GetComponent<GunScript>().GetMode() + 1;
+            this.weapon = arma;
+            Debug.Log("Arma equipada");
         }
     }
 }

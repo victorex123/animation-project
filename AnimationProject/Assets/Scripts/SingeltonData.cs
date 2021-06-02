@@ -12,6 +12,13 @@ public class SingeltonData : MonoBehaviour
     public int specialInitialState = 0;
     public Color fadeColor;
     public int deads = 0;
+
+    public int weapon;
+    public int ammo;
+
+    public GameObject pistol;
+    public GameObject rifle;
+    public GameObject bazooka;
     #endregion
 
     private void Awake()

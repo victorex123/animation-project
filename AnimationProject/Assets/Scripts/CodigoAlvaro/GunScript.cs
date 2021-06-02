@@ -16,9 +16,14 @@ public class GunScript : MonoBehaviour
     private float shootCooldown;
     private int ammo = 0;
     // Start is called before the first frame update
-    void Start()
+    private void Awake()
     {
         settings();
+    }
+
+    void Start()
+    {
+        //settings();
     }
 
     // Update is called once per frame
@@ -80,5 +85,10 @@ public class GunScript : MonoBehaviour
     public int GetAmmo()
     {
         return ammo;
+    }
+
+    public void SetSpecificAmmo(int ammount)
+    {
+        ammo = ammount;
     }
 }

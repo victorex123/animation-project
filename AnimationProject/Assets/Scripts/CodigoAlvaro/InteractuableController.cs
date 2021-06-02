@@ -31,10 +31,13 @@ public class InteractuableController : MonoBehaviour
     private Text textAmmo;
     [SerializeField]
     private Image puntero;
+
+    private PlayerManager playermanager;
+
     // Start is called before the first frame update
     void Start()
     {
-
+        playermanager = GetComponent<PlayerManager>();
     }
 
     // Update is called once per frame
@@ -187,6 +190,7 @@ public class InteractuableController : MonoBehaviour
 
     public void equipGun()
     {
+        playermanager.EquipWeaponManager(equipedObject);
         equipedObject.GetComponent<Rigidbody>().isKinematic = true;
         equipedObject.GetComponent<BoxCollider>().enabled = false;
         equipedObject.GetComponent<SphereCollider>().enabled = false;
@@ -198,6 +202,7 @@ public class InteractuableController : MonoBehaviour
 
     public void unequipGun()
     {
+        playermanager.EquipWeaponManager(null);
         equipedObject.GetComponent<Rigidbody>().isKinematic = false;
         equipedObject.GetComponent<BoxCollider>().enabled = true;   
         equipedObject.GetComponent<SphereCollider>().enabled = true;
