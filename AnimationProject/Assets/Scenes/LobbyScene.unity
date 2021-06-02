@@ -3321,6 +3321,10 @@ MonoBehaviour:
     - pokemon
     - p-p
     - HAHAHAHAHAA
+    pruebaNameList:
+    - WOLOLO
+    - WOLOLO
+    - WOLOLO
     controlCharacteristicsList:
     - "que cosas P_P\t"
     - estadistica es vida, quien diga lo contrario miente
@@ -10198,6 +10202,7 @@ MonoBehaviour:
     - {fileID: 21300000, guid: e4a3c5e96bcf61b49bc9bff56340757b, type: 3}
     - {fileID: 21300000, guid: e0e2f4cb0de771d48bfa1e128bbc2630, type: 3}
     enemyNamesList: []
+    pruebaNameList: []
     controlCharacteristicsList:
     - "que cosas P_P\t"
     - estadistica es vida, quien diga lo contrario miente
