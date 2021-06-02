@@ -11,13 +11,13 @@ public class MortalPendulumLogic : MonoBehaviour
     float actualAngle = -90;
 
     float speed = 60;
-    float direction = 1;
+    public float direction = 1;
 
     float dt;
 
     void Start()
     {
-        
+        actualAngle = transform.rotation.z;
     }
 
     // Update is called once per frame
@@ -40,7 +40,8 @@ public class MortalPendulumLogic : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Player"))
         {
-            other.gameObject.GetComponent<PlayerManager>().ReceiveDamage(9999, 0);
+            other.gameObject.GetComponent<PlayerManager>().ReceiveDamage(50, 0);
+            other.gameObject.GetComponent<Rigidbody>().AddForce(new Vector3(50 * direction,0,0), ForceMode.VelocityChange);
         }
     }
 }
