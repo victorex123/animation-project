@@ -37,6 +37,19 @@ public class TorretEnemy : MonoBehaviour
         timeToShoot = UnityEngine.Random.Range(1.0f, maxTimeShoot);
         timeWasteToShoot = timeToShoot;
         healtBar.SetActive(false);
+
+        if (SingeltonData.instance.difficult == 0)
+        {
+            speedShoot = 10;
+        }
+        else if (SingeltonData.instance.difficult == 1)
+        {
+            speedShoot = 20;
+        }
+        else if (SingeltonData.instance.difficult == 2)
+        {
+            speedShoot = 50;
+        }
     }
 
     // Update is called once per frame

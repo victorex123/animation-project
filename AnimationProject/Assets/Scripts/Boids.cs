@@ -65,6 +65,7 @@ public class Boids : MonoBehaviour
     void Start()
     {
         GenerateUnits();
+
     }
 
     // Update is called once per frame

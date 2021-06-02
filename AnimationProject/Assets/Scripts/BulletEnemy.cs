@@ -9,7 +9,18 @@ public class BulletEnemy : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        if(SingeltonData.instance.difficult==0)
+        {
+            damage = 10; 
+        }
+        else if (SingeltonData.instance.difficult == 1)
+        {
+            damage = 20;
+        }
+        else if(SingeltonData.instance.difficult == 2)
+        {
+            damage = 50;
+        }
     }
 
     // Update is called once per frame

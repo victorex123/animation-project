@@ -53,6 +53,19 @@ public class BoidsUnit : MonoBehaviour
     {
         timeToShoot = Random.Range(0.0f, 10.0f);
         time = timeToShoot;
+
+        if (SingeltonData.instance.difficult == 0)
+        {
+            speedShoot = 10;
+        }
+        else if (SingeltonData.instance.difficult == 1)
+        {
+            speedShoot = 20;
+        }
+        else if (SingeltonData.instance.difficult == 2)
+        {
+            speedShoot = 50;
+        }
     }
 
     void Update()
