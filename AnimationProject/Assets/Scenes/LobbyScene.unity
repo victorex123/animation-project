@@ -828,9 +828,31 @@ MonoBehaviour:
   dialogue:
     name: Boss
     sentenceList:
-    - hola
-    - que tal
-    - :)
+    - Hello good morning, as you have woken up now I will call you number 47 (good,
+      my favorite number :D), I will explain what your goal is, but before that let
+      me show you what your capabilities are.
+    - You are an experimental model, you can hurt yourself when falling from high
+      places and you can poison yourself (so crazy xD). You are made of sturdy metal
+      but the waiting enemies will not mind that, so be careful of being surrounded
+      by the enemies.
+    - I have not put arms on you for simple laziness (I am also short of materials),
+      but you can take weapons and various objects with the power of magnetism. You
+      have a shooting practice range for you to get used to the guns. You can aim
+      with weapons; in total there are 3, in the field you have 2, you could have
+      all of them, if your brothers had achieved it ...
+    - Also on your right side you have a computer that allows you to know your possible
+      enemies, the different controls that you have in case you have not heard me
+      >:(  and with your objective. All this information has been collected by me
+      and your brothers. Stay on the platform black and press Q
+    - Behind me is the teleportation platform, if you see yourself trained you can
+      get on and start the mission. Your main objective is to steal the big diamond,
+      which I need to analyze that diamond and be able to improve you and your brothers
+      into a stronger robots.
+    - I will be helping you at the beginning of the levels with a small robot to
+      help you, since you are my luck number, I want you to achieve the goal that
+      your brothers could not get. Press E to talk to him.
+    - GOOD LUCK :) (take a weapon equipped for the mission, I mean it, take one of
+      the soothing practice please O_O)
   dialoguePanel: {fileID: 26854077}
   displayText: {fileID: 1487539712}
 --- !u!65 &84573378
@@ -844,8 +866,8 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 17.84468, y: 10.17417, z: 16.214043}
-  m_Center: {x: 0.46043968, y: -2.1492252, z: 1.5542774}
+  m_Size: {x: 12.969803, y: 10.17417, z: 2.2488337}
+  m_Center: {x: 0.20621777, y: -2.1492252, z: -5.428326}
 --- !u!4 &84573379
 Transform:
   m_ObjectHideFlags: 0
@@ -11466,10 +11488,10 @@ RectTransform:
   m_Father: {fileID: 26854081}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.16167924, y: 0.06956938}
-  m_AnchorMax: {x: 0.3392717, y: 0.14658377}
-  m_AnchoredPosition: {x: -2.0000305, y: 2}
-  m_SizeDelta: {x: 4, y: 0}
+  m_AnchorMin: {x: 0.16167924, y: 0.036000002}
+  m_AnchorMax: {x: 0.8376208, y: 0.21543843}
+  m_AnchoredPosition: {x: -1.9440308, y: -2.5021973}
+  m_SizeDelta: {x: 4.1119995, y: -1.0826988}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1487539712
 MonoBehaviour:
@@ -11493,11 +11515,11 @@ MonoBehaviour:
       m_Calls: []
   m_FontData:
     m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
-    m_FontSize: 14
+    m_FontSize: 30
     m_FontStyle: 0
     m_BestFit: 0
     m_MinSize: 10
-    m_MaxSize: 40
+    m_MaxSize: 44
     m_Alignment: 0
     m_AlignByGeometry: 0
     m_RichText: 1

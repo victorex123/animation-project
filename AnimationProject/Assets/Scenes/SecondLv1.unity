@@ -2682,63 +2682,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 2616525377404287624, guid: 757eca7937fc83f4ea05b2d2f3d3e9a9, type: 3}
   m_PrefabInstance: {fileID: 383101614}
   m_PrefabAsset: {fileID: 0}
---- !u!1001 &1309268893
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 1669814075106190, guid: ea530e89dc913d14480baec0a57c7801, type: 3}
-      propertyPath: m_Name
-      value: Handgun_01
-      objectReference: {fileID: 0}
-    - target: {fileID: 4389320645946552, guid: ea530e89dc913d14480baec0a57c7801, type: 3}
-      propertyPath: m_RootOrder
-      value: 4
-      objectReference: {fileID: 0}
-    - target: {fileID: 4389320645946552, guid: ea530e89dc913d14480baec0a57c7801, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: -177
-      objectReference: {fileID: 0}
-    - target: {fileID: 4389320645946552, guid: ea530e89dc913d14480baec0a57c7801, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 3.78
-      objectReference: {fileID: 0}
-    - target: {fileID: 4389320645946552, guid: ea530e89dc913d14480baec0a57c7801, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: -54.7
-      objectReference: {fileID: 0}
-    - target: {fileID: 4389320645946552, guid: ea530e89dc913d14480baec0a57c7801, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4389320645946552, guid: ea530e89dc913d14480baec0a57c7801, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0.0000018099952
-      objectReference: {fileID: 0}
-    - target: {fileID: 4389320645946552, guid: ea530e89dc913d14480baec0a57c7801, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4389320645946552, guid: ea530e89dc913d14480baec0a57c7801, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4389320645946552, guid: ea530e89dc913d14480baec0a57c7801, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4389320645946552, guid: ea530e89dc913d14480baec0a57c7801, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4389320645946552, guid: ea530e89dc913d14480baec0a57c7801, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: ea530e89dc913d14480baec0a57c7801, type: 3}
 --- !u!1 &1316477465
 GameObject:
   m_ObjectHideFlags: 0
@@ -4059,7 +4002,7 @@ Transform:
   - {fileID: 1615961171}
   - {fileID: 543450652152897874}
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1837526000
 PrefabInstance:
@@ -4243,7 +4186,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4035955702694301486, guid: 3d71e39a52ba63147ba0c607d61bac24, type: 3}
       propertyPath: m_RootOrder
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 4035955702694301486, guid: 3d71e39a52ba63147ba0c607d61bac24, type: 3}
       propertyPath: m_LocalPosition.x
@@ -4721,6 +4664,74 @@ Transform:
   m_Father: {fileID: 8911915}
   m_RootOrder: 19
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1001 &2024005435
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 358447592836303223, guid: c6c1a6b82ef97e548bac40303e7c2148, type: 3}
+      propertyPath: dialogue.sentenceList.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 358447592836303223, guid: c6c1a6b82ef97e548bac40303e7c2148, type: 3}
+      propertyPath: dialogue.sentenceList.Array.data[0]
+      value: Wow, the diamond is not here either, it seems that here there are no
+        enemies like the ones from the previous level, there are guards here, be
+        careful with them. I saw there is a locked door, go to get the key and use
+        the teleport.
+      objectReference: {fileID: 0}
+    - target: {fileID: 5825083371658795607, guid: c6c1a6b82ef97e548bac40303e7c2148, type: 3}
+      propertyPath: m_RootOrder
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5825083371658795607, guid: c6c1a6b82ef97e548bac40303e7c2148, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -182.56674
+      objectReference: {fileID: 0}
+    - target: {fileID: 5825083371658795607, guid: c6c1a6b82ef97e548bac40303e7c2148, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 3.35
+      objectReference: {fileID: 0}
+    - target: {fileID: 5825083371658795607, guid: c6c1a6b82ef97e548bac40303e7c2148, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -45.33003
+      objectReference: {fileID: 0}
+    - target: {fileID: 5825083371658795607, guid: c6c1a6b82ef97e548bac40303e7c2148, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.5189064
+      objectReference: {fileID: 0}
+    - target: {fileID: 5825083371658795607, guid: c6c1a6b82ef97e548bac40303e7c2148, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5825083371658795607, guid: c6c1a6b82ef97e548bac40303e7c2148, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0.85483104
+      objectReference: {fileID: 0}
+    - target: {fileID: 5825083371658795607, guid: c6c1a6b82ef97e548bac40303e7c2148, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5825083371658795607, guid: c6c1a6b82ef97e548bac40303e7c2148, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5825083371658795607, guid: c6c1a6b82ef97e548bac40303e7c2148, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: -117.482
+      objectReference: {fileID: 0}
+    - target: {fileID: 5825083371658795607, guid: c6c1a6b82ef97e548bac40303e7c2148, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6601444561697997037, guid: c6c1a6b82ef97e548bac40303e7c2148, type: 3}
+      propertyPath: m_Name
+      value: miniScreen-lp
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: c6c1a6b82ef97e548bac40303e7c2148, type: 3}
 --- !u!4 &2032068248 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2616525377404287624, guid: 757eca7937fc83f4ea05b2d2f3d3e9a9, type: 3}
