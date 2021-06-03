@@ -10,6 +10,9 @@ public class CreditCustomMessage : MonoBehaviour
 
     public Text customText;
 
+    float creditsDuration = 20;
+    float timer = 0;
+
     void Start()
     {
         string difficultText = "normal";
@@ -27,12 +30,17 @@ public class CreditCustomMessage : MonoBehaviour
         }
         customText.text = "Game completed on "+ difficultText +"\n Number of deads: " + SingeltonData.instance.deads +
             "\n\n" + customText.text;
-
-        Destroy(this.gameObject,20);
     }
 
-    private void OnDestroy()
+    private void Update()
     {
-        SceneManager.LoadScene("MainMenu");
+        float dt = Time.deltaTime;
+        timer += dt;
+
+        if (timer >= creditsDuration)
+        {
+            SceneManager.LoadScene("MainMenu");
+        }
+
     }
 }
