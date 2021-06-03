@@ -5,6 +5,9 @@ using UnityEngine;
 public class FinalBossAI : MonoBehaviour
 {
     // Start is called before the first frame update
+    // Public
+    public GameObject player;
+
     void Start()
     {
         
@@ -13,6 +16,6 @@ public class FinalBossAI : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
+        transform.LookAt(player.transform.position);
     }
 }
