@@ -39,6 +39,8 @@ public class CreditCustomMessage : MonoBehaviour
 
         if (timer >= creditsDuration)
         {
+            Cursor.lockState = CursorLockMode.Confined;
+            Cursor.visible = true;
             SceneManager.LoadScene("MainMenu");
         }
 
